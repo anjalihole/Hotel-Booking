@@ -1,0 +1,83 @@
+[
+    {
+        "HealthSystem": "Wellstar Health System",
+        "Tags":["Cholesterol"],
+        "AssociatedHospitals": [
+            "Wellstar Kennestone - Stroke, CAD",
+            "Wellstar Paulding Hospital - CAD",
+            "Wellstar Douglas Hospital - CAD",
+            "Wellstar CVM Clinic Marietta",
+            "Wellstar CVM Clinic Hiram",
+            "Wellstar CVM Clinic Douglasville",
+            "Wellstar East Cobb Cardiac & Pulmonary Rehabilitation"
+        ]
+    },
+    {
+        "HealthSystem": "UC San Diego Health",
+        "Tags":["Cholesterol"],
+        "AssociatedHospitals": [
+            "UC San Diego Health Hillcrest - Stroke",
+            "UC San DiegoHealth  La Jolla - Stroke",
+            "UC San Diego Health Primary Care Clinics -  BP, Diabetes",
+            "UC San Diego Health Community Care Clinics - BP, Diabetes"
+        ]
+    },
+    {
+        "HealthSystem": "M Health Fairview",
+        "Tags":["Cholesterol"],
+        "AssociatedHospitals": [
+            "Ridges - Stroke", 
+            "Southdale - Stroke", 
+            "Grand Itasca - Stroke",
+            "Ridges Specialty",
+            "Southdale Specialty", 
+            "Grand Itasca Clinic System"
+        ]
+    },
+    {
+        "HealthSystem": "Atrium Health",
+        "Tags":["Cholesterol"],
+        "AssociatedHospitals": [
+            "Atrium Health Wake Forest Baptist - Stroke", 
+            "Atrium Health Wake Forest Highpoint", 
+            "Atrium Health Wake Forest Heart and Vascular Premier",
+            "Atrium Health Wake Forest Heart and Vascular Downtown Health Plaza",
+            "Atrium Health Wake Forest Janeway"
+        ]
+    },
+    {
+        "HealthSystem": "Kaiser Permanente",
+        "Tags":["Cholesterol"],
+        "AssociatedHospitals": [
+            "Kaiser San Francisco - CAD", 
+            "Kaiser Freemont - CAD", 
+            "Kaiser South Sacramento - CAD",
+            "Kaiser San Francisco", 
+            "Kaiser Freemont", 
+            "Kaiser South Sacramento"
+        ]
+    },
+    {
+        "HealthSystem": "Nebraska Health System",
+        "Tags":["Cholesterol"],
+        "AssociatedHospitals": [
+            "Nebraska Medical Center - Stroke, CAD", 
+            "Bellevue Hospital -  Stroke, CAD", 
+            "Heart and Vascular Center at Bellevue Health Center",
+            "Grand Island Health Center"
+        ]
+    },
+    {
+        "HealthSystem": "HCA Healthcare",
+        "Tags":["Stroke"],
+        "AssociatedHospitals": [
+            "The Medical Center of Aurora", 
+            "HCA Florida JFK Hospital", 
+            "HCA Florida North Florida Hospital",
+            "Parkridge Medical Center",
+            "Sky Ridge Medical Center",
+            "Sunrise Hospital and Medical Center",
+            "Parkridge East Hospital"
+        ]
+    }
+]
