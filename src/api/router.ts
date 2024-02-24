@@ -3,7 +3,6 @@
 import express from 'express';
 import { Logger } from '../common/logger';
 import { register as registerAddressRoutes } from './general/address/address.routes';
-import { register as registerClientRoutes } from './api.client/api.client.routes';
 import { register as registerCustomerRoutes } from './customer/customer.routes';
 import { register as registerAllergyRoutes } from './clinical/allergy/allergy.routes';
 import { register as registerBloodGlucoseRoutes } from './clinical/biometrics/blood.glucose/blood.glucose.routes';
@@ -114,7 +113,6 @@ export class Router {
 
                 registerUserRoutes(this._app);
                 registerAddressRoutes(this._app);
-                registerClientRoutes(this._app);
                 registerCustomerRoutes(this._app);
                 registerPatientRoutes(this._app);
                 registerDoctorRoutes(this._app);

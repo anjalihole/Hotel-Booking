@@ -4,7 +4,6 @@ import { UserService } from '../../services/users/user/user.service';
 import { Logger } from '../../common/logger';
 import { AuthenticationResult } from '../../domain.types/auth/auth.domain.types';
 import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
-import { ApiClientService } from '../../services/api.client/api.client.service';
 import { Loader } from '../../startup/loader';
 import { IAuthenticator } from '../authenticator.interface';
 import { CurrentUser } from '../../domain.types/miscellaneous/current.user';
@@ -15,12 +14,9 @@ import { ConfigurationManager } from '../../config/configuration.manager';
 
 export class CustomAuthenticator implements IAuthenticator {
 
-    _clientService: ApiClientService = null;
-
     _userService: UserService = null;
 
     constructor() {
-        this._clientService = Loader.container.resolve(ApiClientService);
         this._userService = Loader.container.resolve(UserService);
     }
 
@@ -119,17 +115,6 @@ export class CustomAuthenticator implements IAuthenticator {
                 return res;
             }
             apiKey = apiKey.trim();
-
-            const client: CurrentClient = await this._clientService.isApiKeyValid(apiKey);
-            if (!client) {
-                res = {
-                    Result        : false,
-                    Message       : 'Invalid API Key: Forbidden access',
-                    HttpErrorCode : 403,
-                };
-                return res;
-            }
-            request.currentClient = client;
 
         } catch (err) {
             Logger.instance().log(JSON.stringify(err, null, 2));

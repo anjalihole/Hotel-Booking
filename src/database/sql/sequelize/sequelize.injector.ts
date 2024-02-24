@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import { DependencyContainer } from 'tsyringe';
 import { DatabaseConnector_Sequelize } from './database.connector.sequelize';
 import { AddressRepo } from './repositories/general/address.repo';
-import { ApiClientRepo } from './repositories/api.client/api.client.repo';
 import { CustomerRepo } from './repositories/customer/customer.repo';
 import { AllergyRepo } from './repositories/clinical/allergy.repo';
 import { BloodGlucoseRepo } from './repositories/clinical/biometrics/blood.glucose.repo';
@@ -109,7 +108,6 @@ export class SequelizeInjector {
         container.register('IPersonRoleRepo', PersonRoleRepo);
         container.register('IRoleRepo', RoleRepo);
         container.register('IOtpRepo', OtpRepo);
-        container.register('IApiClientRepo', ApiClientRepo);
         container.register('ICustomerRepo', CustomerRepo);
         container.register('IPatientRepo', PatientRepo);
         container.register('IAddressRepo', AddressRepo);
