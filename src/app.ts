@@ -7,11 +7,8 @@ import { Router } from './api/router';
 import { Helper } from './common/helper';
 import { Logger } from './common/logger';
 import { ConfigurationManager } from "./config/configuration.manager";
-import { EHRDbConnector } from './modules/ehr.analytics/ehr.db.connector';
-import { AwardsFactsDBConnector } from './modules/awards.facts/awards.facts.db.connector';
 import { PrimaryDatabaseConnector } from './database/database.connector';
 import { Loader } from './startup/loader';
-import { AwardsFactsService } from './modules/awards.facts/awards.facts.service';
 import { DatabaseClient } from './common/database.utils/dialect.clients/database.client';
 import { DatabaseSchemaType } from './common/database.utils/database.config';
 
@@ -50,26 +47,11 @@ export default class Application {
             //Connect databases
             await connectDatabase_Primary();
 
-            if (ConfigurationManager.EHRAnalyticsEnabled()) {
-                await connectDatabase_EHRInsights();
-            }
-            if (ConfigurationManager.GamificationEnabled()) {
-                await connectDatabase_AwardsFacts();
-            }
-
             //Set-up middlewares
             await this.setupMiddlewares();
 
             //Set the routes
             await this._router.init();
-
-            //Seed the service
-            await Loader.seeder.init();
-
-            if (process.env.NODE_ENV !== 'test') {
-                //Set-up cron jobs
-                await Loader.scheduler.schedule();
-            }
 
             process.on('exit', code => {
                 Logger.instance().log(`Process exited with code: ${code}`);
@@ -140,16 +122,4 @@ async function connectDatabase_Primary() {
     }
     const primaryDatabaseConnector = Loader.container.resolve(PrimaryDatabaseConnector);
     await primaryDatabaseConnector.init();
-}
-
-async function connectDatabase_EHRInsights() {
-    //Connect with EHR insights database
-    await EHRDbConnector.connect();
-}
-
-async function connectDatabase_AwardsFacts() {
-    //Connect with Awards facts database
-    await AwardsFactsDBConnector.connect();
-    //Fetch the event types from awards service
-    await AwardsFactsService.initialize();
 }

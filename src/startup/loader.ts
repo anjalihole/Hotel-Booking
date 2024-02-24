@@ -8,8 +8,8 @@ import { MessagingService } from '../modules/communication/messaging.service/mes
 import { NotificationService } from '../modules/communication/notification.service/notification.service';
 import { StorageService } from '../modules/ehr/services/storage.service';
 import { Injector } from './injector';
-import { Scheduler } from './scheduler';
-import { Seeder } from './seeder';
+// import { Scheduler } from './scheduler';
+// import { Seeder } from './seeder';
 import { ConfigurationManager } from '../config/configuration.manager';
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,9 +20,9 @@ export class Loader {
 
     private static _authenticator: Authenticator = null;
 
-    private static _seeder: Seeder = null;
+    // private static _seeder: Seeder = null;
 
-    private static _scheduler: Scheduler = Scheduler.instance();
+    // private static _scheduler: Scheduler = Scheduler.instance();
 
     private static _messagingService: MessagingService = null;
 
@@ -40,13 +40,13 @@ export class Loader {
         return Loader._authorizer;
     }
 
-    public static get seeder() {
-        return Loader._seeder;
-    }
+    // public static get seeder() {
+    //     return Loader._seeder;
+    // }
 
-    public static get scheduler() {
-        return Loader._scheduler;
-    }
+    // public static get scheduler() {
+    //     return Loader._scheduler;
+    // }
 
     public static get storage() {
         return Loader._ehrStore;
@@ -72,7 +72,7 @@ export class Loader {
 
             Loader._authenticator = container.resolve(Authenticator);
             Loader._authorizer = container.resolve(Authorizer);
-            Loader._seeder = container.resolve(Seeder);
+            // Loader._seeder = container.resolve(Seeder);
 
             const ehrEnabled = ConfigurationManager.EhrEnabled();
             if (ehrEnabled) {
