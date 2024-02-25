@@ -13,7 +13,6 @@ import { UserTaskService } from '../../../services/users/user/user.task.service'
 import { Loader } from '../../../startup/loader';
 import { UserTaskValidator } from './user.task.validator';
 import { MedicationConsumptionService } from '../../../services/clinical/medication/medication.consumption.service';
-import { CareplanService } from '../../../services/clinical/careplan.service';
 import { EHRAnalyticsHandler } from '../../../modules/ehr.analytics/ehr.analytics.handler';
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +31,6 @@ export class UserTaskController {
 
     _medicationConsumptionService: MedicationConsumptionService = null;
 
-    _careplanService: CareplanService = null;
-
     _authorizer: Authorizer = null;
 
     _validator: UserTaskValidator = new UserTaskValidator();
@@ -46,7 +43,6 @@ export class UserTaskController {
         this._personService = Loader.container.resolve(PersonService);
         this._organizationService = Loader.container.resolve(OrganizationService);
         this._medicationConsumptionService = Loader.container.resolve(MedicationConsumptionService);
-        this._careplanService = Loader.container.resolve(CareplanService);
         this._authorizer = Loader.authorizer;
     }
 
@@ -167,7 +163,7 @@ export class UserTaskController {
             const filters = await this._validator.search(request);
 
             var searchResults = await this._service.search(filters);
-            searchResults.Items = await this.updateDtos(searchResults.Items, false);
+            searchResults.Items = await this.updateDtos(searchResults.Items);
             const count = searchResults.Items.length;
             const message =
                 count === 0
@@ -240,9 +236,6 @@ export class UserTaskController {
                     existing.ActionType, existing.ActionId, true, finishedAt);
                 Logger.instance().log(`${existing.ActionType} - Action result : ${result}`);
 
-                if (userResponse) {
-                    await this._careplanService.updateActivityUserResponse(existing.ActionId, userResponse );
-                }
             }
 
             const updated = await this._service.finishTask(id);
@@ -420,16 +413,16 @@ export class UserTaskController {
 
     //#region Privates
 
-    private updateDtos = async (dtos: UserTaskDto[], fullDetails = true): Promise<UserTaskDto[]> => {
+    private updateDtos = async (dtos: UserTaskDto[]): Promise<UserTaskDto[]> => {
         var updatedDtos: UserTaskDto[] = [];
         for await (var dto of dtos) {
-            const updated = await this.updateDto(dto, fullDetails);
+            const updated = await this.updateDto(dto);
             updatedDtos.push(updated);
         }
         return updatedDtos;
     };
 
-    private updateDto = async (dto: UserTaskDto, fullDetails = true): Promise<UserTaskDto> => {
+    private updateDto = async (dto: UserTaskDto): Promise<UserTaskDto> => {
 
         if (dto == null) {
             return null;
@@ -443,15 +436,6 @@ export class UserTaskController {
             const actionDto = await this._medicationConsumptionService.getById(dto.ActionId);
             dto.Action = actionDto;
         }
-        else if (dto.ActionType === UserActionType.Careplan) {
-            if (fullDetails) {
-                dto.Action = await this._careplanService.getAction(dto.ActionId);
-            }
-            else {
-                dto.Action = await this._careplanService.getActivity(dto.ActionId);
-            }
-
-        }
 
         return dto;
     };
@@ -461,28 +445,27 @@ export class UserTaskController {
             appName,
             action.PatientUserId,
             action.id,
-            action.EnrollmentId,     
-            action.Provider,               
-            action.PlanName,      
-            action.PlanCode,                
-            action.Type,            
-            action.Category,        
+            action.EnrollmentId,
+            action.Provider,
+            action.PlanName,
+            action.PlanCode,
+            action.Type,
+            action.Category,
             action.ProviderActionId,
-            action.Title,           
-            action.Description,     
+            action.Title,
+            action.Description,
             action.Url,
-            'English',       
+            'English',
             action.ScheduledAt,
-            action.CompletedAt,     
-            action.Sequence,        
-            action.Frequency,       
+            action.CompletedAt,
+            action.Sequence,
+            action.Frequency,
             action.Status,
             healthSystemHospitalDetails.HealthSystem ? healthSystemHospitalDetails.HealthSystem : null,
             healthSystemHospitalDetails.AssociatedHospital ? healthSystemHospitalDetails.AssociatedHospital : null,
-            updated.CreatedAt ? new Date(updated.CreatedAt) : null           
+            updated.CreatedAt ? new Date(updated.CreatedAt) : null
         );
-};
-
+    };
     //#endregion
 
 }

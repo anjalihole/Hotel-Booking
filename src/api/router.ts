@@ -39,7 +39,6 @@ import { register as registerGoalRoutes } from './users/patient/goal/goal.routes
 import { register as registerPatientHealthProfileRoutes } from './users/patient/health.profile/health.profile.routes';
 import { register as registerPatientRoutes } from './users/patient/patient/patient.routes';
 import { register as registerPersonRoutes } from './person/person.routes';
-import { register as registerTypesRoutes } from './general/types/types.routes';
 import { register as registerUserDeviceDetailsRoutes } from './users/user.device.details/user.device.details.routes';
 import { register as registerUserRoutes } from './users/user/user.routes';
 import { register as registerUserTaskRoutes } from './users/user.task/user.task.routes';
@@ -52,12 +51,8 @@ import { register as registerMeditationtRoutes } from './wellness/exercise/medit
 import { register as registerPhysicalActivityRoutes } from './wellness/exercise/physical.activity/physical.activity.routes';
 import { register as registerNutritionFoodConsumptionRoutes } from './wellness/nutrition/food.consumption/food.consumption.routes';
 import { register as registerWaterConsumptionRoutes } from './wellness/nutrition/water.consumption/water.consumption.routes';
-import { register as registerCareplanRoutes } from './clinical/careplan/careplan.routes';
-import { register as registerAssessmentRoutes } from './clinical/assessment/assessment/assessment.routes';
-import { register as registerAssessmentTemplateRoutes } from './clinical/assessment/assessment.template/assessment.template.routes';
 import { register as registerHealthPriorityRoutes } from './users/patient/health.priority/health.priority.routes';
 import { register as registerActionPlanRoutes } from './users/patient/action.plan/action.plan.routes';
-import { register as registerFormsRoutes } from './clinical/assessment/forms/forms.routes';
 import { register as registerCustomTaskRoutes } from './users/custom.task/custom.task.routes';
 import { register as registerBloodCholesterolRoutes } from './clinical/biometrics/blood.cholesterol/blood.cholesterol.routes';
 import { register as registerStandRoutes } from './wellness/daily.records/stand/stand.routes';
@@ -69,7 +64,6 @@ import { register as registerCourseModuleRoutes } from './educational/learning/c
 import { register as registerCourseContentRoutes } from './educational/learning/course.content/course.content.routes';
 import { register as registerUserLearningRoutes } from './educational/learning/user.learning/user.learning.routes';
 import { register as registerLabRecordRoutes } from './clinical/lab.record/lab.record.routes';
-import { register as registerTestRoutes } from './general/test/test.routes';
 import { register as registerDonorRoutes } from './users/donor/donor.routes';
 import { register as registerNotificationRoutes } from './general/notification/notification.routes';
 import { register as registerVolunteerRoutes } from './users/volunteer/volunteer.routes';
@@ -115,7 +109,6 @@ export class Router {
                 registerCustomerRoutes(this._app);
                 registerPatientRoutes(this._app);
                 registerDoctorRoutes(this._app);
-                registerTypesRoutes(this._app);
                 registerBodyWeightRoutes(this._app);
                 registerBiometricsBloodOxygenSaturationRoutes(this._app);
                 registerPersonRoutes(this._app);
@@ -159,12 +152,8 @@ export class Router {
                 registerUserTaskRoutes(this._app);
                 registerMedicalConditionRoutes(this._app);
                 registerDailyAssessmentRoutes(this._app);
-                registerCareplanRoutes(this._app);
-                registerAssessmentRoutes(this._app);
-                registerAssessmentTemplateRoutes(this._app);
                 registerHealthPriorityRoutes(this._app);
                 registerActionPlanRoutes(this._app);
-                registerFormsRoutes(this._app);
                 registerCustomTaskRoutes(this._app);
                 registerBloodCholesterolRoutes(this._app);
                 registerStandRoutes(this._app);
@@ -176,7 +165,6 @@ export class Router {
                 registerCourseContentRoutes(this._app);
                 registerUserLearningRoutes(this._app);
                 registerLabRecordRoutes(this._app);
-                registerTestRoutes(this._app);
                 registerDonorRoutes(this._app);
                 registerNotificationRoutes(this._app);
                 registerVolunteerRoutes(this._app);

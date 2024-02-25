@@ -4,10 +4,8 @@ import { EnrollmentDomainModel } from "../../domain.types/clinical/careplan/enro
 import Dictionary from "../../common/dictionary";
 import { CareplanActivity } from "../../domain.types/clinical/careplan/activity/careplan.activity";
 import { ParticipantDomainModel } from "../../domain.types/clinical/careplan/participant/participant.domain.model";
-import { ProviderResolver } from "./provider.resolver";
 import { ConfigurationManager } from "../../config/configuration.manager";
 import { CareplanConfig } from "../../config/configuration.types";
-import { CAssessmentTemplate } from "../../domain.types/clinical/assessment/assessment.types";
 import { GoalDto } from "../../domain.types/users/patient/goal/goal.dto";
 import { ActionPlanDto } from "../../domain.types/users/patient/action.plan/action.plan.dto";
 import { HealthPriorityDto } from "../../domain.types/users/patient/health.priority/health.priority.dto";
@@ -19,8 +17,6 @@ export class CareplanHandler {
     static _services: Dictionary<ICareplanService> = new Dictionary<ICareplanService>();
 
     public static init = async (): Promise<boolean> => {
-
-        CareplanHandler._services = ProviderResolver.resolve();
 
         for await (var s of CareplanHandler._services.getKeys()) {
             var service = CareplanHandler._services.getItem(s);
@@ -141,12 +137,6 @@ export class CareplanHandler {
     ): Promise<CareplanActivity> => {
         var service = CareplanHandler._services.getItem(provider);
         return await service.completeActivity(patientUserId, careplanCode, enrollmentId, activityId, updates);
-    };
-
-    public convertToAssessmentTemplate = async (assessmentActivity: CareplanActivity)
-        : Promise<CAssessmentTemplate> => {
-        var service = CareplanHandler._services.getItem(assessmentActivity.Provider);
-        return await service.convertToAssessmentTemplate(assessmentActivity);
     };
 
     public getGoals = async (

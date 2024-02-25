@@ -54,9 +54,6 @@ import { PhysicalActivityRepo } from './repositories/wellness/exercise/physical.
 import { FoodConsumptionRepo } from './repositories/wellness/nutrition/food.consumption.repo';
 import { WaterConsumptionRepo } from './repositories/wellness/nutrition/water.consumption.repo';
 import { CareplanRepo } from './repositories/clinical/careplan/careplan.repo';
-import { AssessmentRepo } from './repositories/clinical/assessment/assessment.repo';
-import { AssessmentTemplateRepo } from './repositories/clinical/assessment/assessment.template.repo';
-import { AssessmentHelperRepo } from './repositories/clinical/assessment/assessment.helper.repo';
 import { HealthPriorityRepo } from './repositories/users/patient/health.priority.repo';
 import { ActionPlanRepo } from './repositories/users/patient/action.plan.repo';
 import { ThirdpartyApiRepo } from './repositories/general/thirdparty.api.repo';
@@ -156,9 +153,6 @@ export class SequelizeInjector {
         container.register('IMedicalConditionRepo', MedicalConditionRepo);
         container.register('IDailyAssessmentRepo', DailyAssessmentRepo);
         container.register('ICareplanRepo', CareplanRepo);
-        container.register('IAssessmentRepo', AssessmentRepo);
-        container.register('IAssessmentTemplateRepo', AssessmentTemplateRepo);
-        container.register('IAssessmentHelperRepo', AssessmentHelperRepo);
         container.register('IHealthPriorityRepo', HealthPriorityRepo);
         container.register('IActionPlanRepo', ActionPlanRepo);
         container.register('IThirdpartyApiRepo', ThirdpartyApiRepo);

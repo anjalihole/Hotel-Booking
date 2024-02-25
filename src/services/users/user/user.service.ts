@@ -24,8 +24,6 @@ import { DurationType } from '../../../domain.types/miscellaneous/time.types';
 import { uuid } from '../../../domain.types/miscellaneous/system.types';
 import { IUserDeviceDetailsRepo } from '../../../database/repository.interfaces/users/user/user.device.details.repo.interface ';
 import { IPatientRepo } from '../../../database/repository.interfaces/users/patient/patient.repo.interface';
-import { IAssessmentTemplateRepo } from '../../../database/repository.interfaces/clinical/assessment/assessment.template.repo.interface';
-import { IAssessmentRepo } from '../../../database/repository.interfaces/clinical/assessment/assessment.repo.interface';
 import { IUserTaskRepo } from '../../../database/repository.interfaces/users/user/user.task.repo.interface';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,8 +41,6 @@ export class UserService {
         @inject('IUserLoginSessionRepo') private _userLoginSessionRepo: IUserLoginSessionRepo,
         @inject('IUserDeviceDetailsRepo') private _userDeviceDetailsRepo: IUserDeviceDetailsRepo,
         @inject('IPatientRepo') private _patientRepo: IPatientRepo,
-        @inject('IAssessmentTemplateRepo') private _assessmentTemplateRepo: IAssessmentTemplateRepo,
-        @inject('IAssessmentRepo') private _assessmentRepo: IAssessmentRepo,
         @inject('IUserTaskRepo') private _userTaskRepo: IUserTaskRepo,
 
     ) {}
@@ -55,13 +51,13 @@ export class UserService {
 
         // timezone sanitization
         if (model.DefaultTimeZone) {
-            const defaultTimezone = this.sanitizeTimezone(model.DefaultTimeZone); 
+            const defaultTimezone = this.sanitizeTimezone(model.DefaultTimeZone);
             model.DefaultTimeZone = defaultTimezone;
             model.CurrentTimeZone = defaultTimezone;
         }
         if (model.CurrentTimeZone) {
             const currentTimezone = model.CurrentTimeZone ?? model.DefaultTimeZone;
-            model.CurrentTimeZone = this.sanitizeTimezone(currentTimezone); 
+            model.CurrentTimeZone = this.sanitizeTimezone(currentTimezone);
         }
     
         var dto = await this._userRepo.create(model);
@@ -107,12 +103,12 @@ export class UserService {
         // timezone sanitization
 
         if (model.DefaultTimeZone != null) {
-            model.DefaultTimeZone = this.sanitizeTimezone(model.DefaultTimeZone); 
+            model.DefaultTimeZone = this.sanitizeTimezone(model.DefaultTimeZone);
             model.CurrentTimeZone = model.DefaultTimeZone;
         }
         if (model.CurrentTimeZone != null) {
-            model.CurrentTimeZone = this.sanitizeTimezone(model.CurrentTimeZone); 
-        }  
+            model.CurrentTimeZone = this.sanitizeTimezone(model.CurrentTimeZone);
+        }
         var dto = await this._userRepo.update(id, model);
         dto = await this.updateDetailsDto(dto);
         return dto;
@@ -534,7 +530,7 @@ export class UserService {
         const parts = inputString.split(':');
         
         if (parts.length < 3) {
-          return inputString;
+            return inputString;
         }
         
         const extractedString = parts.slice(0, 2).join(':');

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AssessmentDto } from '../../../domain.types/clinical/assessment/assessment.dto';
 import { PatientDetailsDto } from '../../../domain.types/users/patient/patient/patient.dto';
 import { PDFGenerator } from '../../../modules/reports/pdf.generator';
 import { htmlTextToPNG } from '../../../common/html.renderer';
@@ -19,17 +18,6 @@ import * as path from 'path';
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-export const generateReportPDF = async (
-    patient: PatientDetailsDto,
-    assessment: AssessmentDto,
-    score: KccqScore): Promise<string> => {
-    const reportModel = getReportModel(patient, assessment, score);
-    const htmlText = await generateChartHtml(score);
-    const chartImagePath = await htmlTextToPNG(htmlText, 370, 250);
-    const reportUrl = await exportReportToPDF(reportModel, chartImagePath);
-    return reportUrl;
-};
-
 const generateChartHtml = async (
     score: KccqScore): Promise<string> => {
     const overallScore = score.OverallSummaryScore.toFixed();
@@ -37,31 +25,6 @@ const generateChartHtml = async (
     txt = txt.replace('{{GAUGE_VALUE}}', overallScore);
     txt = txt.replace('{{GAUGE_VALUE}}', overallScore);
     return txt;
-};
-
-const getReportModel = (
-    patient: PatientDetailsDto,
-    assessment: AssessmentDto,
-    score: any) => {
-
-    const timezone = patient.User?.DefaultTimeZone ?? '+05:30';
-    const date = assessment.FinishedAt ?? new Date();
-    const patientName = patient.User.Person.DisplayName;
-    const patientAge = Helper.getAgeFromBirthDate(patient.User.Person.BirthDate);
-    var offsetMinutes = TimeHelper.getTimezoneOffsets(timezone, DurationType.Minute);
-    const assessmentDate = TimeHelper.addDuration(date, offsetMinutes, DurationType.Minute);
-    const reportDateStr = assessmentDate.toISOString().split('T')[0];
-
-    return {
-        Name          : patientName,
-        PatientUserId : patient.User.id,
-        AssessmentId  : assessment.id,
-        DisplayId     : patient.DisplayId,
-        Age           : patientAge,
-        ReportDate    : date,
-        ReportDateStr : reportDateStr,
-        ...score
-    };
 };
 
 const exportReportToPDF = async (reportModel: any, absoluteChartImagePath: string): Promise<string> => {

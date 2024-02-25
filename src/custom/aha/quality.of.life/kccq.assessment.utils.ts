@@ -1,60 +1,9 @@
 
-import { UserTaskSearchFilters } from '../../../domain.types/users/user.task/user.task.search.types';
-import { UserTaskService } from '../../../services/users/user/user.task.service';
 import { Logger } from '../../../common/logger';
-import { uuid } from '../../../domain.types/miscellaneous/system.types';
-import { CommonActions } from '../../common/common.actions';
-import { TimeHelper } from '../../../common/time.helper';
-import { Loader } from '../../../startup/loader';
-import { AssessmentDto } from '../../../domain.types/clinical/assessment/assessment.dto';
-import { PatientDetailsDto } from '../../../domain.types/users/patient/patient/patient.dto';
-import { generateReportPDF } from './kccq.report.generator';
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 export class KccqAssessmentUtils {
-
-    // this._patientService = Loader.container.resolve(PatientService);
-    // this._assessmentService = Loader.container.resolve(AssessmentService);
-    // this._userTaskService = Loader.container.resolve(UserTaskService);
-    // this._assessmentTemplateService = Loader.container.resolve(AssessmentTemplateService);
-    // this._careplanService = Loader.container.resolve(CareplanService);
-    // this._userDeviceDetailsService = Loader.container.resolve(UserDeviceDetailsService);
-
-    public static triggerAssessmentTask = async (
-        patientUserId: uuid,
-        assessmentTemplateName: string): Promise<void> => {
-
-        const commonActions: CommonActions = new CommonActions();
-        const userTaskService: UserTaskService = Loader.container.resolve(UserTaskService);
-
-        const filters: UserTaskSearchFilters = {
-            UserId       : patientUserId,
-            Task         : assessmentTemplateName,
-            OrderBy      : 'CreatedAt',
-            Order        : 'descending',
-            ItemsPerPage : 1
-        };
-
-        const userTask = await userTaskService.search(filters);
-        if (userTask.TotalCount === 0) {
-            Logger.instance().log(`[KCCQTask] Creating custom task as no task found. PatientUserId:
-                    ${JSON.stringify(patientUserId)}`);
-            await commonActions.createAssessmentTask(patientUserId, assessmentTemplateName);
-        }
-        else {
-            const taskCreationDate = userTask.Items[0].CreatedAt;
-            const dayDiff = TimeHelper.dayDiff(new Date(), taskCreationDate);
-            if (dayDiff > 14) {
-                Logger.instance().log(`[KCCQTask] Creating custom task as 14 days have passed.
-                        PatientUserId: ${JSON.stringify(patientUserId)}`);
-                await commonActions.createAssessmentTask(patientUserId, assessmentTemplateName);
-            } else {
-                Logger.instance().log(`[KCCQTask] No custom task created for patient UserId:
-                        ${JSON.stringify(patientUserId)}`);
-            }
-        }
-    };
 
     public static scoreKCCQAssessment = (userResponses) => {
 
@@ -177,13 +126,6 @@ export class KccqAssessmentUtils {
         userAppRegistrations.indexOf('REAN HealthGuru') >= 0;
 
         return eligibleForKCCQTask;
-    };
-
-    public static generateReport = async (
-        patient: PatientDetailsDto,
-        assessment: AssessmentDto,
-        score: any): Promise<string> => {
-        return await generateReportPDF(patient, assessment, score);
     };
 
     private static getAnswerForQuestionTag = (filtered, tag) => {

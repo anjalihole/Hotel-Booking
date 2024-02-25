@@ -1,7 +1,6 @@
 import { UserActionType } from "../../../domain.types/users/user.task/user.task.types";
 import { Loader } from "../../../startup/loader";
 import { MedicationConsumptionService } from "../../clinical/medication/medication.consumption.service";
-import { CareplanService } from "../../clinical/careplan.service";
 import { CustomTaskService } from "./custom.task.service";
 import { IUserActionService } from "./user.action.service.interface";
 import { uuid } from "../../../domain.types/miscellaneous/system.types";
@@ -61,8 +60,6 @@ export class UserActionResolver {
         else if (actionType === UserActionType.Appointment) {
             //return Loader.container.resolve(AppointmentService);
             return null;
-        } else if (actionType === UserActionType.Careplan) {
-            return Loader.container.resolve(CareplanService);
         } else if (actionType === UserActionType.Custom) {
             return Loader.container.resolve(CustomTaskService);
         }

@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Logger } from "../../../../../common/logger";
 import { uuid } from "../../../../../domain.types/miscellaneous/system.types";
 import { IUserEngagementRepo } from "../../../../repository.interfaces/statistics/user.engagement.repo.interface";
 import FoodConsumption from "../../models/wellness/nutrition/food.consumption.model";
 import WaterConsumption from "../../models/wellness/nutrition/water.consumption.model";
-import Assessment from "../../models/clinical/assessment/assessment.model";
 import CareplanActivity from "../../models/clinical/careplan/careplan.activity.model";
 import MedicationConsumption from "../../models/clinical/medication/medication.consumption.model";
 import BloodCholesterol from "../../models/clinical/biometrics/blood.cholesterol.model";
@@ -27,8 +27,6 @@ import { TimeHelper } from "../../../../../common/time.helper";
 import { DurationType } from "../../../../../domain.types/miscellaneous/time.types";
 import { Op } from "sequelize";
 import { UserEngagementCategories } from "../../../../../domain.types/statistics/user.engagement.types";
-import sequelize from "sequelize";
-import AssessmentQueryResponse from "../../models/clinical/assessment/assessment.query.response.model";
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +63,6 @@ export class UserEngagementRepo implements IUserEngagementRepo {
             await this.recordUserEngagementsForDay_Nutrition();
             await this.recordUserEngagementsForDay_Medication();
             await this.recordUserEngagementsForDay_Careplan();
-            await this.recordUserEngagementsForDay_Assessment();
             await this.recordUserEngagementsForDay_Vitals();
             await this.recordUserEngagementsForDay_LabRecords();
             await this.recordUserEngagementsForDay_Symptom();
@@ -197,51 +194,6 @@ export class UserEngagementRepo implements IUserEngagementRepo {
                     RecordName      : 'CareplanActivity',
                     AdditionalInfo  : c.Category,
                     RecordTimestamp : c.CompletedAt,
-                    RecordId        : c.id,
-                });
-            }
-        }
-        catch (error) {
-            Logger.instance().log(error.message);
-        }
-    };
-
-    private recordUserEngagementsForDay_Assessment = async () => {
-        try {
-            const { fromUtc, toUtc } = this.getFromToRange();
-
-            const query = `(SELECT "AssessmentQueryResponse"."id"
-                FROM "AssessmentQueryResponse"
-                WHERE "AssessmentQueryResponse"."AssessmentId" = "Assessment"."id"
-                ORDER BY "AssessmentQueryResponse"."CreatedAt" DESC
-                LIMIT 1
-            )`;
-
-            const assessmentResponses = await AssessmentQueryResponse.findAll({
-                include : [{
-                    model    : Assessment,
-                    as       : 'Assessment',
-                    required : true,
-                    where    : {
-                        PatientUserId : sequelize.col('Assessment.PatientUserId')
-                    },
-                }],
-                where : {
-                    CreatedAt : {
-                        [Op.between] : [fromUtc, toUtc]
-                    },
-                    id : {
-                        [Op.eq] : AssessmentQueryResponse.sequelize.literal(query) // Use the subquery as a condition
-                    }
-                }
-            });
-            for await (const c of assessmentResponses) {
-                await UserEngagement.create({
-                    PatientUserId   : c['Assessment'].PatientUserId,
-                    Category        : UserEngagementCategories.Assessment,
-                    RecordName      : 'Assessment',
-                    AdditionalInfo  : c['Assessment'].Name,
-                    RecordTimestamp : c.CreatedAt,
                     RecordId        : c.id,
                 });
             }
