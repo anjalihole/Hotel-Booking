@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { DependencyContainer } from 'tsyringe';
 
 import { DatabaseInjector } from "../database/database.injector";
-import { ModuleInjector } from '../modules/module.injector';
+// import { ModuleInjector } from '../modules/module.injector';
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -14,7 +14,7 @@ export class Injector {
         DatabaseInjector.registerInjections(container);
 
         //Modules
-        ModuleInjector.registerInjections(container);
+        // ModuleInjector.registerInjections(container);
 
     }
 
