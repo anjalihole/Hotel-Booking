@@ -185,14 +185,14 @@ update = async (id: string, customerDomainModel: CustomerDomainModel): Promise<C
             }
         };
     
-//         delete = async (id: string): Promise<boolean> => {
-//             try {
-//                 const result = await Customer.destroy({ where: { id: id } });
-//                 return result === 1;
-//             } catch (error) {
-//                 Logger.instance().log(error.message);
-//                 throw new ApiError(500, error.message);
-//             }
-//         };
+        delete = async (id: string): Promise<boolean> => {
+            try {
+                const result = await Customer.destroy({ where: { id: id } });
+                return result === 1;
+            } catch (error) {
+                Logger.instance().log(error.message);
+                throw new ApiError(500, error.message);
+            }
+        };
 
 }

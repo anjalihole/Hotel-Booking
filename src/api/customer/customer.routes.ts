@@ -12,7 +12,7 @@ export const register = (app: express.Application): void => {
     router.get('/:id', controller.getById);
     router.get('/', controller.getAllCustomer);
     router.put('/:id', controller.update);
-    // router.delete('/:id', authenticator.authenticateUser, controller.delete);
+    router.delete('/:id',controller.delete);
 
     app.use('/api/v1/api-customer', router);
 };

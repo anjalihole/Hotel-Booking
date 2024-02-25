@@ -15,5 +15,5 @@ export interface ICustomerRepo {
 
 //     search(filters: CustomerSearchFilters): Promise<CustomerSearchResults>;
 
-//     delete(id: string): Promise<boolean>;
+        delete(id: string): Promise<boolean>;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable indent */
 /* eslint-disable lines-between-class-members */
 /* eslint-disable linebreak-style */
@@ -42,16 +43,7 @@ export class CustomerService {
     //     return await this._customerRepo.search(filters);
     // };
 
-    // delete = async (id: string): Promise<boolean> => {
-    //     return await this._customerRepo.delete(id);
-    // };
-
-    // createInternalClients = async (clientDomainModel: ApiClientDomainModel): Promise<ApiClientDto> => {
-    //     const clientCode = await this.getClientCode(clientDomainModel.ClientName);
-    //     clientDomainModel.ClientCode = clientCode;
-    //     const key = apikeyGenerator.default.create();
-    //     clientDomainModel.ApiKey = key.apiKey;
-    //     return await this._clientRepo.create(clientDomainModel);
-    // };
-
+    delete = async (id: string): Promise<boolean> => {
+        return await this._customerRepo.delete(id);
+    };
 }

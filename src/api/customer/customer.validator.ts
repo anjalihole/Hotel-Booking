@@ -98,6 +98,17 @@ export class CustomerValidator {
         return CustomerValidator.getDomainModel(request.body);
     };
 
+    static delete = async (request: express.Request): Promise<string> => {
+        await param('id').trim().escape().isUUID().run(request);
+
+        const result = validationResult(request);
+
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
+
+        return request.params.id;
+    };
     // private static getFilter(request): CustomerSearchFilters {
     //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     //     const pageIndex = request.query.pageIndex !== 'undefined' ? parseInt(request.query.pageIndex as string, 10) : 0;

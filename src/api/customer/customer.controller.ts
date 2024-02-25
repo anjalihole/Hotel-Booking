@@ -124,17 +124,16 @@ export class CustomerController {
         }
     };
 
-//     delete = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.Delete';
-//             await this._authorizer.authorize(request, response);
+    delete = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Customer.Delete';            // await this._authorizer.authorize(request, response);
 
-//             const id: string = await CustomerValidator.getById(request);
-//             await this._service.delete(id);
-//             ResponseHandler.success(request, response, 'Api customer deleted successfully!', 200, null);
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            const id: string = await CustomerValidator.getById(request);
+            await this._service.delete(id);
+            ResponseHandler.success(request, response, 'Api customer deleted successfully!', 200, null);
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
  }
 
