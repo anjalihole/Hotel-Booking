@@ -3,7 +3,6 @@ import { DependencyContainer } from 'tsyringe';
 import { DatabaseConnector_Sequelize } from './database.connector.sequelize';
 import { AddressRepo } from './repositories/general/address.repo';
 import { CustomerRepo } from './repositories/customer/customer.repo';
-import { AllergyRepo } from './repositories/clinical/allergy.repo';
 import { BloodGlucoseRepo } from './repositories/clinical/biometrics/blood.glucose.repo';
 import { BloodOxygenSaturationRepo } from './repositories/clinical/biometrics/blood.oxygen.saturation.repo';
 import { BloodPressureRepo } from './repositories/clinical/biometrics/blood.pressure.repo';
@@ -130,7 +129,6 @@ export class SequelizeInjector {
         container.register('ICalorieBalanceRepo', CalorieBalanceRepo);
         container.register('IHeartPointsRepo', HeartPointsRepo);
         container.register('IComplaintRepo', ComplaintRepo);
-        container.register('IAllergyRepo', AllergyRepo);
         container.register('IDoctorNoteRepo', DoctorNoteRepo);
         container.register('IPhysicalActivityRepo', PhysicalActivityRepo);
         container.register('IKnowledgeNuggetRepo', KnowledgeNuggetRepo);

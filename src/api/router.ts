@@ -4,7 +4,6 @@ import express from 'express';
 import { Logger } from '../common/logger';
 import { register as registerAddressRoutes } from './general/address/address.routes';
 import { register as registerCustomerRoutes } from './customer/customer.routes';
-import { register as registerAllergyRoutes } from './clinical/allergy/allergy.routes';
 import { register as registerBloodGlucoseRoutes } from './clinical/biometrics/blood.glucose/blood.glucose.routes';
 import { register as registerBiometricsBloodOxygenSaturationRoutes } from './clinical/biometrics/blood.oxygen.saturation/blood.oxygen.saturation.routes';
 import { register as registerBloodPressureRoutes } from './clinical/biometrics/blood.pressure/blood.pressure.routes';
@@ -132,7 +131,6 @@ export class Router {
                 registerMoveMinutesRoutes(this._app);
                 registerCalorieBalanceRoute(this._app);
                 registerComplaintRoutes(this._app);
-                registerAllergyRoutes(this._app);
                 registerHeartPointRoutes(this._app);
                 registerDoctorNoteRoutes(this._app);
                 registerPhysicalActivityRoutes(this._app);
