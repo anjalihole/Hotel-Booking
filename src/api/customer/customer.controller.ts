@@ -85,25 +85,25 @@ export class CustomerController {
         }
     };
 
-//     search = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.Search';
-//             await this._authorizer.authorize(request, response);
+    search = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Customer.Search';
+            //await this._authorizer.authorize(request, response);
 
-//             const filters = await CustomerValidator.search(request);
+            const filters = await CustomerValidator.search(request);
 
-//             const searchResults = await this._service.search(filters);
-//             const count = searchResults.Items.length;
-//             const message =
-//                 count === 0 ? 'No records found!' : `Total ${count} api customer records retrieved successfully!`;
+            const searchResults = await this._service.search(filters);
+            const count = searchResults.Items.length;
+            const message =
+                count === 0 ? 'No records found!' : `Total ${count} api customer records retrieved successfully!`;
 
-//             ResponseHandler.success(request, response, message, 200, {
-//                 CustomerRecords: searchResults,
-//             });
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            ResponseHandler.success(request, response, message, 200, {
+                CustomerRecords: searchResults,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
 
     update = async (request: express.Request, response: express.Response): Promise<void> => {
         try {

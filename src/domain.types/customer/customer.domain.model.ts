@@ -8,3 +8,9 @@ export interface CustomerDomainModel {
     Phone?: string;
     Email?: string;
 }
+export interface ApiCustomerVerificationDomainModel {
+    FirstName: string;
+    LastName: string;
+    Address: string;
+    Password: string;
+}

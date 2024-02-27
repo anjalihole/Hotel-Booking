@@ -41,24 +41,24 @@ export class CustomerValidator {
         return CustomerValidator.getDomainModel(request.body);
     };
 
-    // static search = async (request: express.Request): Promise<CustomerSearchFilters> => {
-    //     await query('FirstName').optional().trim().escape().run(request);
+    static search = async (request: express.Request): Promise<CustomerSearchFilters> => {
+        await query('FirstName').optional().trim().escape().run(request);
 
-    //     await query('LastName').optional().trim().escape().run(request);
+        await query('LastName').optional().trim().escape().run(request);
 
-    //     await query('phone').optional().trim().escape().run(request);
+        await query('phone').optional().trim().escape().run(request);
 
-    //     await query('email').optional().trim().escape().run(request);
+        await query('email').optional().trim().escape().run(request);
 
-    //     await query('Address').optional().trim().escape().run(request);
+        await query('Address').optional().trim().escape().run(request);
 
-    //     const result = validationResult(request);
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
+        const result = validationResult(request);
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
 
-    //     return CustomerValidator.getFilter(request);
-    // };
+        return CustomerValidator.getFilter(request);
+    };
 
     static getById = async (request: express.Request): Promise<string> => {
         await param('id').trim().escape().isUUID().run(request);
@@ -109,22 +109,27 @@ export class CustomerValidator {
 
         return request.params.id;
     };
-    // private static getFilter(request): CustomerSearchFilters {
-    //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    //     const pageIndex = request.query.pageIndex !== 'undefined' ? parseInt(request.query.pageIndex as string, 10) : 0;
 
-    //     const itemsPerPage =
-    //         request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
+    private static getFilter(request): CustomerSearchFilters {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const pageIndex = request.query.pageIndex !== 'undefined' ? parseInt(request.query.pageIndex as string, 10) : 0;
 
-    //     const filters: CustomerSearchFilters = {
-    //         FirstName: request.query.firstName ?? null,
-    //         LastName: request.query.lastName ?? null,
-    //         Phone: request.query.phone ?? null,
-    //         Email: request.query.email ?? null,
-    //         Address: request.query.address ?? null,
-    //         Password: request.query.password ?? null,
-    //     };
+        const itemsPerPage =
+            request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
-    //     return filters;
-    // }
+        const filters: CustomerSearchFilters = {
+            FirstName: request.query.firstName ?? null,
+            LastName: request.query.lastName ?? null,
+            Phone: request.query.phone ?? null,
+            Email: request.query.email ?? null,
+            Address: request.query.address ?? null,
+            Password: request.query.password ?? null,
+            OrderBy      : request.query.orderBy ?? 'CreatedAt',
+            Order        : request.query.order ?? 'descending',
+            PageIndex    : pageIndex,
+            ItemsPerPage : itemsPerPage,
+        };
+
+        return filters;
+    }
 }

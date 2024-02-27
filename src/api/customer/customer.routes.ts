@@ -8,7 +8,7 @@ export const register = (app: express.Application): void => {
     const controller = new CustomerController();
 
     router.post('/', controller.create);
-    // router.get('/search', authenticator.authenticateUser, controller.search);
+    router.get('/search',controller.search);
     router.get('/:id', controller.getById);
     router.get('/', controller.getAllCustomer);
     router.put('/:id', controller.update);

@@ -98,7 +98,7 @@ export default class Application {
             try {
                 const port = process.env.PORT;
                 const server = this._app.listen(port, () => {
-                    const serviceName = 'REANCare api' + '-' + process.env.NODE_ENV;
+                    const serviceName = 'Hotel api' + '-' + process.env.NODE_ENV;
                     const osType = Helper.getOSType();
                     Logger.instance().log(`Operating system: ${osType}`);
                     Logger.instance().log(serviceName + ' is up and listening on port ' + process.env.PORT.toString());

@@ -5,13 +5,13 @@
 /* eslint-disable linebreak-style */
 import { ICustomerRepo } from '../../../../repository.interfaces/customer/customer.repo.interface';
 import Customer from '../../models/customer/customer.model';
-//import { Op } from 'sequelize';
+import { Op } from 'sequelize';
 import { CustomerDomainModel } from '../../../../../domain.types/customer/customer.domain.model';
 import { CustomerMapper } from '../../mappers/customer/customer.mapper';
 import { Logger } from '../../../../../common/logger';
 import { ApiError } from '../../../../../common/api.error';
 import { CustomerDto } from '../../../../../domain.types/customer/customer.dto';
-//import { CustomerSearchFilters, CustomerSearchResults } from '../../../../../domain.types/customer/customer.search.types';
+import { CustomerSearchFilters, CustomerSearchResults } from '../../../../../domain.types/customer/customer.search.types';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -60,94 +60,89 @@ export class CustomerRepo implements ICustomerRepo {
         }
     };
 
-    toDto = (client): CustomerDto => {
-        if (client == null) {
+    toDto = (customer): CustomerDto => {
+        if (customer == null) {
             return null;
         }
         const dto: CustomerDto = {
-            id: client.CustomerId,
-            FirstName: client.FirstName,
-            LastName: client.LastName,
-            Phone: client.Phone,
-            Email: client.Email,
-            Address: client.Address,
-            Password: client.Password,
+            id: customer.CustomerId,
+            FirstName: customer.FirstName,
+            LastName: customer.LastName,
+            Phone: customer.Phone,
+            Email: customer.Email,
+            Address: customer.Address,
+            Password: customer.Password,
         };
         return dto;
     };
 
-//     search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
-//         try {
+    search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
+        try {
 
-//             const search = { where: {} };
+            const search = { where: {} };
 
-//             if (filters.Customer != null) {
-//                 search.where['Customer'] = filters.Customer;
-//             }
-//             if (filters.FirstName != null) {
-//                 search.where['FirstName'] = filters.FirstName;
-//             }
-//             if (filters.Phone != null) {
-//                 search.where['Phone'] = { [Op.like]: '%' + filters.Phone + '%' };
-//             }
-//             if (filters.Email != null) {
-//                 search.where['Email'] = filters.Email;
-//             }
-//             if (filters.LastName != null) {
-//                 search.where['LastName'] = filters.LastName;
-//             }
-//             if (filters.Address != null) {
-//                 search.where['Address'] = filters.Address;
-//             }
+            if (filters.FirstName != null) {
+                search.where['FirstName'] = filters.FirstName;
+            }
+            if (filters.Phone != null) {
+                search.where['Phone'] = { [Op.like]: '%' + filters.Phone + '%' };
+            }
+            if (filters.Email != null) {
+                search.where['Email'] = filters.Email;
+            }
+            if (filters.LastName != null) {
+                search.where['LastName'] = filters.LastName;
+            }
+            if (filters.Address != null) {
+                search.where['Address'] = filters.Address;
+            }
 
-//             const orderByColum = 'CreatedAt';
-//             let order = 'ASC';
-//             if (filters.Order === 'descending') {
-//                 order = 'DESC';
-//             }
-//             search['order'] = [[orderByColum, order]];
+            const orderByColum = 'CreatedAt';
+            let order = 'ASC';
+            if (filters.Order === 'descending') {
+                order = 'DESC';
+            }
+            search['order'] = [[orderByColum, order]];
+            let limit = 25;
+            if (filters.ItemsPerPage) {
+                limit = filters.ItemsPerPage;
+            }
+            const foundResults = await Customer.findAndCountAll(search);
+            let offset = 0;
+            let pageIndex = 0;
+            if (filters.PageIndex) {
+                pageIndex = filters.PageIndex < 0 ? 0 : filters.PageIndex;
+                offset = pageIndex * limit;
+            }
+            search['limit'] = limit;
+            search['offset'] = offset;
 
-//             let limit = 25;
-//             if (filters.ItemsPerPage) {
-//                 limit = filters.ItemsPerPage;
-//             }
-//             let offset = 0;
-//             let pageIndex = 0;
-//             if (filters.PageIndex) {
-//                 pageIndex = filters.PageIndex < 0 ? 0 : filters.PageIndex;
-//                 offset = pageIndex * limit;
-//             }
-//             search['limit'] = limit;
-//             search['offset'] = offset;
+            const dtos: CustomerDto[] = [];
+            for (const customer of foundResults.rows) {
+                const dto = await CustomerMapper.toDto(customer);
+                dtos.push(dto);
+            }
 
-//             const foundResults = await Customer.findAndCountAll(search);
+            const count = foundResults.count;
+            const totalCount = typeof count === "number" ? count : count[0];
 
-//             const dtos: CustomerDto[] = [];
-//             for (const customer of foundResults.rows) {
-//                 const dto = await CustomerMapper.toDto(customer);
-//                 dtos.push(dto);
-//             }
+            const searchResults: CustomerSearchResults = {
+                TotalCount     : totalCount,
+                RetrievedCount : dtos.length,
+                PageIndex      : pageIndex,
+                ItemsPerPage   : limit,
+                Order          : order === 'DESC' ? 'descending' : 'ascending',
+                OrderedBy      : orderByColum,
+                Items          : dtos
+            };
 
-//             const count = foundResults.count;
-//             const totalCount = typeof count === "number" ? count : count[0];
+            return searchResults;
 
-//             const searchResults: CustomerSearchResults = {
-//                 TotalCount     : totalCount,
-//                 RetrievedCount : dtos.length,
-//                 PageIndex      : pageIndex,
-//                 ItemsPerPage   : limit,
-//                 Order          : order === 'DESC' ? 'descending' : 'ascending',
-//                 OrderedBy      : orderByColum,
-//                 Items          : dtos
-//             };
-
-//             return searchResults;
-
-//         } catch (error) {
-//             Logger.instance().log(error.message);
-//             throw new ApiError(500, error.message);
-//         }
-//     };
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
 
 update = async (id: string, customerDomainModel: CustomerDomainModel): Promise<CustomerDto> => {
             try {

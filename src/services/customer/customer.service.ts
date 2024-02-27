@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-spacing */
 /* eslint-disable linebreak-style */
 /* eslint-disable indent */
 /* eslint-disable lines-between-class-members */
@@ -13,9 +14,7 @@ import { ICustomerRepo } from '../../database/repository.interfaces/customer/cus
 // import { Helper } from '../../common/helper';
 // import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
 //import * as apikeyGenerator from 'uuid-apikey';
-//import { CustomerSearchFilters} from '../../domain.types/customer/customer.search.types';
-// { CustomerSearchFilters, CustomerSearchResults } from '../../domain.types/customer/customer.search.types';
-
+import { CustomerSearchFilters,CustomerSearchResults} from '../../domain.types/customer/customer.search.types';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @injectable()
@@ -39,9 +38,9 @@ export class CustomerService {
         return await this._customerRepo.update(id, customerDomainModel);
     };
 
-    // public search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
-    //     return await this._customerRepo.search(filters);
-    // };
+    public search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
+        return await this._customerRepo.search(filters);
+    };
 
     delete = async (id: string): Promise<boolean> => {
         return await this._customerRepo.delete(id);

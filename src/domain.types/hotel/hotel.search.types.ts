@@ -1,16 +1,14 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable linebreak-style */
-import { CustomerDto } from './customer.dto';
+import { HotelDto } from './hotel.dto';
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-export interface CustomerSearchFilters {
+export interface HotelSearchFilters {
     id?: string;
-    FirstName: string;
-    LastName: string;
+    HotelName: string;
     Address: string;
-    Password: string;
     Phone?: string;
     Email?: string;
     OrderBy      : string;
@@ -19,12 +17,12 @@ export interface CustomerSearchFilters {
     ItemsPerPage : number;
 }
 
-export interface CustomerSearchResults {
+export interface HotelSearchResults {
     TotalCount     : number;
     RetrievedCount : number;
     PageIndex      : number;
     ItemsPerPage   : number;
     Order          : string;
     OrderedBy      : string;
-    Items          : CustomerDto[];
+    Items          : HotelDto[];
 }
