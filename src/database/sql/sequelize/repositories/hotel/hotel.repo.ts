@@ -34,45 +34,43 @@ export class HotelRepo implements IHotelRepo {
         }
     };
 
-//     getById = async (id: string): Promise<CustomerDto> => {
-//         try {
-//             const customer = await Customer.findByPk(id);
-//             const dto = await CustomerMapper.toDto(customer);
-//             return dto;
-//         } catch (error) {
-//             Logger.instance().log(error.message);
-//             throw new ApiError(500, error.message);
-//         }
-//     };
+    getById = async (id: string): Promise<HotelDto> => {
+        try {
+            const hotel = await Hotel.findByPk(id);
+            const dto = await HotelMapper.toDto(hotel);
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
 
-//     getAllCustomer = async (): Promise<CustomerDto[]> => {
-//         try {
-//             const records = await Customer.findAll();
-//             const dtos = records.map((record) => this.toDto(record));
-//             return dtos;
-//             // const dto = await CustomerMapper.toDto(records);
-//             // return dto;
-//         } catch (error) {
-//             Logger.instance().log(error.message);
-//             throw new ApiError(500, error.message);
-//         }
-//     };
+    getAllHotel = async (): Promise<HotelDto[]> => {
+        try {
+            const records = await Hotel.findAll();
+            const dtos = records.map((record) => this.toDto(record));
+            return dtos;
+            // const dto = await HotelMapper.toDto(records);
+            // return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
 
-//     toDto = (client): CustomerDto => {
-//         if (client == null) {
-//             return null;
-//         }
-//         const dto: CustomerDto = {
-//             id: client.CustomerId,
-//             FirstName: client.FirstName,
-//             LastName: client.LastName,
-//             Phone: client.Phone,
-//             Email: client.Email,
-//             Address: client.Address,
-//             Password: client.Password,
-//         };
-//         return dto;
-//     };
+    toDto = (hotel): HotelDto => {
+        if (hotel == null) {
+            return null;
+        }
+        const dto: HotelDto = {
+            id: hotel.CustomerId,
+            HotelName: hotel.FirstName,
+            Phone: hotel.Phone,
+            Email: hotel.Email,
+            Address: hotel.Address,
+        };
+        return dto;
+    };
 
     // search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
     //     try {

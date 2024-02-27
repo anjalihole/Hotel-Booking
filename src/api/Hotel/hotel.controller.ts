@@ -44,42 +44,42 @@ export class HotelController {
         }
     };
 
-//     getById = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.GetById';
-//             //await this._authorizer.authorize(request, response);
+    getById = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Hotel.GetById';
+            //await this._authorizer.authorize(request, response);
 
-//             const id: string = await CustomerValidator.getById(request);
+            const id: string = await HotelValidator.getById(request);
 
-//             const customer = await this._service.getById(id);
-//             if (customer == null) {
-//                 throw new ApiError(404, 'Customer not found.');
-//             }
-//             ResponseHandler.success(request, response, 'Api customer retrieved successfully!', 200, {
-//                 Customer: customer,
-//             });
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            const hotel = await this._service.getById(id);
+            if (hotel == null) {
+                throw new ApiError(404, 'Hotel not found.');
+            }
+            ResponseHandler.success(request, response, 'Hotel Api retrieved successfully!', 200, {
+                Hotel: hotel,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
 
-//     getAllCustomer = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.GetAllCustomer';
+    getAllHotel = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Hotel.GetAllHotel';
 
-//             // const id: string = await CustomerValidator.getAllCustomer(request);
+            // const id: string = await CustomerValidator.getAllCustomer(request);
 
-//             const customer = await this._service.getAllCustomer();
-//             if (customer == null) {
-//                 throw new ApiError(404, 'Customer not found.');
-//             }
-//             ResponseHandler.success(request, response, 'Api  All customer retrieved successfully!', 200, {
-//                 Customer: customer,
-//             });
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            const hotel = await this._service.getAllHotel();
+            if (hotel == null) {
+                throw new ApiError(404, 'Hotel not found.');
+            }
+            ResponseHandler.success(request, response, 'Api  All hotel retrieved successfully!', 200, {
+            Hotel: hotel,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
 
 //     search = async (request: express.Request, response: express.Response): Promise<void> => {
 //         try {

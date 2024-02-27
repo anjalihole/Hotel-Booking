@@ -28,13 +28,13 @@ export class HotelService {
         return await this._hotelRepo.create(hotelDomainModel);
     };
 
-    // getById = async (id: string): Promise<CustomerDto> => {
-    //     return await this._customerRepo.getById(id);
-    // };
+    getById = async (id: string): Promise<HotelDto> => {
+        return await this._hotelRepo.getById(id);
+    };
 
-    // getAllCustomer = async (): Promise<CustomerDto[]> => {
-    //     return await this._customerRepo.getAllCustomer();
-    // };
+    getAllHotel = async (): Promise<HotelDto[]> => {
+        return await this._hotelRepo.getAllHotel();
+    };
 
     // update = async (id: string, customerDomainModel: CustomerDomainModel): Promise<CustomerDto> => {
     //     return await this._customerRepo.update(id, customerDomainModel);

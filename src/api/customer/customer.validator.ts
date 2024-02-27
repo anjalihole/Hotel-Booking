@@ -118,14 +118,14 @@ export class CustomerValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: CustomerSearchFilters = {
-            FirstName: request.query.firstName ?? null,
-            LastName: request.query.lastName ?? null,
-            Phone: request.query.phone ?? null,
-            Email: request.query.email ?? null,
-            Address: request.query.address ?? null,
-            Password: request.query.password ?? null,
-            OrderBy      : request.query.orderBy ?? 'CreatedAt',
-            Order        : request.query.order ?? 'descending',
+            FirstName: request.query.FirstName || null,
+            LastName: request.query.LastName || null,
+            Phone: request.query.Phone || null,
+            Email: request.query.Email || null,
+            Address: request.query.Address || null,
+            Password: request.query.Password || null,
+            OrderBy      : request.query.orderBy || 'CreatedAt',
+            Order        : request.query.order || 'descending',
             PageIndex    : pageIndex,
             ItemsPerPage : itemsPerPage,
         };

@@ -3,6 +3,7 @@
 import express from 'express';
 import { Logger } from '../common/logger';
 import { register as registerCustomerRoutes } from './customer/customer.routes';
+import { register as registerHotelRoutes } from './Hotel/hotel.routes';
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,11 +20,12 @@ export class Router {
                 //Handling the base route
                 this._app.get('/api/v1/', (req, res) => {
                     res.send({
-                        message: `REANCare API [Version ${process.env.API_VERSION}]`,
+                        message: `Hotel-Booking API [Version ${process.env.API_VERSION}]`,
                     });
                 });
 
                 registerCustomerRoutes(this._app);
+                registerHotelRoutes(this._app);
 
                 resolve(true);
             } catch (error) {

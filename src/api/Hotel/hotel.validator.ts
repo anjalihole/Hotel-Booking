@@ -56,29 +56,29 @@ export class HotelValidator {
     //     return CustomerValidator.getFilter(request);
     // };
 
-    // static getById = async (request: express.Request): Promise<string> => {
-    //     await param('id').trim().escape().isUUID().run(request);
+    static getById = async (request: express.Request): Promise<string> => {
+        await param('id').trim().escape().isUUID().run(request);
 
-    //     const result = validationResult(request);
+        const result = validationResult(request);
 
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
 
-    //     return request.params.id;
-    // };
+        return request.params.id;
+    };
 
-    // static getAllCustomer = async (request: express.Request): Promise<string> => {
-    //     await param('id').trim().escape().isUUID().run(request);
+    static getAllHotel = async (request: express.Request): Promise<string> => {
+        await param('id').trim().escape().isUUID().run(request);
 
-    //     const result = validationResult(request);
+        const result = validationResult(request);
 
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
 
-    //     return request.params.id;
-    // };
+        return request.params.id;
+    };
 
     // static update = async (request: express.Request): Promise<CustomerDomainModel> => {
     //     await body('FirstName').optional().isLength({ min: 1 }).trim().escape().run(request);

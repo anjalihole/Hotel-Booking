@@ -9,8 +9,8 @@ import { HotelDto } from '../../../domain.types/hotel/hotel.dto';
 export interface IHotelRepo {
     create(hotelDomainModel: HotelDomainModel): Promise<HotelDto>;
 
-    //     getById(id: string): Promise<HotelDto>;
-    //     getAllCustomer(): Promise<HotelDto[]>;
+        getById(id: string): Promise<HotelDto>;
+        getAllHotel(): Promise<HotelDto[]>;
     //     update(id: string, HotelDomainModel: HotelDomainModel): Promise<HotelDto>;
 
     //    search(filters: HotelSearchFilters): Promise<HotelSearchResults>;
