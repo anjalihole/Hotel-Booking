@@ -73,7 +73,7 @@ export class HotelController {
             if (hotel == null) {
                 throw new ApiError(404, 'Hotel not found.');
             }
-            ResponseHandler.success(request, response, 'Api  All hotel retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, '  All hotel  Api retrieved successfully!', 200, {
             Hotel: hotel,
             });
         } catch (error) {
@@ -81,54 +81,54 @@ export class HotelController {
         }
     };
 
-//     search = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.Search';
-//             //await this._authorizer.authorize(request, response);
+    search = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Hotel.Search';
+            //await this._authorizer.authorize(request, response);
 
-//             const filters = await CustomerValidator.search(request);
+            const filters = await HotelValidator.search(request);
 
-//             const searchResults = await this._service.search(filters);
-//             const count = searchResults.Items.length;
-//             const message =
-//                 count === 0 ? 'No records found!' : `Total ${count} api customer records retrieved successfully!`;
+            const searchResults = await this._service.search(filters);
+            const count = searchResults.Items.length;
+            const message =
+                count === 0 ? 'No records found!' : `Total ${count} Hotel Api records retrieved successfully!`;
 
-//             ResponseHandler.success(request, response, message, 200, {
-//                 CustomerRecords: searchResults,
-//             });
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            ResponseHandler.success(request, response, message, 200, {
+                HotelRecords: searchResults,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
 
-//     update = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.Update';
-//             // await this._authorizer.authorize(request, response);
+    update = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Hotel.Update';
+            // await this._authorizer.authorize(request, response);
 
-//             const id: string = await CustomerValidator.getById(request);
-//             const domainModel = await CustomerValidator.update(request);
-//             const customer = await this._service.update(id, domainModel);
-//             if (customer == null) {
-//                 throw new ApiError(404, 'Api customer not found.');
-//             }
-//             ResponseHandler.success(request, response, 'Api customer updated successfully!', 200, {
-//                 Customer: customer,
-//             });
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            const id: string = await HotelValidator.getById(request);
+            const domainModel = await HotelValidator.update(request);
+            const hotel = await this._service.update(id, domainModel);
+            if (hotel == null) {
+                throw new ApiError(404, ' Hotel Api not found.');
+            }
+            ResponseHandler.success(request, response, ' Hotel Api updated successfully!', 200, {
+                Hotel: hotel,
+            });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
 
-//     delete = async (request: express.Request, response: express.Response): Promise<void> => {
-//         try {
-//             request.context = 'Customer.Delete';            // await this._authorizer.authorize(request, response);
+    delete = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'Hotel.Delete';            // await this._authorizer.authorize(request, response);
 
-//             const id: string = await CustomerValidator.getById(request);
-//             await this._service.delete(id);
-//             ResponseHandler.success(request, response, 'Api customer deleted successfully!', 200, null);
-//         } catch (error) {
-//             ResponseHandler.handleError(request, response, error);
-//         }
-//     };
+            const id: string = await HotelValidator.getById(request);
+            await this._service.delete(id);
+            ResponseHandler.success(request, response, 'Hotel Api deleted successfully!', 200, null);
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
  }

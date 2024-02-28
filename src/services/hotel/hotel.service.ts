@@ -15,7 +15,7 @@ import { IHotelRepo } from '../../database/repository.interfaces/hotel/hotel.rep
 // import { Helper } from '../../common/helper';
 // import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
 //import * as apikeyGenerator from 'uuid-apikey';
-//import { HotelSearchFilters,HotelSearchResults} from '../../domain.types/hotel/hotel.search.types';
+import { HotelSearchFilters,HotelSearchResults} from '../../domain.types/hotel/hotel.search.types';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -36,15 +36,15 @@ export class HotelService {
         return await this._hotelRepo.getAllHotel();
     };
 
-    // update = async (id: string, customerDomainModel: CustomerDomainModel): Promise<CustomerDto> => {
-    //     return await this._customerRepo.update(id, customerDomainModel);
-    // };
+    update = async (id: string, hotelDomainModel: HotelDomainModel): Promise<HotelDto> => {
+        return await this._hotelRepo.update(id, hotelDomainModel);
+    };
 
-    // public search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
-    //     return await this._customerRepo.search(filters);
-    // };
+    public search = async (filters: HotelSearchFilters): Promise<HotelSearchResults> => {
+        return await this._hotelRepo.search(filters);
+    };
 
-    // delete = async (id: string): Promise<boolean> => {
-    //     return await this._customerRepo.delete(id);
-    // };
+    delete = async (id: string): Promise<boolean> => {
+        return await this._hotelRepo.delete(id);
+    };
 }
