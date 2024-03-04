@@ -4,6 +4,7 @@ import express from 'express';
 import { Logger } from '../common/logger';
 import { register as registerCustomerRoutes } from './customer/customer.routes';
 import { register as registerHotelRoutes } from './Hotel/hotel.routes';
+import { register as registerpaymentRoutes } from './Payment/payment.routes';
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -26,6 +27,7 @@ export class Router {
 
                 registerCustomerRoutes(this._app);
                 registerHotelRoutes(this._app);
+                registerpaymentRoutes(this._app);
 
                 resolve(true);
             } catch (error) {

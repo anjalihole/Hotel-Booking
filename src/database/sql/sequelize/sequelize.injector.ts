@@ -3,6 +3,7 @@ import { DependencyContainer } from 'tsyringe';
 import { DatabaseConnector_Sequelize } from './database.connector.sequelize';
 import { CustomerRepo } from './repositories/customer/customer.repo';
 import { HotelRepo } from './repositories/hotel/hotel.repo';
+import { PaymentRepo } from './repositories/payment/payment.repo';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -15,6 +16,7 @@ export class SequelizeInjector {
         container.register('ICustomerRepo', CustomerRepo);
 
         container.register('IHotelRepo', HotelRepo);
+        container.register('IPaymentRepo', PaymentRepo);
 
     }
 
