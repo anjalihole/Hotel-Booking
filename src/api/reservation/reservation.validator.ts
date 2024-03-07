@@ -6,7 +6,7 @@
 /* eslint-disable linebreak-style */
 import express from 'express';
 import { body, validationResult, param, query } from 'express-validator';
-//import { ReservationSearchFilters } from '/../src/domain.types/reservation/reservation.search.types';
+import { ReservationSearchFilters } from '/../src/domain.types/reservation/reservation.search.types';
 import { ReservationDomainModel } from '/../src/domain.types/reservation/reservation.domain.model';
 import { Helper } from '../../common/helper';
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -41,126 +41,99 @@ export class ReservationValidator {
         return ReservationValidator.getDomainModel(request.body);
     };
 
-    //     static getById = async (request: express.Request): Promise<string> => {
-    //         await param('id').trim().escape().isUUID().run(request);
+        static getById = async (request: express.Request): Promise<string> => {
+            await param('id').trim().escape().isUUID().run(request);
 
-    //         const result = validationResult(request);
+            const result = validationResult(request);
 
-    //         if (!result.isEmpty()) {
-    //             Helper.handleValidationError(result);
-    //         }
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
 
-    //         return request.params.id;
-    //     };
+            return request.params.id;
+        };
         
-    // static getAllRoom = async (request: express.Request): Promise<string> => {
-    //     await param('id').trim().escape().isUUID().run(request);
+        static getAllReservation = async (request: express.Request): Promise<string> => {
+            await param('id').trim().escape().isUUID().run(request);
+    
+            const result = validationResult(request);
+    
+            if (!result.isEmpty()) {
+                Helper.handleValidationError(result);
+            }
+    
+            return request.params.id;
+        };
 
-    //     const result = validationResult(request);
+    static update = async (request: express.Request): Promise<ReservationDomainModel> => {
+        await body('CustomerId').optional().isLength({ min: 1 }).trim().escape().run(request);
+        await body('RoomId').optional().isLength({ min: 1 }).trim().escape().run(request);
+        await body('CheckInDate').optional().trim().escape().isLength({ min: 6 }).run(request);
+        await body('CheckOutDate').optional().trim().escape().isLength({ min: 1 }).run(request);
+        await body('TotalCost').optional().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Status').optional().trim().escape().isLength({ min: 1 }).run(request);
+        
+        const result = validationResult(request);
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
+        return ReservationValidator.getDomainModel(request.body);
+    };
 
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
+    static delete = async (request: express.Request): Promise<string> => {
+        await param('id').trim().escape().isUUID().run(request);
 
-    //     return request.params.id;
-    // };
+        const result = validationResult(request);
 
-    // static update = async (request: express.Request): Promise<RoomDomainModel> => {
-    //     await body('HotelId').optional().isLength({ min: 1 }).trim().escape().run(request);
-    //     await body('RoomNumber').optional().isLength({ min: 1 }).trim().escape().run(request);
-    //     await body('Phone').optional().trim().escape().isLength({ min: 6 }).run(request);
-    //     await body('RoomType').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('BedType').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('RoomImage').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('Price').optional().trim().escape().isLength({ min: 2 }).run(request);
-    //     await body('Taxes').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('Description').optional().trim().escape().isLength({ min: 30 }).run(request);
-    //     await body('BlockRoom').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('RoomPerPerson').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('CostPerDay').optional().trim().escape().isLength({ min: 1 }).run(request);
-    //     await body('Inventory').optional().trim().escape().isLength({ min: 1 }).run(request);
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
 
-    //     const result = validationResult(request);
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
-    //     return RoomValidator.getDomainModel(request.body);
-    // };
+        return request.params.id;
+    };
 
-    // static delete = async (request: express.Request): Promise<string> => {
-    //     await param('id').trim().escape().isUUID().run(request);
+    static search = async (request: express.Request): Promise<ReservationSearchFilters> => {
+        await query('CustomerId').optional().trim().escape().run(request);
 
-    //     const result = validationResult(request);
+        await query('RoomId').optional().trim().escape().run(request);
 
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
+        await query('CheckInDate').optional().trim().escape().run(request);
 
-    //     return request.params.id;
-    // };
+        await query('CheckOutDate').optional().trim().escape().run(request);
 
-    // static search = async (request: express.Request): Promise<RoomSearchFilters> => {
-    //     await query('HotelId').optional().trim().escape().run(request);
+        await query('TotalCost').optional().trim().escape().run(request);
 
-    //     await query('RoomNumber').optional().trim().escape().run(request);
+        await query('Status').optional().trim().escape().run(request);
 
-    //     await query('phone').optional().trim().escape().run(request);
+        const result = validationResult(request);
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
 
-    //     await query('RoomType').optional().trim().escape().run(request);
+        return ReservationValidator.getFilter(request);
+    };
 
-    //     await query('BedType').optional().trim().escape().run(request);
+    private static getFilter(request): ReservationSearchFilters {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const pageIndex = request.query.pageIndex !== 'undefined' ? parseInt(request.query.pageIndex as string, 10) : 0;
 
-    //     await query('RoomImage').optional().trim().escape().run(request);
+        const itemsPerPage =
+            request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
-    //     await query('Price').optional().trim().escape().run(request);
+        const filters: ReservationSearchFilters = {
+            CustomerId: request.query.CustomerId || null,
+            RoomId: request.query.RoomId || null,
+            CheckInDate: request.query.CheckInDate || null,
+            CheckOutDate: request.query.CheckOutDate || null,
+            TotalCost: request.query.TotalCost || null,
+            Status: request.query.Status || null,
+            OrderBy      : request.query.orderBy || 'CreatedAt',
+            Order        : request.query.order || 'descending',
+            PageIndex    : pageIndex,
+            ItemsPerPage : itemsPerPage,
+           
+        };
 
-    //     await query('Taxes').optional().trim().escape().run(request);
-
-    //     await query('Description').optional().trim().escape().run(request);
-
-    //     await query('BlockRoom').optional().trim().escape().run(request);
-
-    //     await query('RoomPerPerson').optional().trim().escape().run(request);
-
-    //     await query('CostPerDay').optional().trim().escape().run(request);
-
-    //     await query('Inventory').optional().trim().escape().run(request);
-
-    //     const result = validationResult(request);
-    //     if (!result.isEmpty()) {
-    //         Helper.handleValidationError(result);
-    //     }
-
-    //     return RoomValidator.getFilter(request);
-    // };
-
-    // private static getFilter(request): RoomSearchFilters {
-    //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    //     const pageIndex = request.query.pageIndex !== 'undefined' ? parseInt(request.query.pageIndex as string, 10) : 0;
-
-    //     const itemsPerPage =
-    //         request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
-
-    //     const filters: RoomSearchFilters = {
-    //         HotelId: request.query.HotelId || null,
-    //         RoomNumber: request.query.RoomNumber || null,
-    //         Phone: request.query.Phone || null,
-    //         RoomType: request.query.RoomType || null,
-    //         BedType: request.query.BedType || null,
-    //         RoomImage: request.query.RoomImage || null,
-    //         Price: request.query.Price || null,
-    //         Taxes: request.query.Taxes || null,
-    //         Description: request.query.Description || null,
-    //         BlockRoom: request.query.BlockRoom || null,
-    //         RoomPerPerson: request.query.RoomPerPerson || null,
-    //         CostPerDay: request.query.CostPerDay || null,
-    //         Inventory: request.query.Inventory || null,
-    //         OrderBy      : request.query.orderBy || 'CreatedAt',
-    //         Order        : request.query.order || 'descending',
-    //         PageIndex    : pageIndex,
-    //         ItemsPerPage : itemsPerPage,
-    //     };
-
-    //     return filters;
-    // }
+        return filters;
+    }
 }

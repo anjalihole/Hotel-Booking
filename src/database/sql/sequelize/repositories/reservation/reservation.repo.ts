@@ -13,7 +13,7 @@ import { ReservationMapper } from '../../mappers/reservation/reservation.mapper'
 import { Logger } from '../../../../../common/logger';
 import { ApiError } from '../../../../../common/api.error';
 import { ReservationDto } from '../../../../../domain.types/reservation/reservation.dto';
-//import { ReservationSearchFilters, ReservationSearchResults } from '../../../../../domain.types/room/room.search.types';
+import { ReservationSearchFilters, ReservationSearchResults } from '../../../../../domain.types/reservation/reservation.search.types';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -38,226 +38,166 @@ export class ReservationRepo implements IReservationRepo {
         }
     };
 
-//     getById = async (id: string): Promise<RoomDto> => {
-//         try {
-//             const room = await Room.findByPk(id);
-//             const dto = await RoomMapper.toDto(room);
-//             return dto;
-//         } catch (error) {
-//             Logger.instance().log(error.message);
-//             throw new ApiError(500, error.message);
-//         }
-//     };
+    getById = async (id: string): Promise<ReservationDto> => {
+        try {
+            const reservation = await Reservation.findByPk(id);
+            const dto = await ReservationMapper.toDto(reservation);
+            return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
 
-//     getAllRoom = async (): Promise<RoomDto[]> => {
-//         try {
-//             const records = await Room.findAll();
-//             const dtos = records.map((record) => this.toDto(record));
-//             return dtos;
-//             // const dto = await CustomerMapper.toDto(records);
-//             // return dto;
-//         } catch (error) {
-//             Logger.instance().log(error.message);
-//             throw new ApiError(500, error.message);
-//         }
-//     };
+    getAllReservation = async (): Promise<ReservationDto[]> => {
+        try {
+            const records = await Reservation.findAll();
+            const dtos = records.map((record) => this.toDto(record));
+            return dtos;
+            // const dto = await CustomerMapper.toDto(records);
+            // return dto;
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
 
-//     toDto = (room): RoomDto => {
-//         if (room == null) {
-//             return null;
-//         }
-//         const dto: RoomDto = {
-//             id: room.RoomId,
-//              HotelId: room. HotelId,
-//             RoomNumber: room.RoomNumber,
-//             Phone: room.Phone,
-//             RoomType: room.RoomType,
-//             BedType: room.BedType,
-//             RoomImage: room.RoomImage,
-//             Price: room.Price,
-//             Taxes: room.Taxes,
-//             Description: room.Description,
-//             BlockRoom: room.BlockRoom,
-//             RoomPerPerson: room.RoomPerPerson,
-//             CostPerDay: room.CostPerDay,
-//             Inventory: room.Inventory,
+    toDto = (reservation): ReservationDto => {
+        if (reservation == null) {
+            return null;
+        }
+        const dto: ReservationDto = {
+            id: reservation.ReservationId,
+             CustomerId: reservation. CustomerId,
+            RoomId: reservation.RoomId,
+            CheckInDate: reservation.CheckInDate,
+            CheckOutDate: reservation.CheckOutDate,
+            TotalCost: reservation.TotalCost,
+            Status: reservation.Status,
 
-//         };
-//         return dto;
-//     };
+        };
+        return dto;
+    };
 
-//     search = async (filters: RoomSearchFilters): Promise<RoomSearchResults> => {
-//         try {
+    search = async (filters: ReservationSearchFilters): Promise<ReservationSearchResults> => {
+        try {
 
-//             const search = { where: {} };
+            const search = { where: {} };
 
-//             if (filters.HotelId!= null) {
-//                 search.where['HotelId'] = filters.HotelId;
-//             }
-//             if (filters.Phone != null) {
-//                 search.where['Phone'] = { [Op.like]: '%' + filters.Phone + '%' };
-//             }
-//             if (filters.BedType!= null) {
-//                 search.where['BedType'] = filters.BedType;
-//             }
-//             if (filters.RoomNumber != null) {
-//                 search.where['RoomNumber'] = filters.RoomNumber;
-//             }
-//             if (filters.RoomType != null) {
-//                 search.where['RoomType'] = filters.RoomType;
-//             }
+            if (filters.CustomerId!= null) {
+                search.where['CustomerId'] = filters.CustomerId;
+            }
+            if (filters.RoomId != null) {
+                search.where['RoomId'] = { [Op.like]: '%' + filters.RoomId + '%' };
+            }
+            if (filters.CheckInDate!= null) {
+                search.where['CheckInDate'] = filters.CheckInDate;
+            }
+            if (filters.CheckOutDate != null) {
+                search.where['CheckOutDate'] = filters.CheckOutDate;
+            }
+            if (filters.TotalCost != null) {
+                search.where['TotalCost'] = filters.TotalCost;
+            }
 
-//             if (filters.RoomImage != null) {
-//                 search.where['RoomImage'] = filters.RoomImage;
-//             }
+            if (filters.Status != null) {
+                search.where['Status'] = filters.Status;
+            }
 
-//             if (filters.Price != null) {
-//                 search.where['Price'] = filters.Price;
-//             }
+            const orderByColum = 'CreatedAt';
+            let order = 'ASC';
+            if (filters.Order === 'descending') {
+                order = 'DESC';
+            }
+            search['order'] = [[orderByColum, order]];
+            let limit = 25;
+            if (filters.ItemsPerPage) {
+                limit = filters.ItemsPerPage;
+            }
+            const foundResults = await Reservation.findAndCountAll(search);
+            let offset = 0;
+            let pageIndex = 0;
+            if (filters.PageIndex) {
+                pageIndex = filters.PageIndex < 0 ? 0 : filters.PageIndex;
+                offset = pageIndex * limit;
+            }
+            search['limit'] = limit;
+            search['offset'] = offset;
 
-//             if (filters.Taxes != null) {
-//                 search.where['Taxes'] = filters.Taxes;
-//             }
+            const dtos: ReservationDto[] = [];
+            for (const room of foundResults.rows) {
+                const dto = await ReservationMapper.toDto(room);
+                dtos.push(dto);
+            }
+            const count = foundResults.count;
+            const totalCount = typeof count === "number" ? count : count[0];
 
-//             if (filters.Description != null) {
-//                 search.where['Description'] = filters.Description;
-//             }
+            const searchResults: ReservationSearchResults = {
+                TotalCount     : totalCount,
+                RetrievedCount : dtos.length,
+                PageIndex      : pageIndex,
+                ItemsPerPage   : limit,
+                Order          : order === 'DESC' ? 'descending' : 'ascending',
+                OrderedBy      : orderByColum,
+                Items          : dtos
+            };
 
-//             if (filters.BlockRoom != null) {
-//                 search.where['BlockRoom'] = filters.BlockRoom;
-//             }
+            return searchResults;
 
-//             if (filters.RoomPerPerson != null) {
-//                 search.where['RoomPerPerson'] = filters.RoomPerPerson;
-//             }
+        } catch (error) {
+            Logger.instance().log(error.message);
+            throw new ApiError(500, error.message);
+        }
+    };
 
-//             if (filters.CostPerDay != null) {
-//                 search.where['CostPerDay'] = filters.CostPerDay;
-//             }
-
-//             if (filters.Inventory != null) {
-//                 search.where['Inventory'] = filters.Inventory;
-//             }
-
-//             const orderByColum = 'CreatedAt';
-//             let order = 'ASC';
-//             if (filters.Order === 'descending') {
-//                 order = 'DESC';
-//             }
-//             search['order'] = [[orderByColum, order]];
-//             let limit = 25;
-//             if (filters.ItemsPerPage) {
-//                 limit = filters.ItemsPerPage;
-//             }
-//             const foundResults = await Room.findAndCountAll(search);
-//             let offset = 0;
-//             let pageIndex = 0;
-//             if (filters.PageIndex) {
-//                 pageIndex = filters.PageIndex < 0 ? 0 : filters.PageIndex;
-//                 offset = pageIndex * limit;
-//             }
-//             search['limit'] = limit;
-//             search['offset'] = offset;
-
-//             const dtos: RoomDto[] = [];
-//             for (const room of foundResults.rows) {
-//                 const dto = await RoomMapper.toDto(room);
-//                 dtos.push(dto);
-//             }
-
-//             const count = foundResults.count;
-//             const totalCount = typeof count === "number" ? count : count[0];
-
-//             const searchResults: RoomSearchResults = {
-//                 TotalCount     : totalCount,
-//                 RetrievedCount : dtos.length,
-//                 PageIndex      : pageIndex,
-//                 ItemsPerPage   : limit,
-//                 Order          : order === 'DESC' ? 'descending' : 'ascending',
-//                 OrderedBy      : orderByColum,
-//                 Items          : dtos
-//             };
-
-//             return searchResults;
-
-//         } catch (error) {
-//             Logger.instance().log(error.message);
-//             throw new ApiError(500, error.message);
-//         }
-//     };
-
-// update = async (id: string, roomDomainModel: RoomDomainModel): Promise<RoomDto> => {
-//             try {
-//                 const room = await Room.findByPk(id);
+update = async (id: string, reservationDomainModel: ReservationDomainModel): Promise<ReservationDto> => {
+            try {
+                const reservation = await Reservation.findByPk(id);
     
-//                 //Client code is not modifiable
-//                 //Use renew key to update ApiKey, ValidFrom and ValidTill
+                //Client code is not modifiable
+                //Use renew key to update ApiKey, ValidFrom and ValidTill
     
-//                 if (roomDomainModel.HotelId != null) {
-//                     room.HotelId = roomDomainModel.HotelId;
-//                 }
+                if (reservationDomainModel.CustomerId != null) {
+                    reservation.CustomerId = reservationDomainModel.CustomerId;
+                }
 
-//                 if (roomDomainModel.RoomNumber != null) {
-//                     room.RoomNumber = roomDomainModel.RoomNumber;
-//                 }
-//                 if (roomDomainModel.RoomType != null) {
-//                     room.RoomType = roomDomainModel.RoomType;
-//                 }
-//                 if (roomDomainModel.Phone != null) {
-//                     room.Phone = roomDomainModel.Phone;
-//                 }
-//                 if (roomDomainModel.BedType != null) {
-//                     room.BedType = roomDomainModel.BedType;
-//                 }
-//                 if (roomDomainModel.RoomImage != null) {
-//                     room.RoomImage = roomDomainModel.RoomImage;
-//                 }
+                if (reservationDomainModel.RoomId != null) {
+                    reservation.RoomId = reservationDomainModel.RoomId;
+                }
+                if (reservationDomainModel.CheckInDate != null) {
+                    reservation.CheckInDate = reservationDomainModel.CheckInDate;
+                }
 
-//                 if (roomDomainModel.Price != null) {
-//                     room.Price = roomDomainModel.Price;
-//                 }
+                if (reservationDomainModel.CheckOutDate != null) {
+                    reservation.CheckOutDate = reservationDomainModel.CheckOutDate;
+                }
 
-//                 if (roomDomainModel.Taxes != null) {
-//                     room.Taxes = roomDomainModel.Taxes;
-//                 }
+                if (reservationDomainModel.TotalCost != null) {
+                    reservation.TotalCost = reservationDomainModel.TotalCost;
+                }
 
-//                 if (roomDomainModel.Description != null) {
-//                     room.Description = roomDomainModel.Description;
-//                 }
-
-//                 if (roomDomainModel.BlockRoom != null) {
-//                     room.BlockRoom = roomDomainModel.BlockRoom;
-//                 }
-
-//                 if (roomDomainModel.RoomPerPerson != null) {
-//                     room.RoomPerPerson = roomDomainModel.RoomPerPerson;
-//                 }
-
-//                 if (roomDomainModel.CostPerDay != null) {
-//                     room.CostPerDay = roomDomainModel.CostPerDay;
-//                 }
-
-//             if (roomDomainModel.Inventory != null) {
-//                 room.Inventory = roomDomainModel.Inventory;
-//                 }
-//                 await room.save();
+                if (reservationDomainModel.Status != null) {
+                    reservation.Status = reservationDomainModel.Status;
+                }
+                
+                await reservation.save();
     
-//                 const dto = await RoomMapper.toDto(room);
-//                 return dto;
-//             } catch (error) {
-//                 Logger.instance().log(error.message);
-//                 throw new ApiError(500, error.message);
-//             }
-//         };
+                const dto = await ReservationMapper.toDto(reservation);
+                return dto;
+            } catch (error) {
+                Logger.instance().log(error.message);
+                throw new ApiError(500, error.message);
+            }
+        };
     
-//         delete = async (id: string): Promise<boolean> => {
-//             try {
-//                 const result = await Room.destroy({ where: { id: id } });
-//                 return result === 1;
-//             } catch (error) {
-//                 Logger.instance().log(error.message);
-//                 throw new ApiError(500, error.message);
-//             }
-//         };
+        delete = async (id: string): Promise<boolean> => {
+            try {
+                const result = await Reservation.destroy({ where: { id: id } });
+                return result === 1;
+            } catch (error) {
+                Logger.instance().log(error.message);
+                throw new ApiError(500, error.message);
+            }
+        };
 
 }

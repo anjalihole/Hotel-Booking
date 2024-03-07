@@ -15,7 +15,7 @@ import { IReservationRepo } from '../../database/repository.interfaces/reservati
 // import { Helper } from '../../common/helper';
 // import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
 //import * as apikeyGenerator from 'uuid-apikey';
-//import { ReservationSearchFilters,ReservationSearchResults} from '../../domain.types/reservation/reservation.search.types';
+import { ReservationSearchFilters,ReservationSearchResults} from '../../domain.types/reservation/reservation.search.types';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,23 +28,23 @@ export class ReservationService {
         return await this._reservationRepo.create(reservationDomainModel);
     };
 
-    // getById = async (id: string): Promise<RoomDto> => {
-    //     return await this._roomRepo.getById(id);
-    // };
+    getById = async (id: string): Promise<ReservationDto> => {
+        return await this._reservationRepo.getById(id);
+    };
 
-    // getAllRoom = async (): Promise<RoomDto[]> => {
-    //     return await this._roomRepo.getAllRoom();
-    // };
+    getAllReservation = async (): Promise<ReservationDto[]> => {
+        return await this._reservationRepo.getAllReservation();
+    };
 
-    // update = async (id: string, roomDomainModel: RoomDomainModel): Promise<RoomDto> => {
-    //     return await this._roomRepo.update(id, roomDomainModel);
-    // };
+    update = async (id: string, reservationDomainModel: ReservationDomainModel): Promise<ReservationDto> => {
+        return await this._reservationRepo.update(id, reservationDomainModel);
+    };
 
-    // public search = async (filters: RoomSearchFilters): Promise<RoomSearchResults> => {
-    //     return await this._roomRepo.search(filters);
-    // };
+    public search = async (filters: ReservationSearchFilters): Promise<ReservationSearchResults> => {
+        return await this._reservationRepo.search(filters);
+    };
 
-    // delete = async (id: string): Promise<boolean> => {
-    //     return await this._roomRepo.delete(id);
-    // };
+    delete = async (id: string): Promise<boolean> => {
+        return await this._reservationRepo.delete(id);
+    };
 }

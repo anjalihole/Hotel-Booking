@@ -13,6 +13,10 @@ export interface ReservationSearchFilters {
     CheckOutDate: string;
     TotalCost: string;
     Status: string;
+    OrderBy      : string;
+    Order        : string;
+    PageIndex    : number;
+    ItemsPerPage : number;
 }
 
 export interface ReservationSearchResults {
