@@ -38,19 +38,24 @@ export default class Hotel extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type      : DataType.STRING(64),
         allowNull : false,
     })
-    HotelName: string;
+    Name: string;
 
-    @Length({ min: 6, max: 256 })
     @Column({
         type      : DataType.STRING(256),
         allowNull : true,
     })
-    Address: string;
+    AddressId: string;
+
+    @Length({ min: 1, max: 200 })
+    @Column({
+        type      : DataType.STRING(200),
+        allowNull : true,
+    })
+    Description: string;
 
     @Length({ min: 10, max: 16 })
     @Column({
@@ -59,13 +64,43 @@ export default class Hotel extends Model {
     })
     Phone: string;
 
-    @Length({ min: 3, max: 128 })
+    @Length({ min: 1, max: 128 })
     @IsEmail
     @Column({
         type      : DataType.STRING(128),
         allowNull : true,
     })
     Email: string;
+
+    @Length({ min: 1, max: 25 })
+    @IsEmail
+    @Column({
+        type      : DataType.STRING(25),
+        allowNull : true,
+    })
+    CheckInTime: string;
+
+    @Length({ min: 1, max: 25 })
+    @IsEmail
+    @Column({
+        type      : DataType.STRING(25),
+        allowNull : true,
+    })
+    CheckOutTime: string;
+
+    @IsEmail
+    @Column({
+        type      : DataType.STRING(128),
+        allowNull : true,
+    })
+    OwnerUserId: string;
+
+    @IsEmail
+    @Column({
+        type      : DataType.STRING(128),
+        allowNull : true,
+    })
+    Photos: string;
 
     @Column
     @CreatedAt

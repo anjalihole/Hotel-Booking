@@ -8,7 +8,7 @@
 // /* eslint-disable indent */
 // /* eslint-disable linebreak-style */
 import { IPaymentRepo } from '../../../../repository.interfaces/payment/payment.repo.interface';
-import Payment from '../../models/payment/payment.model';
+import Payment from '../../models/Payment/payment.model';
 import { Op } from 'sequelize';
 import { PaymentDomainModel } from '../../../../../domain.types/payment/payment.domain.model';
 import { paymentMapper } from '../../mappers/Payment/payment.mapper';
@@ -24,11 +24,14 @@ export class PaymentRepo implements IPaymentRepo {
     create = async (paymentDomainModel: PaymentDomainModel): Promise<PaymentDto> => {
         try {
             const entity = {
-                BookingId : paymentDomainModel.BookingId,
+                HotelId : paymentDomainModel.HotelId,
                 PaymentDate: paymentDomainModel.PaymentDate,
-                PaymentAmount: paymentDomainModel.PaymentAmount,
+                Amount: paymentDomainModel.Amount,
                 PaymentMethod: paymentDomainModel.PaymentMethod,
-                TransactionStatus: paymentDomainModel.TransactionStatus
+                TransactionStatus: paymentDomainModel.TransactionStatus,
+                ReservationId: paymentDomainModel.ReservationId,
+                PaymentConfirm: paymentDomainModel.PaymentConfirm,
+                PaymentId: paymentDomainModel.PaymentId,
             };
             const payment = await Payment.create(entity);
             const dto = await paymentMapper.toDto(payment);
@@ -70,10 +73,13 @@ export class PaymentRepo implements IPaymentRepo {
         const dto: PaymentDto = {
             id: payment.paymentId,
             PaymentDate: payment.PaymentDate,
-            BookingId: payment.BookingId,
-            PaymentAmount: payment.PaymentAmount,
+            HotelId: payment.HotelId,
+            Amount: payment.Amount,
             PaymentMethod: payment.PaymentMethod,
-            TransactionStatus: payment.Address,
+            TransactionStatus: payment.TransactionStatus,
+            ReservationId: payment.ReservationId,
+            PaymentConfirm: payment.PaymentConfirm,
+            PaymentId: payment.PaymentId,
         };
         return dto;
     };
@@ -83,20 +89,30 @@ export class PaymentRepo implements IPaymentRepo {
 
             const search = { where: {} };
 
-            if (filters.BookingId != null) {
-                search.where['BookingId'] = filters.BookingId;
+            if (filters.HotelId != null) {
+                search.where['HotelId'] = filters.HotelId;
             }
             if (filters.PaymentDate != null) {
                 search.where['PaymentDate'] = { [Op.like]: '%' + filters.PaymentDate + '%' };
             }
-            if (filters.PaymentAmount != null) {
-                search.where['PaymentAmount'] = filters.PaymentAmount;
+            if (filters.Amount != null) {
+                search.where['Amount'] = filters.Amount;
             }
             if (filters.PaymentMethod != null) {
                 search.where['PaymentMethod'] = filters.PaymentMethod;
             }
             if (filters.TransactionStatus != null) {
                 search.where['TransactionStatus'] = filters.TransactionStatus;
+            }
+
+            if (filters.ReservationId != null) {
+                search.where['ReservationId'] = filters.ReservationId;
+            }
+            if (filters.PaymentConfirm != null) {
+                search.where['PaymentConfirm'] = filters.PaymentConfirm;
+            }
+            if (filters.PaymentId != null) {
+                search.where['PaymentId'] = filters.PaymentId;
             }
 
             const orderByColum = 'CreatedAt';
@@ -153,21 +169,31 @@ update = async (id: string, paymentDomainModel: PaymentDomainModel): Promise<Pay
                 //Client code is not modifiable
                 //Use renew key to update ApiKey, ValidFrom and ValidTill
     
-                if (paymentDomainModel.BookingId != null) {
-                    payment.BookingId = paymentDomainModel.BookingId;
+                if (paymentDomainModel.HotelId != null) {
+                    payment.HotelId = paymentDomainModel.HotelId;
                 }
 
                 if (paymentDomainModel.PaymentDate != null) {
                     payment.PaymentDate = paymentDomainModel.PaymentDate;
                 }
-                if (paymentDomainModel.PaymentAmount != null) {
-                    payment.PaymentAmount = paymentDomainModel.PaymentAmount;
+                if (paymentDomainModel.Amount != null) {
+                    payment.Amount = paymentDomainModel.Amount;
                 }
                 if (paymentDomainModel.PaymentMethod != null) {
                     payment.PaymentMethod = paymentDomainModel.PaymentMethod;
                 }
                 if (paymentDomainModel.TransactionStatus != null) {
                     payment.TransactionStatus = paymentDomainModel.TransactionStatus;
+                }
+
+                if (paymentDomainModel.ReservationId != null) {
+                    payment.ReservationId = paymentDomainModel.ReservationId;
+                }
+                if (paymentDomainModel.PaymentConfirm != null) {
+                    payment.PaymentConfirm = paymentDomainModel.PaymentConfirm;
+                }
+                if (paymentDomainModel.PaymentId != null) {
+                    payment.PaymentId = paymentDomainModel.PaymentId;
                 }
                
                 await payment.save();

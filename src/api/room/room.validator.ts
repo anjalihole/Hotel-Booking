@@ -16,18 +16,14 @@ export class RoomValidator {
         let roomModel: RoomDomainModel = null;
 
         roomModel = {
-            HotelId: body.HotelId ?? null,
-            RoomNumber: body.RoomNumber ?? null,
+            id: body.id ?? null,
+            Name: body.Name ?? null,
             Phone: body.Phone ?? null,
-            RoomType: body. RoomType ?? null,
-            BedType: body.BedType ?? null,
-            RoomImage: body.RoomImage ?? null,
-            Price: body.Price ?? null,
-            Taxes: body.Taxes ?? null,
+            RoomTypeId: body. RoomTypeId ?? null,
+            RoomNumber: body.RoomNumber ?? null,
             Description: body.Description ?? null,
-            BlockRoom: body.BlockRoom ?? null,
-            RoomPerPerson: body.RoomPerPerson ?? null,
-            CostPerDay: body.CostPerDay ?? null,
+            Blocked: body.Blocked ?? null,
+            Status: body.Status ?? null,
             Inventory: body.Inventory ?? null,
 
         };
@@ -35,20 +31,16 @@ export class RoomValidator {
     };
 
     static create = async (request: express.Request): Promise<RoomDomainModel> => {
-        await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomType').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('id').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Name').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
+        await body('RoomTypeId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
-        await body('BedType').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomImage').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Price').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Taxes').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Description').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
-        await body('BlockRoom').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomPerPerson').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('CostPerDay').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).run(request);
-
+        await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Blocked').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Status').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
+        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
+        await body('Description').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 200 }).run(request);
+        
         const result = validationResult(request);
         if (!result.isEmpty()) {
             Helper.handleValidationError(result);
@@ -81,20 +73,16 @@ export class RoomValidator {
     };
 
     static update = async (request: express.Request): Promise<RoomDomainModel> => {
-        await body('HotelId').optional().isLength({ min: 1 }).trim().escape().run(request);
-        await body('RoomNumber').optional().isLength({ min: 1 }).trim().escape().run(request);
-        await body('Phone').optional().trim().escape().isLength({ min: 6 }).run(request);
-        await body('RoomType').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('BedType').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomImage').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Price').optional().trim().escape().isLength({ min: 2 }).run(request);
-        await body('Taxes').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Description').optional().trim().escape().isLength({ min: 30 }).run(request);
-        await body('BlockRoom').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomPerPerson').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('CostPerDay').optional().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Inventory').optional().trim().escape().isLength({ min: 1 }).run(request);
-
+        await body('id').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Name').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
+        await body('RoomTypeId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
+        await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Blocked').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Status').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
+        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
+        await body('Description').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 200 }).run(request);
+        
         const result = validationResult(request);
         if (!result.isEmpty()) {
             Helper.handleValidationError(result);
@@ -115,29 +103,21 @@ export class RoomValidator {
     };
 
     static search = async (request: express.Request): Promise<RoomSearchFilters> => {
-        await query('HotelId').optional().trim().escape().run(request);
+        await query('id').optional().trim().escape().run(request);
+
+        await query('Name').optional().trim().escape().run(request);
 
         await query('RoomNumber').optional().trim().escape().run(request);
 
         await query('phone').optional().trim().escape().run(request);
 
-        await query('RoomType').optional().trim().escape().run(request);
+        await query('RoomTypeId').optional().trim().escape().run(request);
 
-        await query('BedType').optional().trim().escape().run(request);
-
-        await query('RoomImage').optional().trim().escape().run(request);
-
-        await query('Price').optional().trim().escape().run(request);
-
-        await query('Taxes').optional().trim().escape().run(request);
+        await query('Status').optional().trim().escape().run(request);
 
         await query('Description').optional().trim().escape().run(request);
 
-        await query('BlockRoom').optional().trim().escape().run(request);
-
-        await query('RoomPerPerson').optional().trim().escape().run(request);
-
-        await query('CostPerDay').optional().trim().escape().run(request);
+        await query('Blocked').optional().trim().escape().run(request);
 
         await query('Inventory').optional().trim().escape().run(request);
 
@@ -157,18 +137,14 @@ export class RoomValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: RoomSearchFilters = {
-            HotelId: request.query.HotelId || null,
+            id: request.query.id || null,
             RoomNumber: request.query.RoomNumber || null,
             Phone: request.query.Phone || null,
-            RoomType: request.query.RoomType || null,
-            BedType: request.query.BedType || null,
-            RoomImage: request.query.RoomImage || null,
-            Price: request.query.Price || null,
-            Taxes: request.query.Taxes || null,
+            RoomTypeId: request.query.RoomTypeId || null,
+            Name: request.query.Name || null,
+            Status: request.query.Status || null,
             Description: request.query.Description || null,
-            BlockRoom: request.query.BlockRoom || null,
-            RoomPerPerson: request.query.RoomPerPerson || null,
-            CostPerDay: request.query.CostPerDay || null,
+            Blocked: request.query.Blocked || null,
             Inventory: request.query.Inventory || null,
             OrderBy      : request.query.orderBy || 'CreatedAt',
             Order        : request.query.order || 'descending',

@@ -1,26 +1,22 @@
 /* eslint-disable linebreak-style */
 export interface RoomDomainModel {
     id?: string;
-    HotelId: string;
+    Name: string;
     RoomNumber: string;
-    RoomType: string;
-    BedType: string;
-    RoomImage: string;
-    Price: string;
-    Taxes: string;
+    RoomTypeId: string;
     Description: string;
-    BlockRoom: string;
-    RoomPerPerson: string;
-    CostPerDay: string;
+    Blocked: string;
+    Status: string;
     Phone?:string;
     Inventory: string;
 }
 export interface ApiRoomVerificationDomainModel {
-    HotelId: string;
+    Name: string;
     RoomNumber: string;
-    RoomType: string;
-    BedType: string;
-    RoomImage: string;
-    price: string;
-    Taxes: string;
+    RoomTypeId: string;
+    Description: string;
+    Blocked: string;
+    Status: string;
+    Phone?:string;
+    Inventory: string;
 }

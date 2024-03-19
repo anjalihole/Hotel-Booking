@@ -3,15 +3,15 @@
 /* eslint-disable key-spacing */
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
-import { IHotelRepo } from '../../../../repository.interfaces/hotel/hotel.repo.interface';
-import Hotel from '../../models/hotel/hotel.model';
+import { IHotelRepo } from '../../../../repository.interfaces/Hotel/hotel.repo.interface';
+import Hotel from '../../models/Hotel/hotel.model';
 import { Op } from 'sequelize';
-import { HotelDomainModel } from '../../../../../domain.types/hotel/hotel.domain.model';
-import { HotelMapper } from '../../mappers/hotel/hotel.mapper';
+import { HotelDomainModel } from '../../../../../domain.types/Hotel/hotel.domain.model';
+import { HotelMapper } from '../../mappers/Hotel/hotel.mapper';
 import { Logger } from '../../../../../common/logger';
 import { ApiError } from '../../../../../common/api.error';
-import { HotelDto } from '../../../../../domain.types/hotel/hotel.dto';
-import { HotelSearchFilters, HotelSearchResults } from '../../../../../domain.types/hotel/hotel.search.types';
+import { HotelDto } from '../../../../../domain.types/Hotel/hotel.dto';
+import { HotelSearchFilters, HotelSearchResults } from '../../../../../domain.types/Hotel/hotel.search.types';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -20,10 +20,16 @@ export class HotelRepo implements IHotelRepo {
     create = async (hotelDomainModel: HotelDomainModel): Promise<HotelDto> => {
         try {
             const entity = {
-                HotelName   : hotelDomainModel.HotelName,
-                Address : hotelDomainModel.Address,
+                Name   : hotelDomainModel.Name,
+                AddressId : hotelDomainModel.AddressId,
                 Phone        : hotelDomainModel.Phone,
                 Email        : hotelDomainModel.Email,
+                Description : hotelDomainModel.Description,
+                CheckInTime        : hotelDomainModel.CheckInTime,
+                CheckOutTime        : hotelDomainModel. CheckOutTime,
+                OwnerUserId : hotelDomainModel.OwnerUserId,
+                Photos : hotelDomainModel.Photos,
+
             };
             const hotel = await Hotel.create(entity);
             const dto = await HotelMapper.toDto(hotel);
@@ -63,11 +69,16 @@ export class HotelRepo implements IHotelRepo {
             return null;
         }
         const dto: HotelDto = {
-            id: hotel.CustomerId,
-            HotelName: hotel.FirstName,
-            Phone: hotel.Phone,
-            Email: hotel.Email,
-            Address: hotel.Address,
+                id: hotel.id,
+                Name   : hotel.Name,
+                AddressId : hotel.AddressId,
+                Phone        : hotel.Phone,
+                Email        : hotel.Email,
+                Description : hotel.Description,
+                CheckInTime        : hotel.CheckInTime,
+                CheckOutTime        : hotel. CheckOutTime,
+                OwnerUserId : hotel.OwnerUserId,
+                Photos : hotel.Photos,
         };
         return dto;
     };
@@ -77,8 +88,12 @@ export class HotelRepo implements IHotelRepo {
 
             const search = { where: {} };
 
-            if (filters.HotelName != null) {
-                search.where['HotelName'] = filters.HotelName;
+            if (filters.id != null) {
+                search.where['id'] = filters.id;
+            }
+
+            if (filters.Name != null) {
+                search.where['Name'] = filters.Name;
             }
             if (filters.Phone != null) {
                 search.where['Phone'] = { [Op.like]: '%' + filters.Phone + '%' };
@@ -87,8 +102,26 @@ export class HotelRepo implements IHotelRepo {
                 search.where['Email'] = filters.Email;
             }
             
-            if (filters.Address != null) {
-                search.where['Address'] = filters.Address;
+            if (filters.AddressId != null) {
+                search.where['AddressId'] = filters.AddressId;
+            }
+
+            if (filters.Description != null) {
+                search.where['Description'] = filters.Description;
+            }
+            if (filters.CheckInTime != null) {
+                search.where['CheckInTime'] = { [Op.like]: '%' + filters.CheckInTime + '%' };
+            }
+            if (filters.CheckOutTime != null) {
+                search.where['CheckOutTime'] = filters.CheckOutTime;
+            }
+            
+            if (filters.OwnerUserId != null) {
+                search.where['OwnerUserId'] = filters.OwnerUserId;
+            }
+
+            if (filters.Photos != null) {
+                search.where['Photos'] = filters.Photos;
             }
 
             const orderByColum = 'CreatedAt';
@@ -141,8 +174,8 @@ export class HotelRepo implements IHotelRepo {
 update = async (id: string, hotelDomainModel: HotelDomainModel): Promise<HotelDto> => {
             try {
                 const hotel = await Hotel.findByPk(id);
-                if (hotelDomainModel.HotelName != null) {
-                    hotel.HotelName = hotelDomainModel.HotelName;
+                if (hotelDomainModel.Name != null) {
+                    hotel.Name = hotelDomainModel.Name;
                 }
                 if (hotelDomainModel.Phone != null) {
                     hotel.Phone = hotelDomainModel.Phone;
@@ -150,8 +183,25 @@ update = async (id: string, hotelDomainModel: HotelDomainModel): Promise<HotelDt
                 if (hotelDomainModel.Email != null) {
                     hotel.Email = hotelDomainModel.Email;
                 }
-                if (hotelDomainModel.Address != null) {
-                    hotel.Address = hotelDomainModel.Address;
+                if (hotelDomainModel.AddressId != null) {
+                    hotel.AddressId = hotelDomainModel.AddressId;
+                }
+
+                if (hotelDomainModel.id != null) {
+                    hotel.id = hotelDomainModel.id;
+                }
+                if (hotelDomainModel.CheckInTime != null) {
+                    hotel.CheckInTime = hotelDomainModel.CheckInTime;
+                }
+                if (hotelDomainModel.CheckOutTime != null) {
+                    hotel.CheckOutTime = hotelDomainModel.CheckOutTime;
+                }
+                if (hotelDomainModel.OwnerUserId != null) {
+                    hotel.OwnerUserId = hotelDomainModel.OwnerUserId;
+                }
+
+                if (hotelDomainModel.Photos != null) {
+                    hotel.Photos = hotelDomainModel.Photos;
                 }
                 await hotel.save();
     

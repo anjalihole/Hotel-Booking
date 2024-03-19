@@ -46,76 +46,50 @@ export default class Room extends Model {
         type: DataType.STRING(64),
         allowNull: false,
     })
-    HotelId: string;
+    Name: string;
 
+    @Length({ min: 1, max: 200 })
     @Column({
-        type: DataType.STRING(64),
+        type: DataType.STRING(200),
         allowNull: false,
     })
-    RoomNumber: string;
+   Description: string;
 
     @Column({
-        type: DataType.STRING(64),
+        type: DataType.STRING(500),
         allowNull: false,
     })
-    RoomType: string;
+    RoomTypeId: string;
 
     @Column({
         type: DataType.STRING(256),
         allowNull: true,
     })
-    BedType: string;
+    RoomNumber: string;
 
     @Column({
         type: DataType.STRING(16),
         allowNull: true,
     })
-    RoomImage: string;
+    Blocked: string;
 
+    @Length({ min: 1, max: 500 })
     @Column({
-        type: DataType.STRING(128),
+        type: DataType.STRING(500),
         allowNull: true,
     })
-    Price: string;
+    Status: string;
 
+    @Length({ min: 1, max: 500 })
     @Column({
-        type: DataType.STRING(128),
-        allowNull: true,
-    })
-    Taxes: string;
-
-    @Column({
-        type: DataType.STRING(128),
-        allowNull: true,
-    })
-    Description: string;
-
-    @Column({
-        type: DataType.STRING(128),
-        allowNull: true,
-    })
-    BlockRoom: string;
-
-    @Column({
-        type: DataType.STRING(128),
-        allowNull: true,
-    })
-    RoomPerPerson: string;
-
-    @Column({
-        type: DataType.STRING(128),
-        allowNull: true,
-    })
-    CostPerDay: string;
-
-    @Column({
-        type: DataType.STRING(128),
+        type: DataType.STRING(500),
         allowNull: true,
     })
     Inventory: string;
 
+    @Length({ min: 1, max: 500 })
     @Column({
-        type: DataType.STRING(16),
+        type: DataType.STRING(500),
         allowNull: true,
     })
     Phone: string;

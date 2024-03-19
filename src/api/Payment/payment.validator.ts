@@ -20,20 +20,27 @@ export class PaymentValidator {
         let paymentModel: PaymentDomainModel = null;
 
         paymentModel = {
-            BookingId:body.BookingId ?? null,
-            PaymentDate: body.PaymentDate ?? null,
-            PaymentAmount: body.PaymentAmount ?? null,
-            PaymentMethod: body.PaymentMethod ?? null,
+            id:body.id ?? null,
+            HotelId: body.HotelId ?? null,
+            PaymentId: body. PaymentId ?? null,
+            ReservationId: body.ReservationId ?? null,
+            PaymentDate:body.PaymentDate ?? null,
+            Amount: body.Amount ?? null,
+             PaymentMethod: body. PaymentMethod ?? null,
+            PaymentConfirm: body.PaymentConfirm ?? null,
             TransactionStatus:body.TransactionStatus ?? null,
         };
         return paymentModel;
     };
 
     static create = async (request: express.Request): Promise<PaymentDomainModel> => {
-        await body('BookingId').exists().trim().escape().isLength({ min: 3 }).run(request);
+        await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentDate').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('PaymentAmount').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Amount').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentMethod').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('ReservationId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('PaymentConfirm').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('PaymentId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('TransactionStatus').exists().trim().escape().isLength({ min: 1 }).run(request);
 
         const result = validationResult(request);
@@ -68,10 +75,13 @@ export class PaymentValidator {
     };
 
     static update = async (request: express.Request): Promise<PaymentDomainModel> => {
-        await body('BookingId').exists().trim().escape().isLength({ min: 3 }).run(request);
+        await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentDate').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('PaymentAmount').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Amount').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentMethod').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('ReservationId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('PaymentConfirm').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('PaymentId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('TransactionStatus').exists().trim().escape().isLength({ min: 1 }).run(request);
 
         const result = validationResult(request);
@@ -82,13 +92,19 @@ export class PaymentValidator {
     };
 
 static search = async (request: express.Request): Promise<PaymentSearchFilters> => {
-    await query('BookingId').optional().trim().escape().run(request);
+    await query('HotelId').optional().trim().escape().run(request);
 
     await query('PaymentDate').optional().trim().escape().run(request);
 
-    await query('PaymentAmount').optional().trim().escape().run(request);
+    await query('Amount').optional().trim().escape().run(request);
 
     await query('PaymentMethod').optional().trim().escape().run(request);
+
+    await query('ReservationId').optional().trim().escape().run(request);
+
+    await query('PaymentId').optional().trim().escape().run(request);
+
+    await query('PaymentConfirm').optional().trim().escape().run(request);
 
     await query('TransactionStatus').optional().trim().escape().run(request);
 
@@ -108,10 +124,13 @@ static search = async (request: express.Request): Promise<PaymentSearchFilters> 
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: PaymentSearchFilters = {
-            BookingId: request.query.BookingId ?? null,
+            HotelId: request.query.HotelId ?? null,
             PaymentDate: request.query.PaymentDate ?? null,
-            PaymentAmount: request.query.PaymentAmount ?? null,
+            Amount: request.query.Amount ?? null,
             PaymentMethod: request.query.PaymentMethod ?? null,
+            ReservationId: request.query.ReservationId ?? null,
+            PaymentConfirm: request.query.PaymentConfirm ?? null,
+            PaymentId: request.query.PaymentId ?? null,
             TransactionStatus: request.query.TransactionStatus ?? null,
             OrderBy      : request.query.orderBy ?? 'CreatedAt',
             Order        : request.query.order ?? 'descending',

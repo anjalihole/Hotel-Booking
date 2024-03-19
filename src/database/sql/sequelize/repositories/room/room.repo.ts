@@ -6,7 +6,7 @@
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
 import { IRoomRepo } from '../../../../repository.interfaces/room/room.repo.interface';
-import Room from '../../models/room/room.model';
+import Room from '../../models/Room/room.model';
 import { Op } from 'sequelize';
 import { RoomDomainModel } from '../../../../../domain.types/room/room.domain.model';
 import { RoomMapper } from '../../mappers/room/room.mapper';
@@ -22,19 +22,16 @@ export class RoomRepo implements IRoomRepo {
     create = async (roomDomainModel: RoomDomainModel): Promise<RoomDto> => {
         try {
             const entity = {
-                HotelId  : roomDomainModel.HotelId,
+                id  : roomDomainModel.id,
+                Name     : roomDomainModel.Name ?? null,
                 RoomNumber   : roomDomainModel.RoomNumber,
-                RoomType : roomDomainModel.RoomType,
+                RoomTypeId : roomDomainModel.RoomTypeId,
                 Phone        : roomDomainModel.Phone,
-                BedType       : roomDomainModel.BedType,
-                RoomImage     : roomDomainModel.RoomImage ?? null,
-                Price     : roomDomainModel.Price ?? null,
-                Taxes     : roomDomainModel.Taxes ?? null,
                 Description     : roomDomainModel.Description ?? null,
-                BlockRoom     : roomDomainModel.BlockRoom ?? null,
-                RoomPerPerson     : roomDomainModel.RoomPerPerson ?? null,
-                CostPerDay     : roomDomainModel.CostPerDay ?? null,
+                Blocked     : roomDomainModel.Blocked ?? null,
+                Status     : roomDomainModel.Status ?? null,
                 Inventory     : roomDomainModel.Inventory ?? null,
+
             };
             const room = await Room.create(entity);
             const dto = await RoomMapper.toDto(room);
@@ -75,19 +72,14 @@ export class RoomRepo implements IRoomRepo {
         }
         const dto: RoomDto = {
             id: room.RoomId,
-             HotelId: room. HotelId,
+            Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
-            RoomType: room.RoomType,
-            BedType: room.BedType,
-            RoomImage: room.RoomImage,
-            Price: room.Price,
-            Taxes: room.Taxes,
+            RoomTypeId: room.RoomTypeId,
             Description: room.Description,
-            BlockRoom: room.BlockRoom,
-            RoomPerPerson: room.RoomPerPerson,
-            CostPerDay: room.CostPerDay,
+            Blocked: room.Blocked,
             Inventory: room.Inventory,
+            Status: room.Status,
 
         };
         return dto;
@@ -98,48 +90,32 @@ export class RoomRepo implements IRoomRepo {
 
             const search = { where: {} };
 
-            if (filters.HotelId!= null) {
-                search.where['HotelId'] = filters.HotelId;
+            if (filters.id!= null) {
+                search.where['id'] = filters.id;
+            }
+
+            if (filters.Name!= null) {
+                search.where['Name'] = filters.Name;
             }
             if (filters.Phone != null) {
                 search.where['Phone'] = { [Op.like]: '%' + filters.Phone + '%' };
             }
-            if (filters.BedType!= null) {
-                search.where['BedType'] = filters.BedType;
+            if (filters.Status!= null) {
+                search.where['Status'] = filters.Status;
             }
             if (filters.RoomNumber != null) {
                 search.where['RoomNumber'] = filters.RoomNumber;
             }
-            if (filters.RoomType != null) {
-                search.where['RoomType'] = filters.RoomType;
-            }
-
-            if (filters.RoomImage != null) {
-                search.where['RoomImage'] = filters.RoomImage;
-            }
-
-            if (filters.Price != null) {
-                search.where['Price'] = filters.Price;
-            }
-
-            if (filters.Taxes != null) {
-                search.where['Taxes'] = filters.Taxes;
+            if (filters.RoomTypeId != null) {
+                search.where['RoomTypeId'] = filters.RoomTypeId;
             }
 
             if (filters.Description != null) {
                 search.where['Description'] = filters.Description;
             }
 
-            if (filters.BlockRoom != null) {
-                search.where['BlockRoom'] = filters.BlockRoom;
-            }
-
-            if (filters.RoomPerPerson != null) {
-                search.where['RoomPerPerson'] = filters.RoomPerPerson;
-            }
-
-            if (filters.CostPerDay != null) {
-                search.where['CostPerDay'] = filters.CostPerDay;
+            if (filters.Blocked != null) {
+                search.where['Blocked'] = filters.Blocked;
             }
 
             if (filters.Inventory != null) {
@@ -200,52 +176,37 @@ update = async (id: string, roomDomainModel: RoomDomainModel): Promise<RoomDto> 
                 //Client code is not modifiable
                 //Use renew key to update ApiKey, ValidFrom and ValidTill
     
-                if (roomDomainModel.HotelId != null) {
-                    room.HotelId = roomDomainModel.HotelId;
+                if (roomDomainModel.id != null) {
+                    room.id = roomDomainModel.id;
+                }
+
+                if (roomDomainModel.Name != null) {
+                    room.Name = roomDomainModel.Name;
                 }
 
                 if (roomDomainModel.RoomNumber != null) {
                     room.RoomNumber = roomDomainModel.RoomNumber;
                 }
-                if (roomDomainModel.RoomType != null) {
-                    room.RoomType = roomDomainModel.RoomType;
+                if (roomDomainModel.RoomTypeId != null) {
+                    room.RoomTypeId = roomDomainModel.RoomTypeId;
                 }
                 if (roomDomainModel.Phone != null) {
                     room.Phone = roomDomainModel.Phone;
                 }
-                if (roomDomainModel.BedType != null) {
-                    room.BedType = roomDomainModel.BedType;
-                }
-                if (roomDomainModel.RoomImage != null) {
-                    room.RoomImage = roomDomainModel.RoomImage;
-                }
-
-                if (roomDomainModel.Price != null) {
-                    room.Price = roomDomainModel.Price;
-                }
-
-                if (roomDomainModel.Taxes != null) {
-                    room.Taxes = roomDomainModel.Taxes;
+                if (roomDomainModel.Status != null) {
+                    room.Status = roomDomainModel.Status;
                 }
 
                 if (roomDomainModel.Description != null) {
                     room.Description = roomDomainModel.Description;
                 }
 
-                if (roomDomainModel.BlockRoom != null) {
-                    room.BlockRoom = roomDomainModel.BlockRoom;
+                if (roomDomainModel.Blocked != null) {
+                    room.Blocked = roomDomainModel.Blocked;
                 }
 
-                if (roomDomainModel.RoomPerPerson != null) {
-                    room.RoomPerPerson = roomDomainModel.RoomPerPerson;
-                }
-
-                if (roomDomainModel.CostPerDay != null) {
-                    room.CostPerDay = roomDomainModel.CostPerDay;
-                }
-
-            if (roomDomainModel.Inventory != null) {
-                room.Inventory = roomDomainModel.Inventory;
+                if (roomDomainModel.Inventory != null) {
+                   room.Inventory = roomDomainModel.Inventory;
                 }
                 await room.save();
     

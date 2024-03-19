@@ -1,16 +1,22 @@
 /* eslint-disable linebreak-style */
 export interface PaymentDomainModel {
     id?: string;
-    BookingId : string;
+    HotelId : string;
     PaymentDate: string;
-    PaymentAmount: string;
+    Amount: string;
     PaymentMethod: string;
-    TransactionStatus: string
+    TransactionStatus: string;
+    PaymentId: string;
+    ReservationId: string;
+    PaymentConfirm: string;
 }
 export interface ApiPaymentVerificationDomainModel {
-    BookingId : string;
+    HotelId : string;
     PaymentDate: string;
-    PaymentAmount: string;
+    Amount: string;
     PaymentMethod: string;
-    TransactionStatus: string
+    TransactionStatus: string;
+    PaymentId: string;
+    ReservationId: string;
+    PaymentConfirm: string;
 }

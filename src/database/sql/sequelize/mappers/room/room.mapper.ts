@@ -3,7 +3,7 @@
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 import { RoomDto } from '/../src/domain.types/room/room.dto';
-import Room from '../../models/room/room.model';
+import Room from '../../models/Room/room.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -14,18 +14,13 @@ export class RoomMapper {
         }
         const dto: RoomDto = {
             id: room.id,
-            HotelId: room.HotelId,
+            Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
-            RoomType: room.RoomType,
-            BedType: room.BedType,
-            RoomImage: room.RoomImage,
-            Price: room.Price,
-            Taxes: room.Taxes,
+            RoomTypeId: room.RoomTypeId,
+            Status: room.Status,
             Description: room.Description,
-            BlockRoom: room.BlockRoom,
-            RoomPerPerson: room.RoomPerPerson,
-            CostPerDay: room.CostPerDay,
+            Blocked: room.Blocked,
             Inventory: room.Inventory,
         };
         return dto;
@@ -37,18 +32,13 @@ export class RoomMapper {
         }
         const dto: RoomDto = {
             id: room.id,
-            HotelId: room.HotelId,
+            Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
-            RoomType: room.RoomType,
-            BedType: room.BedType,
-            RoomImage: room.RoomImage,
-            Price: room.Price,
-            Taxes: room.Taxes,
+            RoomTypeId: room.RoomTypeId,
+            Status: room.Status,
             Description: room.Description,
-            BlockRoom: room.BlockRoom,
-            RoomPerPerson: room.RoomPerPerson,
-            CostPerDay: room.CostPerDay,
+            Blocked: room.Blocked,
             Inventory: room.Inventory,
         };
         return dto;

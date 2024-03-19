@@ -2,11 +2,10 @@
 /* eslint-disable padded-blocks */
 import express from 'express';
 import { Logger } from '../common/logger';
-import { register as registerCustomerRoutes } from './customer/customer.routes';
+import { register as registerUserRoutes } from './user/user.routes';
 import { register as registerHotelRoutes } from './Hotel/hotel.routes';
 import { register as registerpaymentRoutes } from './Payment/payment.routes';
 import { register as registerroomRoutes } from './room/room.routes';
-import { register as registerreservationRoutes } from './reservation/reservation.routes';
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,11 +26,10 @@ export class Router {
                     });
                 });
 
-                registerCustomerRoutes(this._app);
+                registerUserRoutes(this._app);
                 registerHotelRoutes(this._app);
                 registerpaymentRoutes(this._app);
                 registerroomRoutes(this._app);
-                registerreservationRoutes(this._app);
 
                 resolve(true);
             } catch (error) {

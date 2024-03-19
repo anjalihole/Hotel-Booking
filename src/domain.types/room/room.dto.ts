@@ -2,17 +2,12 @@
 
 export interface RoomDto {
     id?: string;
-    HotelId: string;
+    Name: string;
     RoomNumber: string;
-    RoomType: string;
-    BedType: string;
-    RoomImage: string;
-    Price: string;
-    Taxes: string;
+    RoomTypeId: string;
     Description: string;
-    BlockRoom: string;
-    RoomPerPerson: string;
-    CostPerDay: string;
+    Blocked: string;
+    Status: string;
     Phone?:string;
     Inventory: string;
 

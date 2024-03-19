@@ -2,8 +2,9 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
-import { HotelDto } from '/../src/domain.types/hotel/hotel.dto';
-import Hotel from '../../models/hotel/hotel.model';
+// import { HotelDto } from '../../../../../domain.types/hotel/hotel.dto';
+import { HotelDto } from '../../../../../domain.types/Hotel/hotel.dto';
+import Hotel from '../../models/Hotel/hotel.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -14,10 +15,16 @@ export class HotelMapper {
         }
         const dto: HotelDto = {
             id: hotel.id,
-            HotelName: hotel.HotelName,
-            Phone: hotel.Phone,
+            Name: hotel.Name,
+            Description: hotel.Description,
             Email: hotel.Email,
-            Address: hotel.Address,
+            AddressId: hotel.AddressId,
+            CheckInTime: hotel.CheckInTime,
+            CheckOutTime: hotel.CheckOutTime,
+            OwnerUserId: hotel.OwnerUserId,
+            Photos:hotel.Photos,
+            Phone:hotel.Phone,
+
         };
         return dto;
     };
@@ -28,10 +35,15 @@ export class HotelMapper {
         }
         const dto: HotelDto = {
             id: hotel.id,
-            HotelName: hotel.HotelName,
-            Phone: hotel.Phone,
+            Name: hotel.Name,
+            Description: hotel.Description,
             Email: hotel.Email,
-            Address: hotel.Address,
+            AddressId: hotel.AddressId,
+            CheckInTime: hotel.CheckInTime,
+            CheckOutTime: hotel.CheckOutTime,
+            OwnerUserId: hotel.OwnerUserId,
+            Photos:hotel.Photos,
+            Phone:hotel.Phone,
             
         };
         return dto;

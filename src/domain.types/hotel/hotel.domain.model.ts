@@ -1,13 +1,26 @@
 /* eslint-disable linebreak-style */
 export interface HotelDomainModel {
     id?: string;
-    HotelName: string;
-    Address: string;
+    Name: string;
+    AddressId: string;
     Phone?: string;
     Email?: string;
+    Description: string;
+    CheckInTime: string;
+    CheckOutTime: string;
+    OwnerUserId: string;
+    Photos: string;
+
 }
 export interface ApiHotelVerificationDomainModel {
-    HotelName: string;
-    Address: string;
+    Name: string;
+    AddressId: string;
+    hone?: string;
+    Email?: string;
+    Description: string;
+    CheckInTime: string;
+    CheckOutTime: string;
+    OwnerUserId: string;
+    Photos: string;
 
 }

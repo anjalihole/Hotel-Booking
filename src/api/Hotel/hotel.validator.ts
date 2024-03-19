@@ -6,8 +6,8 @@
 /* eslint-disable linebreak-style */
 import express from 'express';
 import { body, validationResult, param, query } from 'express-validator';
-import { HotelSearchFilters, HotelSearchResults } from '/../src/domain.types/hotel/hotel.search.types';
-import { HotelDomainModel } from '/../src/domain.types/hotel/hotel.domain.model';
+import { HotelSearchFilters, } from '../../domain.types/Hotel/hotel.search.types';
+import { HotelDomainModel } from '../../domain.types/Hotel/hotel.domain.model';
 import { Helper } from '../../common/helper';
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -16,19 +16,29 @@ export class HotelValidator {
         let hotelModel: HotelDomainModel = null;
 
         hotelModel = {
-            HotelName: body.HotelName ?? null,
+            Name: body.HotelName ?? null,
             Phone: body.Phone ?? null,
             Email: body.Email ?? null,
-            Address: body.Address ?? null,
+            AddressId: body.Address ?? null,
+            Description: body.Description ?? null,
+            CheckInTime: body.CheckInTime ?? null,
+            CheckOutTime: body.CheckOutTime ?? null,
+            OwnerUserId: body.OwnerUserId ?? null,
+            Photos: body.Photos ?? null,
         };
         return hotelModel;
     };
 
     static create = async (request: express.Request): Promise<HotelDomainModel> => {
-        await body('HotelName').exists().trim().escape().isLength({ min: 3 }).run(request);
-        await body('Address').exists().trim().escape().isLength({ min: 3 }).run(request);
+        await body('Name').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('AddressId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
         await body('Email').exists().trim().escape().isEmail().isLength({ min: 3 }).run(request);
+        await body('Description').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('CheckInTime').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('CheckOutTime').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('OwnerUserId').exists().trim().escape().isEmail().isLength({ min: 1 }).run(request);
+        await body('Photos').exists().trim().escape().isEmail().isLength({ min: 1 }).run(request);
 
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -38,13 +48,23 @@ export class HotelValidator {
     };
 
     static search = async (request: express.Request): Promise<HotelSearchFilters> => {
-        await query('HotelName').optional().trim().escape().run(request);
+        await query('Name').optional().trim().escape().run(request);
 
         await query('phone').optional().trim().escape().run(request);
 
         await query('email').optional().trim().escape().run(request);
 
-        await query('Address').optional().trim().escape().run(request);
+        await query('AddressId').optional().trim().escape().run(request);
+
+        await query('Description').optional().trim().escape().run(request);
+
+        await query('CheckInTime').optional().trim().escape().run(request);
+
+        await query('CheckOutTime').optional().trim().escape().run(request);
+
+        await query('OwnerUserId').optional().trim().escape().run(request);
+
+        await query('Photos').optional().trim().escape().run(request);
 
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -82,7 +102,13 @@ export class HotelValidator {
         await body('Name').optional().isLength({ min: 1 }).trim().escape().run(request);
         await body('Phone').optional().trim().escape().isLength({ min: 10 }).run(request);
         await body('Email').optional().trim().escape().isEmail().isLength({ min: 3 }).run(request);
-        await body('Address').optional().trim().escape().isLength({ min: 6 }).run(request);
+        await body('AddressId').optional().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Description').optional().isLength({ min: 1 }).trim().escape().run(request);
+        await body('CheckInTime').optional().trim().escape().isLength({ min: 10 }).run(request);
+        await body('CheckOutTime').optional().trim().escape().isEmail().isLength({ min: 3 }).run(request);
+        await body('OwnerUserId').optional().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Photos').optional().trim().escape().isLength({ min: 1 }).run(request);
+
         const result = validationResult(request);
         if (!result.isEmpty()) {
             Helper.handleValidationError(result);
@@ -110,10 +136,15 @@ export class HotelValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: HotelSearchFilters = {
-            HotelName: request.query.HotelName ?? null,
+            Name: request.query.HotelName ?? null,
             Phone: request.query.Phone ?? null,
             Email: request.query.Email ?? null,
-            Address: request.query.Address ?? null,
+            AddressId: request.query.AddressId ?? null,
+            Description: request.query.Description ?? null,
+            CheckInTime: request.query.CheckInTime ?? null,
+            CheckOutTime: request.query.CheckOutTime ?? null,
+            OwnerUserId: request.query.OwnerUserId ?? null,
+            Photos: request.query.Photos ?? null,
             OrderBy      : request.query.orderBy ?? 'CreatedAt',
             Order        : request.query.order ?? 'descending',
             PageIndex    : pageIndex,

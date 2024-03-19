@@ -42,46 +42,32 @@ export default class Customer extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
-    FirstName: string;
+    UserId: string;
 
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
-    LastName: string;
+    AddressId: string;
 
+    @Length({ min: 3, max: 25 })
     @Column({
-        type: DataType.STRING(64),
-        allowNull: false,
-    })
-    Address: string;
-
-    @Length({ min: 6, max: 256 })
-    @Column({
-        type: DataType.STRING(256),
+        type: DataType.STRING(25),
         allowNull: true,
     })
-    Password: string;
+    PAN: string;
 
-    @Length({ min: 10, max: 16 })
-    @Column({
-        type: DataType.STRING(16),
-        allowNull: true,
-    })
-    Phone: string;
-
-    @Length({ min: 3, max: 128 })
+    @Length({ min: 3, max: 25 })
     @IsEmail
     @Column({
-        type: DataType.STRING(128),
+        type: DataType.STRING(25),
         allowNull: true,
     })
-    Email: string;
+    Aadhar: string;
 
     @Column
     @CreatedAt
@@ -93,3 +79,4 @@ export default class Customer extends Model {
     @DeletedAt
     DeletedAt: Date;
 }
+

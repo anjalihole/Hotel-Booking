@@ -43,33 +43,53 @@ export default class Payment extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
-        type      : DataType.STRING(64),
+        type      : DataType.STRING(500),
         allowNull : false,
     })
-    BookingId: string;
+    HotelId: string;
 
     @Column({
-        type      : DataType.STRING(256),
+        type      : DataType.STRING(500),
+        allowNull : false,
+    })
+    PaymentId: string;
+
+    @Column({
+        type      : DataType.STRING(500),
+        allowNull : false,
+    })
+    ReservationId: string;
+
+    @Length({ min: 1, max: 32 })
+    @Column({
+        type      : DataType.STRING(32),
         allowNull : true,
     })
     PaymentDate: string;
 
     @Column({
-        type      : DataType.STRING(16),
+        type      : DataType.STRING(500),
         allowNull : true,
     })
-    PaymentAmount: string;
+    Amount: string;
 
+    @Length({ min: 1, max: 500 })
     @Column({
-        type      : DataType.STRING(128),
+        type      : DataType.STRING(500),
         allowNull : true,
     })
     PaymentMethod: string;
 
+    @Length({ min: 1, max: 500 })
     @Column({
-        type      : DataType.STRING(128),
+        type      : DataType.STRING(500),
+        allowNull : true,
+    })
+    PaymentConfirm: string;
+
+    @Column({
+        type      : DataType.STRING(500),
         allowNull : true,
     })
     TransactionStatus: string;

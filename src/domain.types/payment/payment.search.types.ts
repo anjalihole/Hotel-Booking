@@ -7,11 +7,14 @@ import { PaymentDto } from './payment.dto';
 
 export interface PaymentSearchFilters {
     id?: string;
-    BookingId : string;
+    HotelId : string;
     PaymentDate: string;
-    PaymentAmount: string;
+    Amount: string;
     PaymentMethod: string;
     TransactionStatus: string;
+    PaymentId: string;
+    ReservationId: string;
+    PaymentConfirm: string;
     OrderBy      : string;
     Order        : string;
     PageIndex    : number;

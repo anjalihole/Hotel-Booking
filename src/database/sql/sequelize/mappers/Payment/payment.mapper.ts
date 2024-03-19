@@ -7,7 +7,7 @@
 // /* eslint-disable key-spacing */
 // /* eslint-disable linebreak-style */
 import { PaymentDto } from '/../src/domain.types/payment/payment.dto';
-import Payment from '../../models/payment/payment.model';
+import Payment from '../../models/Payment/payment.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -18,11 +18,14 @@ export class paymentMapper {
         }
         const dto: PaymentDto = {
             id: payment.id,
-            BookingId: payment.BookingId,
+            HotelId: payment.HotelId,
             PaymentDate: payment.PaymentDate,
-            PaymentAmount: payment.PaymentAmount,
+            Amount: payment.Amount,
             PaymentMethod: payment.PaymentMethod,
-            TransactionStatus:payment.TransactionStatus
+            TransactionStatus:payment.TransactionStatus,
+            ReservationId: payment.ReservationId,
+            PaymentConfirm: payment.PaymentConfirm,
+            PaymentId: payment.PaymentId,
         };
         return dto;
     };
@@ -33,12 +36,14 @@ export class paymentMapper {
         }
         const dto: PaymentDto = {
             id: payment.id,
-            BookingId: payment.BookingId,
+            HotelId: payment.HotelId,
             PaymentDate: payment.PaymentDate,
-            PaymentAmount: payment.PaymentAmount,
+            Amount: payment.Amount,
             PaymentMethod: payment.PaymentMethod,
             TransactionStatus:payment.TransactionStatus,
-            
+            ReservationId: payment.ReservationId,
+            PaymentConfirm: payment.PaymentConfirm,
+            PaymentId: payment.PaymentId,
         };
         return dto;
     };
