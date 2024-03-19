@@ -24,7 +24,7 @@ import { v4 } from 'uuid';
 @Table({
     timestamps: true,
     modelName: 'ReservationOrder',
-    tableName: 'reservationorder',
+    tableName: 'reservation.order',
     paranoid: true,
     freezeTableName: true,
 })

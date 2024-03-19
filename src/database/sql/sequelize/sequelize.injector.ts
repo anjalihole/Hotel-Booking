@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import { DependencyContainer } from 'tsyringe';
 import { DatabaseConnector_Sequelize } from './database.connector.sequelize';
-import { UserRepo } from './repositories/User/user.repo';
-import { HotelRepo } from './repositories/Hotel/hotel.repo';
-import { PaymentRepo } from './repositories/Payment/payment.repo';
-import { RoomRepo } from './repositories/Room/room.repo';
+import { UserRepo } from './repositories/user/user.repo';
+import { HotelRepo } from './repositories/hotel/hotel.repo';
+import { PaymentRepo } from './repositories/payment/payment.repo';
+import { RoomRepo } from './repositories/room/room.repo';
 
 ////////////////////////////////////////////////////////////////////////////////
 

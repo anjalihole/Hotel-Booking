@@ -23,7 +23,7 @@ import { v4 } from 'uuid';
 @Table({
     timestamps: true,
     modelName: 'FileResource',
-    tableName: 'fileresource',
+    tableName: 'file.resource',
     paranoid: true,
     freezeTableName: true,
 })

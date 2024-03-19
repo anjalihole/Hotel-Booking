@@ -24,7 +24,7 @@ import { v4 } from 'uuid';
 @Table({
     timestamps: true,
     modelName: 'RoomType',
-    tableName: 'roomtype',
+    tableName: 'room.type',
     paranoid: true,
     freezeTableName: true,
 })

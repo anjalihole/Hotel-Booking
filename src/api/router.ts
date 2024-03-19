@@ -3,8 +3,8 @@
 import express from 'express';
 import { Logger } from '../common/logger';
 import { register as registerUserRoutes } from './user/user.routes';
-import { register as registerHotelRoutes } from './Hotel/hotel.routes';
-import { register as registerpaymentRoutes } from './Payment/payment.routes';
+import { register as registerHotelRoutes } from './hotel/hotel.routes';
+import { register as registerpaymentRoutes } from './payment/payment.routes';
 import { register as registerroomRoutes } from './room/room.routes';
 
 ////////////////////////////////////////////////////////////////////////////////////

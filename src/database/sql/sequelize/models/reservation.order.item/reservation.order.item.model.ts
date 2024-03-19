@@ -13,7 +13,7 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    IsEmail,
+    Length,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -23,13 +23,13 @@ import { v4 } from 'uuid';
 
 @Table({
     timestamps: true,
-    modelName: 'AddressHolder',
-    tableName: 'addressholder',
+    modelName: 'RservationOrderItem',
+    tableName: 'reservation.order.item',
     paranoid: true,
     freezeTableName: true,
 })
 // eslint-disable-next-line padded-blocks
-export default class AddressHolder extends Model {
+export default class RservationOrderItem extends Model {
     @IsUUID(4)
     @PrimaryKey
     @Column({
@@ -45,26 +45,39 @@ export default class AddressHolder extends Model {
         type: DataType.STRING(500),
         allowNull: false,
     })
-    AddressId: string;
+    ReservationOrderId: string;
+    
+    @Column({
+        type: DataType.STRING(500),
+        allowNull: false,
+    })
+    RoomId: string;
+
+    @Length({ min: 1, max: 64 })
+    @Column({
+        type: DataType.STRING(64),
+        allowNull: false,
+    })
+    TotalDays: string;
+
+    @Length({ min: 1, max: 64 })
+    @Column({
+        type: DataType.STRING(64),
+        allowNull: false,
+    })
+    Tax: string;
+
+    @Column({
+        type: DataType.STRING(64),
+        allowNull: false,
+    })
+    Discount: string;
 
     @Column({
         type: DataType.STRING(500),
         allowNull: false,
     })
-    HolderId: string;
-
-    @Column({
-        type: DataType.STRING(30),
-        allowNull: true,
-    })
-    HolderType: string;
-
-    @IsEmail
-    @Column({
-        type: DataType.STRING(500),
-        allowNull: true,
-    })
-    AddressType: string;
+    Cost: string;
 
     @Column
     @CreatedAt

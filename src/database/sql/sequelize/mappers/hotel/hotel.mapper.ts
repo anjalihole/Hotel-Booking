@@ -3,8 +3,8 @@
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 // import { HotelDto } from '../../../../../domain.types/hotel/hotel.dto';
-import { HotelDto } from '../../../../../domain.types/Hotel/hotel.dto';
-import Hotel from '../../models/Hotel/hotel.model';
+import { HotelDto } from '../../../../../domain.types/hotel/hotel.dto';
+import Hotel from '../../models/hotel/hotel.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 

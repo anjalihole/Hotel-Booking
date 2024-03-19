@@ -8,14 +8,14 @@
 /* eslint-disable linebreak-style */
 import { inject, injectable } from 'tsyringe';
 //import { ApiError } from '../../common/api.error';
-import { HotelDomainModel } from '../../domain.types/Hotel/hotel.domain.model';
-import { HotelDto } from '../../domain.types/Hotel/hotel.dto';
-import { IHotelRepo } from '../../database/repository.interfaces/Hotel/hotel.repo.interface';
+import { HotelDomainModel } from '../../domain.types/hotel/hotel.domain.model';
+import { HotelDto } from '../../domain.types/hotel/hotel.dto';
+import { IHotelRepo } from '../../database/repository.interfaces/hotel/hotel.repo.interface';
 // import { generate } from 'generate-password';
 // import { Helper } from '../../common/helper';
 // import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
 //import * as apikeyGenerator from 'uuid-apikey';
-import { HotelSearchFilters,HotelSearchResults} from '../../domain.types/Hotel/hotel.search.types';
+import { HotelSearchFilters,HotelSearchResults} from '../../domain.types/hotel/hotel.search.types';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 

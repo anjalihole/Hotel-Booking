@@ -3,7 +3,7 @@
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 import { RoomDto } from '/../src/domain.types/room/room.dto';
-import Room from '../../models/Room/room.model';
+import Room from '../../models/room/room.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 

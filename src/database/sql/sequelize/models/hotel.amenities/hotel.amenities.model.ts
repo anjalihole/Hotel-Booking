@@ -22,13 +22,13 @@ import { v4 } from 'uuid';
 
 @Table({
     timestamps: true,
-    modelName: 'UserRole',
-    tableName: 'userrole',
+    modelName: 'HotelAminities',
+    tableName: 'hotel.aminities',
     paranoid: true,
     freezeTableName: true,
 })
 // eslint-disable-next-line padded-blocks
-export default class UserRole extends Model {
+export default class HotelAminities extends Model {
     @IsUUID(4)
     @PrimaryKey
     @Column({
@@ -44,13 +44,13 @@ export default class UserRole extends Model {
         type: DataType.STRING(64),
         allowNull: false,
     })
-    UserId: string;
+    AminityName: string;
 
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
-    RoleId: string;
+   HotelId: string;
 
     @Column
     @CreatedAt
@@ -62,4 +62,3 @@ export default class UserRole extends Model {
     @DeletedAt
     DeletedAt: Date;
 }
-

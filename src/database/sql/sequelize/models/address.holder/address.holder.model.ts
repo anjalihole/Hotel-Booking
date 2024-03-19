@@ -13,7 +13,7 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
+    IsEmail,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -23,13 +23,13 @@ import { v4 } from 'uuid';
 
 @Table({
     timestamps: true,
-    modelName: 'PropertyRules',
-    tableName: 'propertyrules',
+    modelName: 'AddressHolder',
+    tableName: 'address.holder',
     paranoid: true,
     freezeTableName: true,
 })
 // eslint-disable-next-line padded-blocks
-export default class PropertyRules extends Model {
+export default class AddressHolder extends Model {
     @IsUUID(4)
     @PrimaryKey
     @Column({
@@ -39,26 +39,32 @@ export default class PropertyRules extends Model {
         },
         allowNull: false,
     })
-    id: number;
-
-    @Column({
-        type: DataType.STRING(64),
-        allowNull: false,
-    })
-    RulesName: string;
+    id: string;
 
     @Column({
         type: DataType.STRING(500),
         allowNull: false,
     })
-    HotelId: string;
+    AddressId: string;
 
-    @Length({ min: 1, max: 200 })
     @Column({
-        type: DataType.STRING(200),
+        type: DataType.STRING(500),
         allowNull: false,
     })
-    Description: string;
+    HolderId: string;
+
+    @Column({
+        type: DataType.STRING(30),
+        allowNull: true,
+    })
+    HolderType: string;
+
+    @IsEmail
+    @Column({
+        type: DataType.STRING(500),
+        allowNull: true,
+    })
+    AddressType: string;
 
     @Column
     @CreatedAt
@@ -70,3 +76,4 @@ export default class PropertyRules extends Model {
     @DeletedAt
     DeletedAt: Date;
 }
+

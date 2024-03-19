@@ -21,7 +21,7 @@ import { v4 } from 'uuid';
 @Table({
     timestamps      : true,
     modelName       : 'HotelPhotos',
-    tableName       : 'hotelphotos',
+    tableName       : 'hotel.photos',
     paranoid        : true,
     freezeTableName : true,
 })

@@ -5,11 +5,11 @@
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 import express from 'express';
-import { PaymentService } from '../../../src/services/Payment/payment.service';
+import { PaymentService } from '../../services/payment/payment.service';
 import { ResponseHandler } from '../../common/response.handler';
 import { Loader } from '../../startup/loader';
 import { Authorizer } from '../../auth/authorizer';
-import { PaymentValidator } from './payment.validator';
+import {  PaymentValidator } from './payment.routes';
 import { ApiError } from '../../common/api.error';
 
 ///////////////////////////////////////////////////////////////////////////////////////

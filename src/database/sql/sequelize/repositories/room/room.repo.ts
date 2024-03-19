@@ -6,7 +6,7 @@
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
 import { IRoomRepo } from '../../../../repository.interfaces/room/room.repo.interface';
-import Room from '../../models/Room/room.model';
+import Room from '../../models/room/room.model';
 import { Op } from 'sequelize';
 import { RoomDomainModel } from '../../../../../domain.types/room/room.domain.model';
 import { RoomMapper } from '../../mappers/room/room.mapper';

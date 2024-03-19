@@ -6,8 +6,8 @@
 /* eslint-disable linebreak-style */
 import express from 'express';
 import { body, validationResult, param, query } from 'express-validator';
-import { HotelSearchFilters, } from '../../domain.types/Hotel/hotel.search.types';
-import { HotelDomainModel } from '../../domain.types/Hotel/hotel.domain.model';
+import { HotelSearchFilters, } from '../../domain.types/hotel/hotel.search.types';
+import { HotelDomainModel } from '../../domain.types/hotel/hotel.domain.model';
 import { Helper } from '../../common/helper';
 ///////////////////////////////////////////////////////////////////////////////////////
 

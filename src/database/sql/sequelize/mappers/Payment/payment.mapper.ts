@@ -7,7 +7,7 @@
 // /* eslint-disable key-spacing */
 // /* eslint-disable linebreak-style */
 import { PaymentDto } from '/../src/domain.types/payment/payment.dto';
-import Payment from '../../models/Payment/payment.model';
+import Payment from '../../models/payment/payment.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 

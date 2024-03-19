@@ -8,10 +8,10 @@
 // /* eslint-disable indent */
 // /* eslint-disable linebreak-style */
 import { IPaymentRepo } from '../../../../repository.interfaces/payment/payment.repo.interface';
-import Payment from '../../models/Payment/payment.model';
+import Payment from '../../models/payment/payment.model';
 import { Op } from 'sequelize';
 import { PaymentDomainModel } from '../../../../../domain.types/payment/payment.domain.model';
-import { paymentMapper } from '../../mappers/Payment/payment.mapper';
+import { paymentMapper } from '../../mappers/payment/payment.mapper';
 import { Logger } from '../../../../../common/logger';
 import { ApiError } from '../../../../../common/api.error';
 import { PaymentDto } from '../../../../../domain.types/payment/payment.dto';

@@ -3,15 +3,15 @@
 /* eslint-disable key-spacing */
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
-import { IHotelRepo } from '../../../../repository.interfaces/Hotel/hotel.repo.interface';
-import Hotel from '../../models/Hotel/hotel.model';
+import { IHotelRepo } from '../../../../repository.interfaces/hotel/hotel.repo.interface';
+import Hotel from '../../models/hotel/hotel.model';
 import { Op } from 'sequelize';
-import { HotelDomainModel } from '../../../../../domain.types/Hotel/hotel.domain.model';
-import { HotelMapper } from '../../mappers/Hotel/hotel.mapper';
+import { HotelDomainModel } from '../../../../../domain.types/hotel/hotel.domain.model';
+import { HotelMapper } from '../../mappers/hotel/hotel.mapper';
 import { Logger } from '../../../../../common/logger';
 import { ApiError } from '../../../../../common/api.error';
-import { HotelDto } from '../../../../../domain.types/Hotel/hotel.dto';
-import { HotelSearchFilters, HotelSearchResults } from '../../../../../domain.types/Hotel/hotel.search.types';
+import { HotelDto } from '../../../../../domain.types/hotel/hotel.dto';
+import { HotelSearchFilters, HotelSearchResults } from '../../../../../domain.types/hotel/hotel.search.types';
 
 ///////////////////////////////////////////////////////////////////////
 

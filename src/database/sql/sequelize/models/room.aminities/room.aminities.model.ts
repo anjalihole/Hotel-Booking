@@ -13,6 +13,7 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
+    Length,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -22,13 +23,13 @@ import { v4 } from 'uuid';
 
 @Table({
     timestamps: true,
-    modelName: 'HotelAminities',
-    tableName: 'hotelaminities',
+    modelName: 'RoomAminities',
+    tableName: 'room.aminities',
     paranoid: true,
     freezeTableName: true,
 })
 // eslint-disable-next-line padded-blocks
-export default class HotelAminities extends Model {
+export default class RoomAminities extends Model {
     @IsUUID(4)
     @PrimaryKey
     @Column({
@@ -40,6 +41,7 @@ export default class HotelAminities extends Model {
     })
     id: string;
 
+    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
@@ -51,6 +53,12 @@ export default class HotelAminities extends Model {
         allowNull: false,
     })
    HotelId: string;
+
+    @Column({
+        type: DataType.STRING(64),
+        allowNull: false,
+    })
+    RoomId: string;
 
     @Column
     @CreatedAt
