@@ -13,7 +13,6 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -39,7 +38,7 @@ export default class PropertyRules extends Model {
         },
         allowNull: false,
     })
-    id: number;
+    id: string;
 
     @Column({
         type: DataType.STRING(64),
@@ -53,7 +52,6 @@ export default class PropertyRules extends Model {
     })
     HotelId: string;
 
-    @Length({ min: 1, max: 200 })
     @Column({
         type: DataType.STRING(200),
         allowNull: false,

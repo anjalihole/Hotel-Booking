@@ -16,7 +16,6 @@ export class RoomValidator {
         let roomModel: RoomDomainModel = null;
 
         roomModel = {
-            id: body.id ?? null,
             Name: body.Name ?? null,
             Phone: body.Phone ?? null,
             RoomTypeId: body. RoomTypeId ?? null,
@@ -31,15 +30,14 @@ export class RoomValidator {
     };
 
     static create = async (request: express.Request): Promise<RoomDomainModel> => {
-        await body('id').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Name').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
+        await body('Name').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('RoomTypeId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
         await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Blocked').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Status').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
-        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
-        await body('Description').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 200 }).run(request);
+        await body('Status').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Description').exists().trim().escape().isLength({ min: 1 }).run(request);
         
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -73,15 +71,14 @@ export class RoomValidator {
     };
 
     static update = async (request: express.Request): Promise<RoomDomainModel> => {
-        await body('id').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Name').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
+        await body('Name').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('RoomTypeId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
         await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Blocked').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('Status').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
-        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 500 }).run(request);
-        await body('Description').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 200 }).run(request);
+        await body('Status').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Inventory').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Description').exists().trim().escape().isLength({ min: 1 }).run(request);
         
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -103,7 +100,6 @@ export class RoomValidator {
     };
 
     static search = async (request: express.Request): Promise<RoomSearchFilters> => {
-        await query('id').optional().trim().escape().run(request);
 
         await query('Name').optional().trim().escape().run(request);
 
@@ -137,7 +133,6 @@ export class RoomValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: RoomSearchFilters = {
-            id: request.query.id || null,
             RoomNumber: request.query.RoomNumber || null,
             Phone: request.query.Phone || null,
             RoomTypeId: request.query.RoomTypeId || null,

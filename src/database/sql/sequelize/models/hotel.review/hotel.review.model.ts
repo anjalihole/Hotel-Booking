@@ -53,33 +53,30 @@ export default class HotelReview extends Model {
     })
     ReviewUserId: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
     Rating: string;
 
-    @Length({ min: 1, max: 50 })
+    @Length({ max: 128 })
     @Column({
-        type: DataType.STRING(50),
-        allowNull: false,
+        type      : DataType.STRING(128),
+        allowNull : false,
     })
     ReviewTitle: string;
 
-    @Length({ min: 1, max: 100 })
     @Column({
         type: DataType.STRING(100),
         allowNull: false,
     })
     ReviewDescription: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
-        type: DataType.STRING(64),
-        allowNull: false,
+        type      : DataType.DATE,
+        allowNull : false,
     })
-    ReviewTimeStamp: string;
+    ReviewTimeStamp: Date;
 
     @Column
     @CreatedAt

@@ -9,7 +9,6 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
     IsEmail,
 } from 'sequelize-typescript';
 
@@ -50,21 +49,12 @@ export default class Hotel extends Model {
     })
     AddressId: string;
 
-    @Length({ min: 1, max: 200 })
     @Column({
         type      : DataType.STRING(200),
         allowNull : true,
     })
     Description: string;
 
-    @Length({ min: 10, max: 16 })
-    @Column({
-        type      : DataType.STRING(16),
-        allowNull : true,
-    })
-    Phone: string;
-
-    @Length({ min: 1, max: 128 })
     @IsEmail
     @Column({
         type      : DataType.STRING(128),
@@ -72,30 +62,30 @@ export default class Hotel extends Model {
     })
     Email: string;
 
-    @Length({ min: 1, max: 25 })
-    @IsEmail
     @Column({
         type      : DataType.STRING(25),
         allowNull : true,
     })
     CheckInTime: string;
 
-    @Length({ min: 1, max: 25 })
-    @IsEmail
     @Column({
         type      : DataType.STRING(25),
         allowNull : true,
     })
     CheckOutTime: string;
 
-    @IsEmail
     @Column({
         type      : DataType.STRING(128),
         allowNull : true,
     })
     OwnerUserId: string;
 
-    @IsEmail
+    @Column({
+        type      : DataType.STRING(128),
+        allowNull : true,
+    })
+    Phone: string;
+
     @Column({
         type      : DataType.STRING(128),
         allowNull : true,

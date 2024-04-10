@@ -9,7 +9,6 @@ import { HotelService } from '../../services/hotel/hotel.service';
 import { ResponseHandler } from '../../common/response.handler';
 import { Loader } from '../../startup/loader';
 import { Authorizer } from '../../auth/authorizer';
-// import { HotelValidator } from './hotel.validator';
 import { HotelValidator } from './hotel.validator';
 import { ApiError } from '../../common/api.error';
 

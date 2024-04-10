@@ -13,7 +13,6 @@ export class RoomMapper {
             return null;
         }
         const dto: RoomDto = {
-            id: room.id,
             Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
@@ -31,7 +30,6 @@ export class RoomMapper {
             return null;
         }
         const dto: RoomDto = {
-            id: room.id,
             Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,

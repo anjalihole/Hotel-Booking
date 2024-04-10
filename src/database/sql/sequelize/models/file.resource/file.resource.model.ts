@@ -59,10 +59,11 @@ export default class FileResource extends Model {
     StorageKey: string;
 
     @Column({
-        type: DataType.STRING(128),
-        allowNull: true,
+        type         : DataType.BOOLEAN,
+        allowNull    : true,
+        defaultValue : false,
     })
-    IsPublic: string;
+    IsPublic: boolean;
 
     @Column({
         type: DataType.STRING(128),

@@ -7,13 +7,15 @@ import { UserDto } from '../../../domain.types/user/user.dto';
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 export interface IUserRepo {
-    create(userDomainModel: UserDomainModel): Promise<UserDto>;
+        create(userDomainModel: UserDomainModel): Promise<UserDto>;
 
-        getById(id: string): Promise<UserDto>;
-        getAllUser(): Promise<UserDto[]>;
-        update(id: string, UserDomainModel: UserDomainModel): Promise<UserDto>;
+         getById(id: string): Promise<UserDto>;
 
-        search(filters: UserSearchFilters): Promise<UserSearchResults>;
+         getAllUser(): Promise<UserDto[]>;
 
-        delete(id: string): Promise<boolean>;
+         update(id: string, UserDomainModel: UserDomainModel): Promise<UserDto>;
+
+         search(filters: UserSearchFilters): Promise<UserSearchResults>;
+
+         delete(id: string): Promise<boolean>;
 }

@@ -174,7 +174,7 @@ export class HotelRepo implements IHotelRepo {
 update = async (id: string, hotelDomainModel: HotelDomainModel): Promise<HotelDto> => {
             try {
                 const hotel = await Hotel.findByPk(id);
-                if (hotelDomainModel.Name != null) {
+                if (hotelDomainModel.Name ) {
                     hotel.Name = hotelDomainModel.Name;
                 }
                 if (hotelDomainModel.Phone != null) {

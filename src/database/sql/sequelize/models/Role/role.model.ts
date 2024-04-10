@@ -13,7 +13,6 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
     
 } from 'sequelize-typescript';
 
@@ -42,14 +41,12 @@ export default class Role extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
     RoleName: string;
 
-    @Length({ min: 1, max: 100 })
     @Column({
         type: DataType.STRING(100),
         allowNull: false,

@@ -15,6 +15,9 @@ import {
     PrimaryKey,
     Length,
 } from 'sequelize-typescript';
+import {
+    ProgressStatus, ProgressStatusList
+} from '../../../../../../src/domain.types/miscellaneous/system.types';
 
 import { v4 } from 'uuid';
 //import { Helper } from '../../../../../common/helper';
@@ -48,12 +51,12 @@ export default class Room extends Model {
     })
     Name: string;
 
-    @Length({ min: 1, max: 200 })
+    @Length({ max: 1024 })
     @Column({
-        type: DataType.STRING(200),
-        allowNull: false,
+        type      : DataType.STRING(1024),
+        allowNull : true,
     })
-   Description: string;
+    Description: string;
 
     @Column({
         type: DataType.STRING(500),
@@ -73,10 +76,12 @@ export default class Room extends Model {
     })
     Blocked: string;
 
-    @Length({ min: 1, max: 500 })
+    @Length({ max: 32 })
     @Column({
-        type: DataType.STRING(500),
-        allowNull: true,
+        type         : DataType.STRING(32),
+        allowNull    : false,
+        values       : ProgressStatusList,
+        defaultValue : ProgressStatus.Pending
     })
     Status: string;
 
@@ -87,7 +92,7 @@ export default class Room extends Model {
     })
     Inventory: string;
 
-    @Length({ min: 1, max: 500 })
+    @Length({ min: 10, max: 16 })
     @Column({
         type: DataType.STRING(500),
         allowNull: true,

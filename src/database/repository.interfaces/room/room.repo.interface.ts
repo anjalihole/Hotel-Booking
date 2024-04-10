@@ -7,15 +7,15 @@ import { RoomDto } from '../../../domain.types/room/room.dto';
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 export interface IRoomRepo {
-    create(roomDomainModel: RoomDomainModel): Promise<RoomDto>;
+        create(roomDomainModel: RoomDomainModel): Promise<RoomDto>;
 
-         getById(id: string): Promise<RoomDto>;
+          getById(id: string): Promise<RoomDto>;
 
-         getAllRoom(): Promise<RoomDto[]>;
+          getAllRoom(): Promise<RoomDto[]>;
 
-         update(id: string, RoomDomainModel: RoomDomainModel): Promise<RoomDto>;
+          update(id: string, RoomDomainModel: RoomDomainModel): Promise<RoomDto>;
 
-         search(filters: RoomSearchFilters): Promise<RoomSearchResults>;
+          search(filters: RoomSearchFilters): Promise<RoomSearchResults>;
 
-         delete(id: string): Promise<boolean>;
+          delete(id: string): Promise<boolean>;
 }

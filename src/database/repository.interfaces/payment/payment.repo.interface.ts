@@ -8,11 +8,15 @@ import { PaymentDto } from '../../../domain.types/payment/payment.dto';
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 export interface IPaymentRepo {
-    create(paymentDomainModel: PaymentDomainModel): Promise<PaymentDto>;
+        create(paymentDomainModel: PaymentDomainModel): Promise<PaymentDto>;
 
-        getById(id: string): Promise<PaymentDto>;
-        getAllPayment(): Promise<PaymentDto[]>;
-        update(id: string, PaymentDomainModel: PaymentDomainModel): Promise<PaymentDto>;
-        search(filters: PaymentSearchFilters): Promise<PaymentSearchResults>;
-        delete(id: string): Promise<boolean>;
+         getById(id: string): Promise<PaymentDto>;
+
+         getAllPayment(): Promise<PaymentDto[]>;
+
+         update(id: string, PaymentDomainModel: PaymentDomainModel): Promise<PaymentDto>;
+
+         search(filters: PaymentSearchFilters): Promise<PaymentSearchResults>;
+         
+         delete(id: string): Promise<boolean>;
  }

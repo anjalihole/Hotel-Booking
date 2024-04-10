@@ -13,8 +13,6 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
-    IsEmail,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -42,57 +40,47 @@ export default class Address extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
     AddressLine1: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
     AddressLine2: string;
 
-    @Length({ min: 1, max: 50 })
     @Column({
         type: DataType.STRING(50),
         allowNull: true,
     })
     Street: string;
 
-    @Length({ min: 1, max: 50 })
-    @IsEmail
     @Column({
         type: DataType.STRING(50),
         allowNull: true,
     })
     City: string;
 
-    @Length({ min: 1, max: 50 })
-    @IsEmail
     @Column({
         type: DataType.STRING(50),
         allowNull: true,
     })
     State: string;
 
-    @Length({ min: 1, max: 50 })
-    @IsEmail
     @Column({
         type: DataType.STRING(50),
         allowNull: true,
     })
     Country: string;
 
-    @IsEmail
     @Column({
         type: DataType.STRING(50),
         allowNull: true,
     })
-    ZipCode: string;
+    ZipCode: number;
 
     @Column
     @CreatedAt

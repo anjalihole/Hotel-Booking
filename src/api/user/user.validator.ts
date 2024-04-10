@@ -16,7 +16,6 @@ export class UserValidator {
         let userModel: UserDomainModel = null;
 
         userModel = {
-            Id: body.Id ?? null,
             FirstName: body.FirstName ?? null,
             LastName: body.LastName ?? null,
             Phone: body.Phone ?? null,
@@ -26,7 +25,6 @@ export class UserValidator {
     };
 
     static create = async (request: express.Request): Promise<UserDomainModel> => {
-        await body('Id').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('FirstName').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
         await body('LastName').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).isLength({ max: 16 }).run(request);
@@ -64,11 +62,10 @@ export class UserValidator {
     };
 
     static update = async (request: express.Request): Promise<UserDomainModel> => {
-        await body('Id').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('FirstName').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
-        await body('LastName').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
-        await body('Phone').exists().trim().escape().isLength({ min: 10 }).isLength({ max: 16 }).run(request);
-        await body('Email').exists().trim().escape().isLength({ min: 3 }).isLength({ max: 128 }).run(request);
+        await body('FirstName').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('LastName').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
+        await body('Email').exists().trim().escape().isEmail().isLength({ min: 3 }).run(request);
         
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -90,8 +87,6 @@ export class UserValidator {
     };
 
     static search = async (request: express.Request): Promise<UserSearchFilters> => {
-
-        await query('Id').optional().trim().escape().run(request);
 
         await query('FirstName').optional().trim().escape().run(request);
 
@@ -117,7 +112,6 @@ export class UserValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: UserSearchFilters = {
-            Id: request.query.Id || null,
             FirstName: request.query.FirstName || null,
             LastName: request.query.LastName || null,
             Phone: request.query.Phone || null,

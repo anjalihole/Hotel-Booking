@@ -16,10 +16,10 @@ export class HotelValidator {
         let hotelModel: HotelDomainModel = null;
 
         hotelModel = {
-            Name: body.HotelName ?? null,
+            Name: body.Name || null,
             Phone: body.Phone ?? null,
             Email: body.Email ?? null,
-            AddressId: body.Address ?? null,
+            AddressId: body.AddressId ?? null,
             Description: body.Description ?? null,
             CheckInTime: body.CheckInTime ?? null,
             CheckOutTime: body.CheckOutTime ?? null,
@@ -37,8 +37,8 @@ export class HotelValidator {
         await body('Description').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('CheckInTime').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('CheckOutTime').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('OwnerUserId').exists().trim().escape().isEmail().isLength({ min: 1 }).run(request);
-        await body('Photos').exists().trim().escape().isEmail().isLength({ min: 1 }).run(request);
+        await body('OwnerUserId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('Photos').exists().trim().escape().isLength({ min: 1 }).run(request);
 
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -52,7 +52,7 @@ export class HotelValidator {
 
         await query('phone').optional().trim().escape().run(request);
 
-        await query('email').optional().trim().escape().run(request);
+        await query('Email').optional().trim().escape().run(request);
 
         await query('AddressId').optional().trim().escape().run(request);
 
@@ -105,7 +105,7 @@ export class HotelValidator {
         await body('AddressId').optional().trim().escape().isLength({ min: 1 }).run(request);
         await body('Description').optional().isLength({ min: 1 }).trim().escape().run(request);
         await body('CheckInTime').optional().trim().escape().isLength({ min: 10 }).run(request);
-        await body('CheckOutTime').optional().trim().escape().isEmail().isLength({ min: 3 }).run(request);
+        await body('CheckOutTime').optional().trim().escape().isLength({ min: 3 }).run(request);
         await body('OwnerUserId').optional().trim().escape().isLength({ min: 1 }).run(request);
         await body('Photos').optional().trim().escape().isLength({ min: 1 }).run(request);
 
@@ -136,7 +136,7 @@ export class HotelValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: HotelSearchFilters = {
-            Name: request.query.HotelName ?? null,
+            Name: request.query.Name || null,
             Phone: request.query.Phone ?? null,
             Email: request.query.Email ?? null,
             AddressId: request.query.AddressId ?? null,

@@ -13,7 +13,6 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -53,14 +52,12 @@ export default class RservationOrderItem extends Model {
     })
     RoomId: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,
     })
     TotalDays: string;
 
-    @Length({ min: 1, max: 64 })
     @Column({
         type: DataType.STRING(64),
         allowNull: false,

@@ -13,7 +13,6 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
@@ -49,20 +48,12 @@ export default class ReservationOrder extends Model {
 
     @Column({
         type: DataType.STRING(64),
-        allowNull: false,
-    })
-    RoomId: string;
-
-    @Length({ min: 1, max: 60 })
-    @Column({
-        type: DataType.STRING(60),
-        allowNull: false,
+        allowNull: true,
     })
     CheckInDate: string;
-
-    @Length({ min: 1, max: 60 })
+   
     @Column({
-        type: DataType.STRING(60),
+        type: DataType.STRING(64),
         allowNull: true,
     })
     CheckOutDate: string;
@@ -79,7 +70,6 @@ export default class ReservationOrder extends Model {
     })
     Status: string;
     
-    @Length({ min: 1, max: 60 })
     @Column({
         type: DataType.STRING(60),
         allowNull: true,
@@ -92,7 +82,6 @@ export default class ReservationOrder extends Model {
     })
     Discount: string;
     
-    @Length({ min: 1, max: 500 })
     @Column({
         type: DataType.STRING(500),
         allowNull: true,
@@ -111,7 +100,6 @@ export default class ReservationOrder extends Model {
     })
     AdvancePaid: string;
 
-    @Length({ min: 1, max: 60 })
     @Column({
         type: DataType.STRING(60),
         allowNull: true,

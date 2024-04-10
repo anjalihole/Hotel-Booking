@@ -9,12 +9,14 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    Length,
-    IsEmail,
+    ForeignKey,
+    BelongsTo,
+
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
 //import { Helper } from '../../../../../common/helper';
+import FileResource from '../file.resource/file.resource.model';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -38,12 +40,16 @@ export default class HotelPhotos extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 256 })
+    @IsUUID(4)
+    @ForeignKey(() => FileResource)
     @Column({
-        type      : DataType.STRING(256),
+        type      : DataType.UUID,
         allowNull : true,
     })
     FileResourceId: string;
+
+    @BelongsTo(() => FileResource)
+    FileResource: FileResource;
 
     @Column({
         type      : DataType.STRING(500),
@@ -51,7 +57,6 @@ export default class HotelPhotos extends Model {
     })
     HotelId: string;
 
-    @IsEmail
     @Column({
         type      : DataType.STRING(500),
         allowNull : true,

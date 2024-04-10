@@ -13,6 +13,5 @@ export const register = (app: express.Application): void => {
     router.get('/', controller.getAllRoom);
     router.put('/:id', controller.update);
     router.delete('/:id',controller.delete);
-
     app.use('/api/v1/api-room', router);
 };

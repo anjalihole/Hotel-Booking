@@ -7,12 +7,17 @@ import { HotelDto } from '../../../domain.types/hotel/hotel.dto';
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 export interface IHotelRepo {
-    create(hotelDomainModel: HotelDomainModel): Promise<HotelDto>;
+    
+        create(hotelDomainModel: HotelDomainModel): Promise<HotelDto>;
 
         getById(id: string): Promise<HotelDto>;
+
         getAllHotel(): Promise<HotelDto[]>;
+
         update(id: string, HotelDomainModel: HotelDomainModel): Promise<HotelDto>;
+
         search(filters: HotelSearchFilters): Promise<HotelSearchResults>;
+        
         delete(id: string): Promise<boolean>;
 }
 

@@ -1,0 +1,3054 @@
+{
+    "collection": {
+        "info": {
+            "_postman_id": "8fe59267-cc8a-434a-93c4-5d0cef5d6554",
+            "name": "Bot-content-service",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "updatedAt": "2024-03-01T12:10:59.000Z",
+            "uid": "29959603-8fe59267-cc8a-434a-93c4-5d0cef5d6554",
+            "createdAt": null,
+            "lastUpdatedBy": null
+        },
+        "item": [
+            {
+                "name": "Qna_Document",
+                "item": [
+                    {
+                        "name": "qna_document_group",
+                        "item": [
+                            {
+                                "name": "QnaDocumentGroupCreate",
+                                "id": "88a46c94-ac2b-4fe9-ba57-498b24203839",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Nimish\",\r\n    \"Description\": \"School\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentgroups",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentgroups"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-88a46c94-ac2b-4fe9-ba57-498b24203839"
+                            },
+                            {
+                                "name": "QnaDocumentGroupUpdate",
+                                "id": "17f65d64-6d67-48ae-ba31-f5c0b683020d",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Pratiksha\",\r\n    \"Description\": \"Hello\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentgroups/6c88bf07-8afc-42cd-947d-ce266d6d6f8d",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentgroups",
+                                            "6c88bf07-8afc-42cd-947d-ce266d6d6f8d"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-17f65d64-6d67-48ae-ba31-f5c0b683020d"
+                            },
+                            {
+                                "name": "QnaDocumentGroupGetById",
+                                "id": "6f66f0a9-274c-4ba2-8de7-1019771b7962",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentgroups/6c88bf07-8afc-42cd-947d-ce266d6d6f8d",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentgroups",
+                                            "6c88bf07-8afc-42cd-947d-ce266d6d6f8d"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-6f66f0a9-274c-4ba2-8de7-1019771b7962"
+                            },
+                            {
+                                "name": "QnaDocumentGroupGetAll",
+                                "id": "625d0ebd-1f7e-477f-b253-99ebc6481260",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentgroups/search",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentgroups",
+                                            "search"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-625d0ebd-1f7e-477f-b253-99ebc6481260"
+                            },
+                            {
+                                "name": "QnaDocumentGroupGetByName",
+                                "id": "86bc0950-d11e-4909-9743-4022c46cde62",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentgroups/search/Pratiksha",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentgroups",
+                                            "search",
+                                            "Pratiksha"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-86bc0950-d11e-4909-9743-4022c46cde62"
+                            },
+                            {
+                                "name": "QnaDocumentGroupDelete",
+                                "id": "bbfc98e5-eea6-43ac-bc21-b2cd4e037511",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentgroups/6c88bf07-8afc-42cd-947d-ce266d6d6f8d",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentgroups",
+                                            "6c88bf07-8afc-42cd-947d-ce266d6d6f8d"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-bbfc98e5-eea6-43ac-bc21-b2cd4e037511"
+                            }
+                        ],
+                        "id": "7cf70dce-5fae-418c-bb74-f203aa251428",
+                        "uid": "29959603-7cf70dce-5fae-418c-bb74-f203aa251428"
+                    },
+                    {
+                        "name": "qna_document_version",
+                        "item": [
+                            {
+                                "name": "QnaDocumentVersionCreate",
+                                "id": "8d92b88a-1b42-495a-900d-07d3a9d2f0f7",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"VersionNumber\": 444,\r\n    \"StorageUrl\": \"jkl_url\",\r\n    \"DownloadUrl\": \"https://github.com/inflection-zone/bot-content-service/blob/madhura_llmprompt/src/database/models/llm.prompt/llm.prompts.model.ts\",\r\n    \"FileResourceId\": \"A546\",\r\n    \"Keywords\": \"JKL\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-8d92b88a-1b42-495a-900d-07d3a9d2f0f7"
+                            },
+                            {
+                                "name": "QnaDocumentVersionUpdate",
+                                "id": "3b97ef90-b2e3-4f37-b4bb-b06626858828",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"VersionNumber\": 159,\r\n    \"StorageUrl\": \"https://github.com/inflection-zone/bot-content-service/blob/madhura_llmprompt/src/database/models/llm.prompt/llm.prompts.model.ts\",\r\n    \"DownloadUrl\": \"https://github.com/inflection-zone/bot-content-service/blob/madhura_llmprompt/src/database/models/llm.prompt/llm.prompts.model.ts\",\r\n    \"FileResourceId\": \"A546\",\r\n    \"Keywords\": \"xyz\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/116d6053-96da-423f-a2a6-ee681f6e17bd",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "116d6053-96da-423f-a2a6-ee681f6e17bd"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-3b97ef90-b2e3-4f37-b4bb-b06626858828"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetById",
+                                "id": "b5ded91f-8a25-461f-9ca6-1c16c05284a8",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/116d6053-96da-423f-a2a6-ee681f6e17bd",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "116d6053-96da-423f-a2a6-ee681f6e17bd"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-b5ded91f-8a25-461f-9ca6-1c16c05284a8"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetByVersionNumber",
+                                "id": "41dafb52-fee4-4099-8427-54616e77fe5c",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/search-by-versionnumber/159",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "search-by-versionnumber",
+                                            "159"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-41dafb52-fee4-4099-8427-54616e77fe5c"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetByDate",
+                                "id": "a41c1910-b239-44db-84c9-6a1b723ca3f9",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/search-by-date/2024-02-25 ",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "search-by-date",
+                                            "2024-02-25 "
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-a41c1910-b239-44db-84c9-6a1b723ca3f9"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetByFileResourceId",
+                                "id": "8e69ae1d-e9e2-4a91-966b-3098b394bc23",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/search-by-fileresourceid/A546",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "search-by-fileresourceid",
+                                            "A546"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-8e69ae1d-e9e2-4a91-966b-3098b394bc23"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetByStorageKey",
+                                "id": "65fa37cb-feeb-4ae7-ba6b-86b020ed7b12",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/search-by-storagekey/abcd",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "search-by-storagekey",
+                                            "abcd"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-65fa37cb-feeb-4ae7-ba6b-86b020ed7b12"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetByKeywords",
+                                "id": "bf949bc6-d580-41ac-b8e2-ef764b5d4ec6",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/search-by-keywords/xyz",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "search-by-keywords",
+                                            "xyz"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-bf949bc6-d580-41ac-b8e2-ef764b5d4ec6"
+                            },
+                            {
+                                "name": "QnaDocumentVersionGetAll",
+                                "id": "120666c9-c70e-416c-a8fa-a394cac01749",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/search",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "search"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-120666c9-c70e-416c-a8fa-a394cac01749"
+                            },
+                            {
+                                "name": "QnaDocumentVersionDelete",
+                                "id": "18fa9947-173d-4aab-9233-7d2d1d8bcd1e",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentversions/116d6053-96da-423f-a2a6-ee681f6e17bd",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentversions",
+                                            "116d6053-96da-423f-a2a6-ee681f6e17bd"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-18fa9947-173d-4aab-9233-7d2d1d8bcd1e"
+                            }
+                        ],
+                        "id": "ca6ea380-b186-4059-b072-5fe31c213ae4",
+                        "uid": "29959603-ca6ea380-b186-4059-b072-5fe31c213ae4"
+                    },
+                    {
+                        "name": "qna_document_library",
+                        "item": [
+                            {
+                                "name": "QnaDocumentLibraryCreate",
+                                "id": "e4c06222-85c0-4b11-ad89-a3c7e7622bc6",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"DocumentId\":\"4856d8a0-da9d-4f76-9483-7ed379aacc66\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentlibrarys",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentlibrarys"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-e4c06222-85c0-4b11-ad89-a3c7e7622bc6"
+                            },
+                            {
+                                "name": "QnaDocumentLibraryUpdate",
+                                "id": "5282bcd3-6e7f-403f-9658-143b53b1c14b",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"DocumentId\":\"d8f5096e-d3ca-478b-bb7f-76be1f937304\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentlibrarys/5948601f-c8fb-4de7-b42f-20f3a91a1d54",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentlibrarys",
+                                            "5948601f-c8fb-4de7-b42f-20f3a91a1d54"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-5282bcd3-6e7f-403f-9658-143b53b1c14b"
+                            },
+                            {
+                                "name": "QnaDocumentLibraryGetAll",
+                                "id": "c8420ad6-151c-4a30-b383-3263bf52dc18",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentlibrarys/search",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentlibrarys",
+                                            "search"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-c8420ad6-151c-4a30-b383-3263bf52dc18"
+                            },
+                            {
+                                "name": "QnaDocumentLibraryGetById",
+                                "id": "5d094a8f-1bd2-44c6-9570-3523fecb5dc3",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentlibrarys/5948601f-c8fb-4de7-b42f-20f3a91a1d54",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentlibrarys",
+                                            "5948601f-c8fb-4de7-b42f-20f3a91a1d54"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-5d094a8f-1bd2-44c6-9570-3523fecb5dc3"
+                            },
+                            {
+                                "name": "QnaDocumentLibraryDelete",
+                                "id": "08b1e74c-4f69-44e6-915b-04d3418e3b4c",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documentlibrarys/5948601f-c8fb-4de7-b42f-20f3a91a1d54",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documentlibrarys",
+                                            "5948601f-c8fb-4de7-b42f-20f3a91a1d54"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-08b1e74c-4f69-44e6-915b-04d3418e3b4c"
+                            }
+                        ],
+                        "id": "f03fe679-1e8f-43ef-8e65-f6da5148a8ba",
+                        "uid": "29959603-f03fe679-1e8f-43ef-8e65-f6da5148a8ba"
+                    },
+                    {
+                        "name": "qna_document",
+                        "item": [
+                            {
+                                "name": "QnaDocumentCreate",
+                                "id": "bb241d5d-a4c9-497c-a8ee-268c84c039cb",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Ganesh\",\r\n    \"Description\": \"Hello\",\r\n    \"FileName\": \"School document file\",\r\n    \"Source\": \"College\",\r\n    \"ParentDocument\": \"Living certificate\",\r\n    \"ParentDocumentVersion\": 1,\r\n    \"ChunkingStrategy\": \"Content Aware Splitting\",\r\n    \"ChunkingLenght\": 58,\r\n    \"ChunkOverlap\": 46,\r\n    \"Splitter\": \"/n\",\r\n    \"IsActive\": \"true\",\r\n    \"CreatedBy\": \"Pari\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-bb241d5d-a4c9-497c-a8ee-268c84c039cb"
+                            },
+                            {
+                                "name": "QnaDocumentUpdate",
+                                "id": "a608103f-79bb-40d4-b0fb-35a747fc267a",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Manisha\",\r\n    \"Description\": \"College \",\r\n    \"FileName\": \"Hospital report file\",\r\n    \"Source\": \"Hospital\",\r\n    \"ParentDocument\": \"Accident Document\",\r\n    \"ParentDocumentVersion\": 1,\r\n    \"ChunkingStrategy\": \"NPL chunking\",\r\n    \"ChunkingLenght\": 58,\r\n    \"ChunkOverlap\": 46,\r\n    \"Splitter\": \"/t\",\r\n    \"IsActive\": \"true\",\r\n    \"CreatedBy\": \"Pari\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/6e0b0c2b-0fa8-4589-8c67-e5245b542975",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "6e0b0c2b-0fa8-4589-8c67-e5245b542975"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-a608103f-79bb-40d4-b0fb-35a747fc267a"
+                            },
+                            {
+                                "name": "QnaDocumentUpdateByName",
+                                "id": "3b40d7db-1fe0-4901-b424-913f491d601f",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Tanuja\",\r\n    \"Description\": \"Hello\",\r\n    \"FileName\": \"College file name\",\r\n    \"Source\": \"College\",\r\n    \"ParentDocument\": \"Final Result\",\r\n    \"ParentDocumentVersion\": 1,\r\n    \"ChunkingStrategy\": \"NPL chunking\",\r\n    \"ChunkingLenght\": 58,\r\n    \"ChunkOverlap\": 46,\r\n    \"Splitter\": \"/n\",\r\n    \"IsActive\": \"true\",\r\n    \"CreatedBy\": \"Pari\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/update-by-name/Madhura",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "update-by-name",
+                                            "Madhura"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-3b40d7db-1fe0-4901-b424-913f491d601f"
+                            },
+                            {
+                                "name": "QnaDocumentUpdateByFileName",
+                                "id": "4a9cbf8d-5311-474b-b62b-45897cac75d6",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Tanuja\",\r\n    \"Description\": \"Hello\",\r\n    \"FileName\": \"College file name\",\r\n    \"Source\": \"College\",\r\n    \"ParentDocument\": \"Final Result\",\r\n    \"ParentDocumentVersion\": 1,\r\n    \"ChunkingStrategy\": \"NPL chunking\",\r\n    \"ChunkingLenght\": 58,\r\n    \"ChunkOverlap\": 46,\r\n    \"Splitter\": \"/n\",\r\n    \"IsActive\": \"true\",\r\n    \"CreatedBy\": \"Pari\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/update-by-filename/Company document file",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "update-by-filename",
+                                            "Company document file"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-4a9cbf8d-5311-474b-b62b-45897cac75d6"
+                            },
+                            {
+                                "name": "QnaDocumentGetById",
+                                "id": "799272bd-720a-41b9-83a9-0b183401b4da",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/6e0b0c2b-0fa8-4589-8c67-e5245b542975",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "6e0b0c2b-0fa8-4589-8c67-e5245b542975"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-799272bd-720a-41b9-83a9-0b183401b4da"
+                            },
+                            {
+                                "name": "QnaDocumentGetAll",
+                                "id": "2061186a-6219-4a61-8c7c-4305da1bd58e",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-2061186a-6219-4a61-8c7c-4305da1bd58e"
+                            },
+                            {
+                                "name": "QnaDocumentGetByName",
+                                "id": "532cfa6f-e4de-444b-b1da-c9aba6b43c9c",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search/Rekha",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search",
+                                            "Rekha"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-532cfa6f-e4de-444b-b1da-c9aba6b43c9c"
+                            },
+                            {
+                                "name": "QnaDocumentGetBySource",
+                                "id": "31a65e97-f4c7-40f9-805a-c210bddf6365",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search-by-source/College",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search-by-source",
+                                            "College"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-31a65e97-f4c7-40f9-805a-c210bddf6365"
+                            },
+                            {
+                                "name": "QnaDocumentGetByStrategy",
+                                "id": "a7be9412-2813-40a5-89fc-8dca6dd965d0",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search-by-strategy/Content Aware Splitting",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search-by-strategy",
+                                            "Content Aware Splitting"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-a7be9412-2813-40a5-89fc-8dca6dd965d0"
+                            },
+                            {
+                                "name": "QnaDocumentGetByStatus",
+                                "id": "c242d8aa-0093-468d-b35b-64a4b3ef7452",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search-by-status/1",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search-by-status",
+                                            "1"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-c242d8aa-0093-468d-b35b-64a4b3ef7452"
+                            },
+                            {
+                                "name": "QnaDocumentGetByParentDocumentName",
+                                "id": "c23929ea-52f3-4dc6-aa91-b13d43f939e9",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search-by-parentdocumentname/Living certificate",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search-by-parentdocumentname",
+                                            "Living certificate"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-c23929ea-52f3-4dc6-aa91-b13d43f939e9"
+                            },
+                            {
+                                "name": "QnaDocumentGetByParentDocumentVersion",
+                                "id": "14d763fb-8954-4064-a8b7-097146dce14c",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search-by-parentdocumentversion/1",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search-by-parentdocumentversion",
+                                            "1"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-14d763fb-8954-4064-a8b7-097146dce14c"
+                            },
+                            {
+                                "name": "QnaDocumentGetByCreatedBy",
+                                "id": "062e0210-3f49-44b4-b3d2-26e012dc7495",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/search-by-createdby/Pari",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "search-by-createdby",
+                                            "Pari"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-062e0210-3f49-44b4-b3d2-26e012dc7495"
+                            },
+                            {
+                                "name": "QnaDocumentDelete",
+                                "id": "9681e917-286e-4db8-a345-e3fb1eeeae01",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/6e0b0c2b-0fa8-4589-8c67-e5245b542975",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "6e0b0c2b-0fa8-4589-8c67-e5245b542975"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-9681e917-286e-4db8-a345-e3fb1eeeae01"
+                            },
+                            {
+                                "name": "QnaDocumentDeleteByName",
+                                "id": "f3e0aef4-1f81-47f3-beac-6535e6e3e8b7",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/delete-by-name/Tanuja",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "delete-by-name",
+                                            "Tanuja"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-f3e0aef4-1f81-47f3-beac-6535e6e3e8b7"
+                            },
+                            {
+                                "name": "QnaDocumentDeleteByStatus",
+                                "id": "d472566b-bb73-4bee-a855-908b8aa89d7f",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:2345/api/v1/documents/delete-by-status/0",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "2345",
+                                        "path": [
+                                            "api",
+                                            "v1",
+                                            "documents",
+                                            "delete-by-status",
+                                            "0"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-d472566b-bb73-4bee-a855-908b8aa89d7f"
+                            }
+                        ],
+                        "id": "99520e2b-8ee3-4740-92b2-366b2f3b8819",
+                        "uid": "29959603-99520e2b-8ee3-4740-92b2-366b2f3b8819"
+                    }
+                ],
+                "id": "fe194f38-4807-4ef0-8abe-b43e431521d3",
+                "uid": "29959603-fe194f38-4807-4ef0-8abe-b43e431521d3"
+            },
+            {
+                "name": "Llm Prompt Api",
+                "item": [
+                    {
+                        "name": "Llm Prompt",
+                        "item": [
+                            {
+                                "name": "Create Llm Prompt",
+                                "event": [
+                                    {
+                                        "listen": "prerequest",
+                                        "script": {
+                                            "id": "0884fc3a-6a62-4b33-8be8-d745953d6514",
+                                            "exec": [
+                                                "\r",
+                                                "// pm.environment.set(\"PHONE_NUMBER\", phonenumber);\r",
+                                                "// pm.environment.set(\"EMAIL\", `client.${rand}@nodomain.com`);"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    },
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "3ceaa757-b1e3-42d4-b018-25f5dbc24aca",
+                                            "exec": [
+                                                "try {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.environment.set(\"LLMPROMPT_ID\", jsonRes.Data.id);\r",
+                                                "}\r",
+                                                "catch (error) {\r",
+                                                "    console.log(error.message);\r",
+                                                "}\r",
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(201);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt added successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Name');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Description');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('UseCaseType');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('GroupName');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('ModelName');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('ModelVersion');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('UserId');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Temperature');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('FrequencyPenality');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('TopP');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('PresencePenalty');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('IsActive');\r",
+                                                "\r",
+                                                "    pm.expect(jsonRes.Data.Name).equals(\"BI\");\r",
+                                                "    pm.expect(jsonRes.Data.Description).equals(\"Business Inteligence\");\r",
+                                                "    pm.expect(jsonRes.Data.UseCaseType).equals(\"Chat\");\r",
+                                                "    pm.expect(jsonRes.Data.GroupName).equals('Miscellaneous');\r",
+                                                "    pm.expect(jsonRes.Data.ModelName).equals('Gpt 1.00');\r",
+                                                "    pm.expect(jsonRes.Data.ModelVersion).equals('1.00');\r",
+                                                "    pm.expect(jsonRes.Data.UserId).equals('abc');\r",
+                                                "    pm.expect(jsonRes.Data.Temperature).equals(8.1);\r",
+                                                "     pm.expect(jsonRes.Data.FrequencyPenality).equals(1.5);\r",
+                                                "      pm.expect(jsonRes.Data.TopP).equals(1.5);\r",
+                                                "       pm.expect(jsonRes.Data.PresencePenalty).equals(2);\r",
+                                                "    pm.expect(jsonRes.Data.IsActive).equals(true);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "f8fb667e-f7fb-4ce8-83c2-29f8f61a9da1",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"BI\",\r\n    \"Description\":\"Artificial Inteligence\",\r\n    \"UseCaseType\": \"Chat\",\r\n    \"GroupName\": \"Miscellaneous\",\r\n    \"ModelName\": \"Gpt 1.00\",\r\n    \"ModelVersion\": \"1.00\",\r\n    \"UserId\": \"abc\",\r\n    \"Temperature\": 8.1,\r\n    \"FrequencyPenality\": 1.5,\r\n    \"TopP\":1.5,\r\n    \"PresencePenalty\": 2,\r\n    \"IsActive\": true\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            ""
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-f8fb667e-f7fb-4ce8-83c2-29f8f61a9da1"
+                            },
+                            {
+                                "name": "Update Llm Prompt",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "95ffc381-9ac7-4265-aab4-00c24caa9564",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt updated successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Name');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Description');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('UseCaseType');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('GroupName');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('ModelName');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('ModelVersion');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('UserId');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Temperature');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('FrequencyPenality');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('TopP');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('PresencePenalty');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('IsActive');\r",
+                                                "\r",
+                                                "    // pm.expect(jsonRes.Data.Name).equals(\"ML2\");\r",
+                                                "    // pm.expect(jsonRes.Data.Description).equals(\"Machine Learning\");\r",
+                                                "    // pm.expect(jsonRes.Data.UseCaseType).equals(\"Chat\");\r",
+                                                "    // pm.expect(jsonRes.Data.GroupName).equals('Miscellaneous');\r",
+                                                "    // pm.expect(jsonRes.Data.ModelName).equals('Gpt 1.00');\r",
+                                                "    // pm.expect(jsonRes.Data.ModelVersion).equals('1.00');\r",
+                                                "    // pm.expect(jsonRes.Data.UserId).equals('abc');\r",
+                                                "    // pm.expect(jsonRes.Data.Temperature).equals(8.1);\r",
+                                                "    //  pm.expect(jsonRes.Data.FrequencyPenality).equals(1.5);\r",
+                                                "    //   pm.expect(jsonRes.Data.TopP).equals(1.5);\r",
+                                                "    //    pm.expect(jsonRes.Data.PresencePenalty).equals(2);\r",
+                                                "    // pm.expect(jsonRes.Data.IsActive).equals(true);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "bd1f349c-1b34-494d-b7ad-c8dc6bf922ed",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"ML\",\r\n    \"Description\":\"Artificial \",\r\n    \"UseCaseType\": \"Summarization\",\r\n    \"GroupName\": \"Miscellaneous\",\r\n    \"IsActive\" : true\r\n   \r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/{{LLMPROMPT_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "{{LLMPROMPT_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-bd1f349c-1b34-494d-b7ad-c8dc6bf922ed"
+                            },
+                            {
+                                "name": "Get By Id Llm Prompt",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "af1f6ee9-94d0-4491-ae05-e03d2f06bbcb",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"LlmPrompt retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Name');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Description');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('UseCaseType');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('GroupName');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('ModelName');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('ModelVersion');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('UserId');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Temperature');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('FrequencyPenality');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('TopP');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('PresencePenalty');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('IsActive');\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "fee00df1-fe3a-4305-b6da-ebb64e2ad1ae",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/{{LLMPROMPT_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "{{LLMPROMPT_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-fee00df1-fe3a-4305-b6da-ebb64e2ad1ae"
+                            },
+                            {
+                                "name": "Get All Llm Prompt",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "0ddef262-0c70-4f1e-aad7-7e8dd55a5448",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt userId records retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});\r",
+                                                "// pm.test(\"Prompt userId records retrieved successfully\", function () {\r",
+                                                "//     var jsonRes = pm.response.json();\r",
+                                                "//     if (jsonRes.Data && jsonRes.Data.Items) {\r",
+                                                "//         pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "//     } else {\r",
+                                                "//         pm.expect.fail(\"Data.Items is undefined\");\r",
+                                                "//     }\r",
+                                                "// });\r",
+                                                ""
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "dceb12a4-dea2-4d60-84c6-ca0172f40e3f",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/records",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "records"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-dceb12a4-dea2-4d60-84c6-ca0172f40e3f"
+                            },
+                            {
+                                "name": "Delete Llm Prompt",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "175b8d69-c1af-4cd9-9010-3581648101fc",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt deleted successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes).to.have.property('Status');\r",
+                                                "    pm.expect(jsonRes.Status).to.equal('success');\r",
+                                                "});\r",
+                                                ""
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "10520345-c988-49cb-8301-6b6e2fbf9a83",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/{{LLMPROMPT_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "{{LLMPROMPT_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-10520345-c988-49cb-8301-6b6e2fbf9a83"
+                            },
+                            {
+                                "name": "Search Prompt User Id",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "7cc53952-7735-4d19-a7fa-4b713b6c68b5",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt userId records retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "45c7cc37-fc2d-4c52-80e7-d023b1c90c34",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?UserId=abc",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "UserId",
+                                                "value": "abc"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-45c7cc37-fc2d-4c52-80e7-d023b1c90c34"
+                            },
+                            {
+                                "name": "Search Prompt Model Version",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "597d68c9-43e5-4b86-9586-44e6b2a077a4",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By ModelVersion retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "efbea0ea-041e-425a-b9a3-b642b32869cb",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?ModelVersion=1.00",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "ModelVersion",
+                                                "value": "1.00"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-efbea0ea-041e-425a-b9a3-b642b32869cb"
+                            },
+                            {
+                                "name": "Search Prompt UseCase Type",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "008e4f4a-1b71-4845-80e0-fca3c0b00cd7",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By UseCaseType retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "d4bf2fb8-e8f9-47d7-b46e-4d4671eb0f1d",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?UseCaseType=Chat",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "UseCaseType",
+                                                "value": "Chat"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-d4bf2fb8-e8f9-47d7-b46e-4d4671eb0f1d"
+                            },
+                            {
+                                "name": "Search Prompt Group Name",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "4baf417a-f2a9-4c60-bcc1-efdc7d3a56fb",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt Group Name  retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "47a17f4e-9e48-44bf-8614-1be8cc8a6973",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?GroupName=Miscellaneous",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "GroupName",
+                                                "value": "Miscellaneous"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-47a17f4e-9e48-44bf-8614-1be8cc8a6973"
+                            },
+                            {
+                                "name": "Search Prompt Name",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "09da7a15-28a4-4aae-af1c-f365856f9c27",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By Name retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "de10c6da-33da-4b99-a7bd-10f60eb7313a",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?Name=AI",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "Name",
+                                                "value": "AI"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-de10c6da-33da-4b99-a7bd-10f60eb7313a"
+                            },
+                            {
+                                "name": "Search Prompt Temperature",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "ec58d59a-e08b-40e3-a1da-7b6c37f0a8c1",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By Temperature retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "41c0535f-f43c-43a5-aa0e-51e7d2022e10",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?Temperature=8",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "Temperature",
+                                                "value": "8"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-41c0535f-f43c-43a5-aa0e-51e7d2022e10"
+                            },
+                            {
+                                "name": "Search Prompt Frequency Penality",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "aaa29844-e3c7-4d9c-9cbc-02c5f60cf4f8",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By FrequencyPenality retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "9f88f271-feaa-41e5-bfa4-e5c36bae1ce2",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?FrequencyPenality=1",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "FrequencyPenality",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-9f88f271-feaa-41e5-bfa4-e5c36bae1ce2"
+                            },
+                            {
+                                "name": "Search Prompt Presence Penality",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "0d77ad30-3e89-4af9-b226-2f7165b0f9b0",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By PresencePenalty retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "92235b90-3c8b-409e-b594-22f41bdf24ef",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?PresencePenalty=2&TopP=1",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "PresencePenalty",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "key": "TopP",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-92235b90-3c8b-409e-b594-22f41bdf24ef"
+                            },
+                            {
+                                "name": "Search Prompt TopP",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "47a3ef32-f186-4c53-beef-6c661385e8bf",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt TopP retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "731bdcf3-db02-45d8-be66-4c987a4cbbf6",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?TopP=1",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "TopP",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-731bdcf3-db02-45d8-be66-4c987a4cbbf6"
+                            },
+                            {
+                                "name": "Search Prompt Model Name",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "c4c053d7-328e-453e-9cd9-a63c110b7e69",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By ModelName retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "45a73768-adf0-46d8-b3f3-ef707354716d",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts/search?ModelName=Gpt 1.00",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "ModelName",
+                                                "value": "Gpt 1.00"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-45a73768-adf0-46d8-b3f3-ef707354716d"
+                            },
+                            {
+                                "name": "Search Prompt Is Active",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "21217d4c-76ac-44fa-ab51-9ec6599a669b",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By IsActive retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    // pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(1);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "62b13188-24eb-4849-93ce-97b47b17dc36",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmprompts//search-by-status/false",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmprompts",
+                                            "",
+                                            "search-by-status",
+                                            "false"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-62b13188-24eb-4849-93ce-97b47b17dc36"
+                            }
+                        ],
+                        "id": "88573cbe-caa3-4fdf-b8c4-c5315753fc87",
+                        "uid": "29959603-88573cbe-caa3-4fdf-b8c4-c5315753fc87"
+                    },
+                    {
+                        "name": "Llm Prompt Group",
+                        "item": [
+                            {
+                                "name": "Create Prompt Group",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "a29290f3-0ba3-470b-9b91-75bee7e29908",
+                                            "exec": [
+                                                "try {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "     pm.environment.set(\"PROMPTGROUP_ID\", jsonRes.Data.id);\r",
+                                                "}\r",
+                                                "catch (error) {\r",
+                                                "    console.log(error.message);\r",
+                                                "}\r",
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(201);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt Group added successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Name');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Description');\r",
+                                                "   \r",
+                                                "   \r",
+                                                "    pm.expect(jsonRes.Data.Name).equals(pm.environment.get(\"LLMPROMPTID_1\"));\r",
+                                                "    pm.expect(jsonRes.Data.Name).equals(\"Miscellaneous\");\r",
+                                                "    pm.expect(jsonRes.Data.Description).equals(\"Programming Languages\");\r",
+                                                "    \r",
+                                                "    \r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "b4611f15-399e-4cd4-860f-e5253dd20bc6",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"Name\": \"Miscellaneous\",\r\n    \"Description\": \"Programming Languages\",\r\n    \"PromptId\": \"{{LLMPROMPT_ID}}\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            ""
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-b4611f15-399e-4cd4-860f-e5253dd20bc6"
+                            },
+                            {
+                                "name": "Update Prompt Group",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "bc6f1dcc-df0b-44b8-9a37-89b8f9d95731",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt Group Updated successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Name');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Description');\r",
+                                                "    // pm.expect(jsonRes.Data).to.have.property('LlmPromptId_1');\r",
+                                                "   \r",
+                                                "    pm.expect(jsonRes.Data.Name).equals(\"Chat Default\");\r",
+                                                "    pm.expect(jsonRes.Data.Description).equals(\"Llm Prompt Group\");\r",
+                                                "    \r",
+                                                "    \r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "ab9c8a4b-faea-494e-b42f-4a4d54b525af",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n      \"Name\": \"Chat Default\"\r\n   \r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/{{PROMPTGROUP_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            "{{PROMPTGROUP_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-ab9c8a4b-faea-494e-b42f-4a4d54b525af"
+                            },
+                            {
+                                "name": "Get By Id Prompt Group",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "c7983b3c-8208-445b-87fb-3981067920a3",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt Group added successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Name');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Description');\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "ee43a62b-876c-4c13-921b-8217710e6915",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/{{PROMPTGROUP_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            "{{PROMPTGROUP_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-ee43a62b-876c-4c13-921b-8217710e6915"
+                            },
+                            {
+                                "name": "Get All Prompt Group",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "05958a31-aa8d-42e6-9beb-74b66c1bdc53",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt group All records retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "7d6729e1-480a-4ca5-94c2-0e0e0b53502a",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/records",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            "records"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-7d6729e1-480a-4ca5-94c2-0e0e0b53502a"
+                            },
+                            {
+                                "name": "Delete Prompt Group",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "df2f7d0a-95fc-4497-a0e2-3acd22d767fd",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptGroup deleted successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes).to.have.property('Status');\r",
+                                                "    pm.expect(jsonRes.Status).to.equal('success');\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "f6c1ad26-6cdf-48c5-8257-55219afa5ab4",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/{{PROMPTGROUP_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            "{{PROMPTGROUP_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-f6c1ad26-6cdf-48c5-8257-55219afa5ab4"
+                            },
+                            {
+                                "name": "Search Prompt Group Name",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "b886ab2f-772d-4f35-9f93-2cd5d9f920ad",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt By Name retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "da19b651-ba60-4400-83b3-065215a90983",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/search?Name=Generic",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "Name",
+                                                "value": "Generic"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-da19b651-ba60-4400-83b3-065215a90983"
+                            },
+                            {
+                                "name": "search PromptGroup By Prompt Id",
+                                "id": "90dc2f6d-66a5-4aa9-8e83-a18bb6b3a627",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptgroups/search?PromptId={{LLMPROMPT_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptgroups",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "PromptId",
+                                                "value": "{{LLMPROMPT_ID}}"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-90dc2f6d-66a5-4aa9-8e83-a18bb6b3a627"
+                            }
+                        ],
+                        "id": "82406a02-a7d4-4861-95bb-8a4a9184ae23",
+                        "uid": "29959603-82406a02-a7d4-4861-95bb-8a4a9184ae23"
+                    },
+                    {
+                        "name": "Llm Prompt Version",
+                        "item": [
+                            {
+                                "name": "Create Prompt Version",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "4c84c94a-7a59-4a67-b370-720b91f4c204",
+                                            "exec": [
+                                                "try {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.environment.set(\"PROMPTVERSION_ID\", jsonRes.Data.id);\r",
+                                                "}\r",
+                                                "catch (error) {\r",
+                                                "    console.log(error.message);\r",
+                                                "}\r",
+                                                "\r",
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(201);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt Version added successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('LlmPromptId_1');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('VersionNumber');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Prompt');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Variables');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Score');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('PublishedAt');\r",
+                                                "   \r",
+                                                "    // pm.expect(jsonRes.Data.VersionNumber).equals(\"v3\");\r",
+                                                "    pm.expect(jsonRes.Data.Prompt).equals(\"v8\");\r",
+                                                "    pm.expect(jsonRes.Data.Name).equals(pm.environment.get(\"LlmPromptId_1\"));\r",
+                                                "    pm.expect(jsonRes.Data.Prompt).equals(\"Bnking\");\r",
+                                                "    pm.expect(jsonRes.Data.Variables).equals(\"dosage\");\r",
+                                                "    pm.expect(jsonRes.Data.Score).equals(\"2.8\");\r",
+                                                "    pm.expect(jsonRes.Data.PublishedAt).equals(\"2024-03-12T00:00:00.000Z\");\r",
+                                                "    \r",
+                                                "    \r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "9d0a7d83-ce88-4c7c-9883-833b0a23fd2f",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \"VersionNumber\": \"v2\",\r\n    \"PromptId\":\"{{LLMPROMPT_ID}}\",\r\n    \"Prompt\": \"Bnking\",\r\n    \"Variables\": [\"dosage\",\"abc\"],\r\n    \"Score\": 2.8,\r\n    \"PublishedAt\" : \"2024-03-12\"\r\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            ""
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-9d0a7d83-ce88-4c7c-9883-833b0a23fd2f"
+                            },
+                            {
+                                "name": "Update Prompt Version",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "f90dba23-7e5e-44e6-a9ce-73477612b250",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt Version added successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "    // pm.expect(jsonRes.Data).to.have.property('LlmPromptId_1');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('VersionNumber');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Prompt');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Variables');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Score');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('PublishedAt');\r",
+                                                "   \r",
+                                                "    \r",
+                                                "    pm.expect(jsonRes.Data.Prompt).equals(\"Hotel Management\");\r",
+                                                "    pm.expect(jsonRes.Data.Variables).equals(\"Management22\");\r",
+                                                "    pm.expect(jsonRes.Data.Score).equals(\"5.9\");\r",
+                                                "    pm.expect(jsonRes.Data.PublishedAt).equals(\"2024-03-12\");\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "f29f1238-ac42-47a4-8e72-11204462f204",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\r\n    \r\n    \"Prompt\": \"Hotel Management\",\r\n    \"Score\": 5.9\r\n}\r\n",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/{{PROMPTVERSION_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "{{PROMPTVERSION_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-f29f1238-ac42-47a4-8e72-11204462f204"
+                            },
+                            {
+                                "name": "Get By Id Prompt Version",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "60c7c017-b92c-4b68-b478-08c479245f61",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Llm prompt Version retrived successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('id');\r",
+                                                "//    pm.expect(jsonRes.Data).to.have.property('LlmPromptId_1');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('VersionNumber');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Prompt');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Variables');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('Score');\r",
+                                                "    pm.expect(jsonRes.Data).to.have.property('PublishedAt');\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "8d8f8f74-3249-4ac4-afc5-700b72d11b95",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/{{PROMPTVERSION_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "{{PROMPTVERSION_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-8d8f8f74-3249-4ac4-afc5-700b72d11b95"
+                            },
+                            {
+                                "name": "Get All Prompt Version",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "232133b9-06a3-4262-aa71-fbd3b2f3deea",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "// pm.test(\"Prompt Version All records retrieved successfully\", function () {\r",
+                                                "//     var jsonRes = pm.response.json();\r",
+                                                "//     pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "// });"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "250fe85c-c422-4499-b64e-b355f109734e",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/records",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "records"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-250fe85c-c422-4499-b64e-b355f109734e"
+                            },
+                            {
+                                "name": "Delete Prompt Version",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "a73fd1fb-cb19-42f8-9fd6-3f045d5adc54",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"Prompt version deleted successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes).to.have.property('Status');\r",
+                                                "    pm.expect(jsonRes.Status).to.equal('success');\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "20ea5fda-66d8-4145-8fc1-44fbde8ced65",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/{{PROMPTVERSION_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "{{PROMPTVERSION_ID}}"
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-20ea5fda-66d8-4145-8fc1-44fbde8ced65"
+                            },
+                            {
+                                "name": "Search Prompt Version By Prompt ID",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "57fdf33a-17d8-43c9-b3be-037af0704740",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptVersion By PromptId retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "a7f05c97-7ea2-4559-b13e-4113aa16ceff",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/search?PromptId={{LLMPROMPT_ID}}",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "PromptId",
+                                                "value": "{{LLMPROMPT_ID}}"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-a7f05c97-7ea2-4559-b13e-4113aa16ceff"
+                            },
+                            {
+                                "name": "Search Prompt Version By Version Number",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "ea6236a4-fdb7-428c-bc25-2c4ffc1e700b",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptVersion By VersionNumber retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "fe9bb487-1e6a-4eaf-a6f7-4428e28e3bb1",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/search?VersionNumber=v1",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "VersionNumber",
+                                                "value": "v1"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-fe9bb487-1e6a-4eaf-a6f7-4428e28e3bb1"
+                            },
+                            {
+                                "name": "Search Prompt Version By Prompt",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "b6e29165-3877-460a-b624-5b9607e6eaab",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptVersion By Prompt retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "de5b666b-e7f0-4d74-b17a-0ad8eebc3f1c",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/search?Prompt= Hotel Management",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "Prompt",
+                                                "value": " Hotel Management"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-de5b666b-e7f0-4d74-b17a-0ad8eebc3f1c"
+                            },
+                            {
+                                "name": "Search Prompt Version By Variables",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "2e515c01-dd8a-45d3-bcc7-9b83427e9bb8",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptVersion By Variables retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript",
+                                            "packages": {}
+                                        }
+                                    }
+                                ],
+                                "id": "b7a6dc57-79cc-47e4-907f-0bd069fc498a",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/search?Variables=[\"dosage\",\"abc\"]",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "Variables",
+                                                "value": "[\"dosage\",\"abc\"]"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-b7a6dc57-79cc-47e4-907f-0bd069fc498a"
+                            },
+                            {
+                                "name": "Search Prompt Version By Score",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "dccd876a-a371-49ad-aa2a-229b85e300bc",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptVersion By Score retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "c3f188dd-bc2b-457a-b537-644cf4d3a97f",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/search?Score=2",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "Score",
+                                                "value": "2"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-c3f188dd-bc2b-457a-b537-644cf4d3a97f"
+                            },
+                            {
+                                "name": "Search Prompt Version By Published At",
+                                "event": [
+                                    {
+                                        "listen": "test",
+                                        "script": {
+                                            "id": "9d566026-e00e-4191-8d22-89ce5412e00e",
+                                            "exec": [
+                                                "pm.test(\"Request is successfull\", function () {\r",
+                                                "    pm.response.to.have.status(200);\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Status).to.eql('success');\r",
+                                                "});\r",
+                                                "\r",
+                                                "pm.test(\"PromptVersion By PiblishedAt retrieved successfully\", function () {\r",
+                                                "    var jsonRes = pm.response.json();\r",
+                                                "    pm.expect(jsonRes.Data.Items.length).to.be.greaterThan(0);\r",
+                                                "});"
+                                            ],
+                                            "type": "text/javascript"
+                                        }
+                                    }
+                                ],
+                                "id": "48e69ef6-9606-4ac9-9689-ee0bd4725ab7",
+                                "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                },
+                                "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "{{BASE_URL}}/llmpromptversions/search?PublishedAt=2024-03-12",
+                                        "host": [
+                                            "{{BASE_URL}}"
+                                        ],
+                                        "path": [
+                                            "llmpromptversions",
+                                            "search"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "PublishedAt",
+                                                "value": "2024-03-12"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "response": [],
+                                "uid": "29959603-48e69ef6-9606-4ac9-9689-ee0bd4725ab7"
+                            }
+                        ],
+                        "id": "083538d1-3f10-42f2-8051-73b24a5210be",
+                        "uid": "29959603-083538d1-3f10-42f2-8051-73b24a5210be"
+                    },
+                    {
+                        "name": "HealthCheck",
+                        "id": "fff9a29b-547a-42f2-8e0f-e978a72bdc75",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:2345/api/v1/",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "2345",
+                                "path": [
+                                    "api",
+                                    "v1",
+                                    ""
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "29959603-fff9a29b-547a-42f2-8e0f-e978a72bdc75"
+                    }
+                ],
+                "id": "dbaa12ea-350f-4cd1-b8a2-4e807ed6812f",
+                "uid": "29959603-dbaa12ea-350f-4cd1-b8a2-4e807ed6812f"
+            },
+            {
+                "name": "Health Check Request",
+                "id": "8670bc44-4f03-4b2c-a8c5-1860f8ea337a",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                        "raw": "http://localhost:2345/api/v1",
+                        "protocol": "http",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "2345",
+                        "path": [
+                            "api",
+                            "v1"
+                        ]
+                    }
+                },
+                "response": [],
+                "uid": "29959603-8670bc44-4f03-4b2c-a8c5-1860f8ea337a"
+            }
+        ]
+    }
+}

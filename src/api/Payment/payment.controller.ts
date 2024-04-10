@@ -9,7 +9,7 @@ import { PaymentService } from '../../services/payment/payment.service';
 import { ResponseHandler } from '../../common/response.handler';
 import { Loader } from '../../startup/loader';
 import { Authorizer } from '../../auth/authorizer';
-import {  PaymentValidator } from './payment.routes';
+import { PaymentValidator } from './payment.validator';
 import { ApiError } from '../../common/api.error';
 
 ///////////////////////////////////////////////////////////////////////////////////////
