@@ -66,24 +66,6 @@ export class RoomController {
         }
     };
 
-    getAllRoom = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Room.GetAllRoom';
-
-            // const id: string = await CustomerValidator.getAllCustomer(request);
-
-            const room = await this._service.getAllRoom();
-            if (room == null) {
-                throw new ApiError(404, 'Room not found.');
-            }
-            ResponseHandler.success(request, response, 'Api  All Room retrieved successfully!', 200, {
-                Room: room,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
     search = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             request.context = 'Room.Search';
@@ -94,7 +76,7 @@ export class RoomController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} apiRoom records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api Room records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
                 RoomRecords: searchResults,

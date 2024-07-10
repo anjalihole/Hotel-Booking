@@ -32,10 +32,6 @@ export class RoomTypesService {
         return await this._roomtypesRepo.getById(id);
     };
 
-    getAllRoomTypes = async (): Promise<RoomTypesDto[]> => {
-        return await this._roomtypesRepo.getAllRoomTypes();
-    };
-
     update = async (id: string, roomtypesDomainModel: RoomTypesDomainModel): Promise<RoomTypesDto> => {
         return await this._roomtypesRepo.update(id, roomtypesDomainModel);
     };

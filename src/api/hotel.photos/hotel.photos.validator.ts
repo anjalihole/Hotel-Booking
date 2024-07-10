@@ -64,18 +64,6 @@ export class HotelPhotosValidator {
         return request.params.id;
     };
 
-    static getAllHotelPhotos = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
     static update = async (request: express.Request): Promise<HotelPhotosDomainModel> => {
         
         await body('FileResourceId').optional().isLength({ min: 1 }).trim().escape().run(request);

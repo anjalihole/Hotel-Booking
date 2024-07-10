@@ -45,31 +45,6 @@ export class HotelAmenitiesRepo implements IHotelAmenitiesRepo {
         }
     };
 
-    getAllHotelAmenities = async (): Promise<HotelAmenitiesDto[]> => {
-        try {
-            const records = await HotelAmenities.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await HotelMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (hotelamenities): HotelAmenitiesDto => {
-        if (hotelamenities == null) {
-            return null;
-        }
-        const dto: HotelAmenitiesDto = {
-                id: hotelamenities.id,
-                AminityName : hotelamenities.AminityName,
-                HotelId : hotelamenities.HotelId,
-        };
-        return dto;
-    };
-
     search = async (filters: HotelAmenitiesSearchFilters): Promise<HotelAmenitiesSearchResults> => {
         try {
 

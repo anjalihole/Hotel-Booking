@@ -12,5 +12,5 @@ export interface HotelDto {
     CheckInTime: string;
     CheckOutTime: string;
     OwnerUserId: string;
-    Photos: string;
+    Photos: boolean;
 }

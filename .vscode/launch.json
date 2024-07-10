@@ -40,6 +40,7 @@
             "skipFiles": ["<node_internals>/**"],
             "type": "node"
         },
+
         {
             "type": "node",
             "request": "launch",
@@ -68,3 +69,4 @@
         }
     ]
 }
+

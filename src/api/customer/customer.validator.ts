@@ -66,18 +66,6 @@ export class CustomerValidator {
         return request.params.id;
     };
 
-    static getAllCustomer = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
     static update = async (request: express.Request): Promise<CustomerDomainModel> => {
         await body('UserId').optional().isLength({ min: 1 }).trim().escape().run(request);
         await body('PAN').optional().trim().escape().isLength({ min: 10 }).run(request);

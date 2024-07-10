@@ -31,7 +31,7 @@ export class HotelReviewValidator {
         await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('ReviewUserId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Rating').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('ReviewTitle').exists().trim().escape().isLength({ min: 3 }).run(request);
+        await body('ReviewTitle').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('ReviewDescription').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('ReviewTimeStamp').exists().trim().escape().isLength({ min: 1 }).run(request);
 
@@ -76,22 +76,10 @@ export class HotelReviewValidator {
         return request.params.id;
     };
 
-    static getAllHotelReview = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
     static update = async (request: express.Request): Promise<HotelReviewDomainModel> => {
 
         await body('HotelId').optional().isLength({ min: 1 }).trim().escape().run(request);
-        await body('ReviewUserId').optional().trim().escape().isLength({ min: 10 }).run(request);
+        await body('ReviewUserId').optional().trim().escape().isLength({ min: 1 }).run(request);
         await body('Rating').optional().trim().escape().isLength({ min: 1 }).run(request);
         await body('ReviewTitle').optional().trim().escape().isLength({ min: 1 }).run(request);
         await body('ReviewDescription').optional().isLength({ min: 1 }).trim().escape().run(request);

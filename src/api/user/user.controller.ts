@@ -66,24 +66,6 @@ export class UserController {
         }
     };
 
-    getAllUser = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'User.GetAllUser';
-
-            // const id: string = await CustomerValidator.getAllCustomer(request);
-
-            const user = await this._service.getAllUser();
-            if (user == null) {
-                throw new ApiError(404, 'user not found.');
-            }
-            ResponseHandler.success(request, response, 'Api  All user retrieved successfully!', 200, {
-                User: user,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
     search = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
             request.context = 'User.Search';
@@ -94,7 +76,7 @@ export class UserController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} api user records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api user records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
                 UserRecords: searchResults,

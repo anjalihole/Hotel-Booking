@@ -35,10 +35,6 @@ export class AddressService {
         return await this._addressRepo.getById(id);
     };
 
-    getAllAddress = async (): Promise<AddressDto[]> => {
-        return await this._addressRepo.getAllAddress();
-    };
-
     update = async (id: string, AddressDomainModel: AddressDomainModel): Promise<AddressDto> => {
         return await this._addressRepo.update(id, AddressDomainModel);
     };

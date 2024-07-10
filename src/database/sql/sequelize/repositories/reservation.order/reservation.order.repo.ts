@@ -55,45 +55,7 @@ export class ReservationOrderRepo implements IReservationOrderRepo {
             throw new ApiError(500, error.message);
         }
     };
-
-    getAllReservationOrder = async (): Promise<ReservationOrderDto[]> => {
-        try {
-            const records = await ReservationOrder.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await ReservationOrderMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (reservationorder): ReservationOrderDto => {
-        if (reservationorder == null) {
-            return null;
-        }
-        const dto: ReservationOrderDto = {
-
-                id: reservationorder.id,
-                CustomerUserId : reservationorder.CustomerUserId,
-                TotalCost : reservationorder.TotalCost,
-                CheckInDate  : reservationorder.CheckInDate,
-                CheckOutDate : reservationorder.CheckOutDate,
-                ReservationDateTime : reservationorder.ReservationDateTime,
-                Status : reservationorder.Status,
-                Discount : reservationorder.CheckInDate,
-                Taxes : reservationorder.Taxes,
-                TotalPayable : reservationorder.TotalPayable,
-                AdvancePaid : reservationorder.AdvancePaid,
-                AdvancePaymentDateTime : reservationorder.AdvancePaymentDateTime,
-                BookingStaffUserId : reservationorder.BookingStaffUserId,
-                Penalties : reservationorder.Penalties,
-
-        };
-        return dto;
-    };
-
+    
     search = async (filters: ReservationOrderSearchFilters): Promise<ReservationOrderSearchResults> => {
         try {
             

@@ -1,15 +1,13 @@
 /* eslint-disable linebreak-style */
 export interface RoomAmenitiesDomainModel {
     id?: string;
-    AminityName: string;
+    AmenityName: string;
+    HotelId: string;
     RoomId: string;
-    HotelId:string;
-
 }
 export interface ApiRoomAmenitiesVerificationDomainModel {
     id?: string;
-    AminityName: string;
+    AmenityName: string;
+    HotelId: string;
     RoomId: string;
-    HotelId:string;
-
 }

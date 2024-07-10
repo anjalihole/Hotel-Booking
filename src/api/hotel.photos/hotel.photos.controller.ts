@@ -36,7 +36,7 @@ export class HotelPhotosController {
             if (hotelphotos == null) {
                 throw new ApiError(400, 'Unable to create hotel.');
             }
-            ResponseHandler.success(request, response, 'Hotel Photos Api added successfully!', 201, {
+            ResponseHandler.success(request, response, ' Api Hotel Photos  added successfully!', 201, {
                 HotelPhotos: hotelphotos,
             });
         } catch (error) {
@@ -55,24 +55,8 @@ export class HotelPhotosController {
             if (hotelphotos == null) {
                 throw new ApiError(404, 'Hotel Photos not found.');
             }
-            ResponseHandler.success(request, response, 'Hotel Photos Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Hotel Photos  retrieved successfully!', 200, {
                 HotelPhotos: hotelphotos,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllHotelPhotos = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Hotel Photos.GetAllHotel';
-
-            const hotelphotos = await this._service.getAllHotelPhotos();
-            if (hotelphotos == null) {
-                throw new ApiError(404, 'Hotel Photos not found.');
-            }
-            ResponseHandler.success(request, response, '  All Hotel photos  Api retrieved successfully!', 200, {
-            HotelPhotos: hotelphotos,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -89,7 +73,7 @@ export class HotelPhotosController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} Hotel Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api Hotel Photos records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
                 HotelRecords: searchResults,
@@ -110,7 +94,7 @@ export class HotelPhotosController {
             if (hotelphotos == null) {
                 throw new ApiError(404, ' Hotel Api not found.');
             }
-            ResponseHandler.success(request, response, ' Hotel Photos Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Hotel Photos  updated successfully!', 200, {
                 HotelPhotos: hotelphotos,
             });
         } catch (error) {
@@ -124,7 +108,7 @@ export class HotelPhotosController {
 
             const id: string = await HotelPhotosValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Hotel Photos Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, ' Api Hotel Photos  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

@@ -54,29 +54,11 @@ export class RoomAmenitiesController {
 
             const id: string = await RoomAmenitiesValidator.getById(request);
 
-            const room = await this._service.getById(id);
-            if (room == null) {
-                throw new ApiError(404, 'RoomAmenities not found.');
-            }
-            ResponseHandler.success(request, response, 'Api RoomAmenities retrieved successfully!', 200, {
-                Room: room,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllRoomAmenities = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'RoomAmenities.GetAllRoomAmenities';
-
-            // const id: string = await CustomerValidator.getAllCustomer(request);
-
-            const roomamenities = await this._service.getAllRoomAmenities();
+            const roomamenities = await this._service.getById(id);
             if (roomamenities == null) {
                 throw new ApiError(404, 'RoomAmenities not found.');
             }
-            ResponseHandler.success(request, response, 'Api  All RoomAmenities retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api RoomAmenities retrieved successfully!', 200, {
                 RoomAmenities: roomamenities,
             });
         } catch (error) {
@@ -94,10 +76,10 @@ export class RoomAmenitiesController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} api RoomAmenities records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api RoomAmenities records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                RoomRecords: searchResults,
+                RoomAmenitiesRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -113,7 +95,7 @@ export class RoomAmenitiesController {
             const domainModel = await RoomAmenitiesValidator.update(request);
             const roomamenities = await this._service.update(id, domainModel);
             if (roomamenities == null) {
-                throw new ApiError(404, 'Api RoomAmenities not found.');
+                throw new ApiError(404, 'Api roomAmenities not found.');
             }
             ResponseHandler.success(request, response, 'Api RoomAmenities updated successfully!', 200, {
                 RoomAmenities: roomamenities,

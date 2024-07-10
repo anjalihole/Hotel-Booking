@@ -7,8 +7,7 @@
 import express from 'express';
 import { body, validationResult, param, query } from 'express-validator';
 import { RoomAmenitiesSearchFilters } from '/../src/domain.types/room.amenities/room.amenities.search.types';
-// import { RoomAmenitiesDomainModel } from '/../src/domain.types/room.amenities/room.amenities.domain.model';
-import { RoomAmenitiesDomainModel } from '../../domain.types/room.amenities/room.amenities.domain.model';
+import { RoomAmenitiesDomainModel } from '/../src/domain.types/room.amenities/room.amenities.domain.model';
 import { Helper } from '../../common/helper';
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,17 +16,18 @@ export class RoomAmenitiesValidator {
         let roomamenitiesModel: RoomAmenitiesDomainModel = null;
 
         roomamenitiesModel = {
-            AminityName: body.AminityName ?? null,
-            RoomId: body.RoomId ?? null,
-            HotelId: body. HotelId ?? null,
+            AmenityName: body.AmenityName ?? null,
+            HotelId: body.HotelId ?? null,
+            RoomId: body. RoomId ?? null,
+
         };
         return roomamenitiesModel;
     };
 
     static create = async (request: express.Request): Promise<RoomAmenitiesDomainModel> => {
-        await body('AminityName').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('AmenityName').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('RoomId').exists().trim().escape().isLength({ min: 1 }).run(request);
         
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -47,23 +47,11 @@ export class RoomAmenitiesValidator {
 
             return request.params.id;
         };
-        
-    static getAllRoomAmenities = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
 
     static update = async (request: express.Request): Promise<RoomAmenitiesDomainModel> => {
-        await body('AminityName').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('RoomId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('AmenityName').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('RoomId').exists().trim().escape().isLength({ min: 10 }).run(request);
         
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -86,11 +74,11 @@ export class RoomAmenitiesValidator {
 
     static search = async (request: express.Request): Promise<RoomAmenitiesSearchFilters> => {
 
-        await query('AminityName').optional().trim().escape().run(request);
-
-        await query('RoomId').optional().trim().escape().run(request);
+        await query('AmenityName').optional().trim().escape().run(request);
 
         await query('HotelId').optional().trim().escape().run(request);
+
+        await query('RoomId').optional().trim().escape().run(request);
 
         const result = validationResult(request);
         if (!result.isEmpty()) {
@@ -108,9 +96,9 @@ export class RoomAmenitiesValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: RoomAmenitiesSearchFilters = {
-            AminityName: request.query.AminityName || null,
-            RoomId: request.query.RoomId || null,
+            AmenityName: request.query.AmenityName || null,
             HotelId: request.query.HotelId || null,
+            RoomId: request.query.RoomId || null,
             OrderBy      : request.query.orderBy || 'CreatedAt',
             Order        : request.query.order || 'descending',
             PageIndex    : pageIndex,

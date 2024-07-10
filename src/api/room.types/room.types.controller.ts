@@ -53,29 +53,11 @@ export class RoomTypesController {
 
             const id: string = await RoomTypesValidator.getById(request);
 
-            const room = await this._service.getById(id);
-            if (room == null) {
-                throw new ApiError(404, 'RoomTypes not found.');
-            }
-            ResponseHandler.success(request, response, 'Api RoomTypes retrieved successfully!', 200, {
-                Room: room,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllRoomTypes = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'RoomTypes.GetAllRoomTypes';
-
-            // const id: string = await CustomerValidator.getAllCustomer(request);
-
-            const roomtypes = await this._service.getAllRoomTypes();
+            const roomtypes = await this._service.getById(id);
             if (roomtypes == null) {
                 throw new ApiError(404, 'RoomTypes not found.');
             }
-            ResponseHandler.success(request, response, 'Api  All RoomTypes retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api RoomTypes retrieved successfully!', 200, {
                 RoomTypes: roomtypes,
             });
         } catch (error) {
@@ -93,10 +75,10 @@ export class RoomTypesController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} api RoomTypes records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api RoomTypes records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                RoomRecords: searchResults,
+                RoomTypesRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);

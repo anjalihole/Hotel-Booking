@@ -49,34 +49,6 @@ export class ReservationOrderItemRepo implements IReservationOrderItemRepo {
         }
     };
 
-    getAllReservationOrderItem = async (): Promise<ReservationOrderItemDto[]> => {
-        try {
-            const records = await ReservationOrderItem.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-           
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (reservationorderitem): ReservationOrderItemDto => {
-        if (reservationorderitem == null) {
-            return null;
-        }
-        const dto: ReservationOrderItemDto = {
-                id: reservationorderitem.id,
-                ReservationOrderId   : reservationorderitem.ReservationOrderId,
-                RoomId : reservationorderitem.RoomId,
-                Tax        : reservationorderitem.Tax,
-                Discount        : reservationorderitem.Discount,
-                Cost        : reservationorderitem.Cost,
-                TotalDays        : reservationorderitem.TotalDays,
-        };
-        return dto;
-    };
-
     search = async (filters: ReservationOrderItemSearchFilters): Promise<ReservationOrderItemSearchResults> => {
         try {
             

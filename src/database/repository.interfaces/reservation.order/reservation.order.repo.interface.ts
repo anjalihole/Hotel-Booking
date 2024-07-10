@@ -12,8 +12,6 @@ export interface IReservationOrderRepo {
 
         getById(id: string): Promise<ReservationOrderDto>;
 
-        getAllReservationOrder(): Promise<ReservationOrderDto[]>;
-
         update(id: string, ReservationOrderDomainModel: ReservationOrderDomainModel): Promise<ReservationOrderDto>;
 
         search(filters: ReservationOrderSearchFilters): Promise<ReservationOrderSearchResults>;

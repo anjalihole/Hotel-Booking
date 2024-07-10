@@ -32,10 +32,6 @@ export class CustomerService {
         return await this._customerRepo.getById(id);
     };
 
-    getAllCustomer = async (): Promise<CustomerDto[]> => {
-        return await this._customerRepo.getAllCustomer();
-    };
-
     update = async (id: string, customerDomainModel: CustomerDomainModel): Promise<CustomerDto> => {
         return await this._customerRepo.update(id, customerDomainModel);
     };

@@ -5,6 +5,7 @@
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 import express from 'express';
+
 import { UserRolesService } from '../../services/user.roles/user.roles.services';
 import { ResponseHandler } from '../../common/response.handler';
 import { Loader } from '../../startup/loader';
@@ -30,15 +31,15 @@ export class UserRolesController {
 
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            request.context = 'User Roles.Create';
+            request.context = 'UserRoles.Create';
             // await this._authorizer.authorize(request, response);
 
             const UserRolesDomainModel = await UserRolesValidator.create(request);
             const userroles = await this._service.create(UserRolesDomainModel);
             if (userroles == null) {
-                throw new ApiError(400, 'Unable to create user roles.');
+                throw new ApiError(400, 'Unable to create user Roles.');
             }
-            ResponseHandler.success(request, response, 'Api user roles added successfully!', 201, {
+            ResponseHandler.success(request, response, 'Api user Roles added successfully!', 201, {
                 UserRoles: userroles,
             });
         } catch (error) {
@@ -48,7 +49,7 @@ export class UserRolesController {
 
     getById = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            request.context = 'User Roles.GetById';
+            request.context = 'UserRoles.GetById';
             //await this._authorizer.authorize(request, response);
 
             const id: string = await UserRolesValidator.getById(request);
@@ -57,22 +58,7 @@ export class UserRolesController {
             if (userroles == null) {
                 throw new ApiError(404, 'user roles not found.');
             }
-            ResponseHandler.success(request, response, 'Api user  roles retrieved successfully!', 200, {
-                UserRoles: userroles,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllUserRoles = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'UserRoles.GetAllUser';
-            const userroles = await this._service.getAllUserRoles();
-            if (userroles == null) {
-                throw new ApiError(404, 'user roles not found.');
-            }
-            ResponseHandler.success(request, response, 'Api  All userroles retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api user roles retrieved successfully!', 200, {
                 UserRoles: userroles,
             });
         } catch (error) {
@@ -82,17 +68,18 @@ export class UserRolesController {
 
     search = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
-            request.context = 'UserRoles.Search';
-        
+            request.context = 'User Roles.Search';
+            //await this._authorizer.authorize(request, response);
+
             const filters = await UserRolesValidator.search(request);
 
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} api user roles records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api user roles records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                UserRecords: searchResults,
+                UserRolesRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -124,7 +111,7 @@ export class UserRolesController {
 
             const id: string = await UserRolesValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Api User roles deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, 'Api User Roles deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

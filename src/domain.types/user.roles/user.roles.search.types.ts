@@ -6,9 +6,9 @@ import { UserRolesDto } from './user.roles.dto';
 ///////////////////////////////////////////////////////////////////////////////////
 
 export interface UserRolesSearchFilters {
-    Id?: string;
+    id?: string;
     UserId: string;
-    RoleId: number;
+    RoleId: string;
     OrderBy      : string;
     Order        : string;
     PageIndex    : number;

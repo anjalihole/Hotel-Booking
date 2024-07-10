@@ -58,18 +58,6 @@ export class HotelAmenitiesValidator {
         return request.params.id;
     };
 
-    static getAllHotelAmenities = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
     static update = async (request: express.Request): Promise<HotelAmenitiesDomainModel> => {
         await body('AminityName').optional().isLength({ min: 1 }).trim().escape().run(request);
         await body('HotelId').optional().trim().escape().isLength({ min: 10 }).run(request);

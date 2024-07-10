@@ -45,33 +45,6 @@ export class PropertyRulesRepo implements IPropertyRulesRepo {
         }
     };
 
-    getAllPropertyRules = async (): Promise<PropertyRulesDto[]> => {
-        try {
-            const records = await PropertyRules.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await PropertyRulesMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (propertyrules): PropertyRulesDto => {
-        if (propertyrules == null) {
-            return null;
-        }
-        const dto: PropertyRulesDto = {
-
-                id: propertyrules.id,
-                HotelId : propertyrules.HotelId,
-                RulesName : propertyrules.RulesName,
-                Description : propertyrules.Description,
-        };
-        return dto;
-    };
-
     search = async (filters: PropertyRulesSearchFilters): Promise<PropertyRulesSearchResults> => {
         try {
 

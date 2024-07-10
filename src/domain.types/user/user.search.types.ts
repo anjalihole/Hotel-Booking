@@ -6,7 +6,7 @@ import { UserDto } from './user.dto';
 ///////////////////////////////////////////////////////////////////////////////////
 
 export interface UserSearchFilters {
-    Id?: string;
+    id?: string;
     FirstName: string;
     LastName: string;
     Phone?: string;

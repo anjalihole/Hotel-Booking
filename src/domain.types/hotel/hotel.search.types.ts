@@ -15,7 +15,7 @@ export interface HotelSearchFilters {
     CheckInTime: string;
     CheckOutTime: string;
     OwnerUserId: string;
-    Photos: string;
+    Photos: boolean;
     OrderBy      : string;
     Order        : string;
     PageIndex    : number;

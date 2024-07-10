@@ -33,32 +33,7 @@ export class RoleValidator {
         return RoleValidator.getDomainModel(request.body);
     };
 
-    static search = async (request: express.Request): Promise<RoleSearchFilters> => {
-        await query('RoleName').optional().trim().escape().run(request);
-
-        await query('Description').optional().trim().escape().run(request);
-
-        const result = validationResult(request);
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return RoleValidator.getFilter(request);
-    };
-
     static getById = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
-    static getAllRole = async (request: express.Request): Promise<string> => {
         await param('id').trim().escape().isUUID().run(request);
 
         const result = validationResult(request);
@@ -91,6 +66,19 @@ export class RoleValidator {
         }
 
         return request.params.id;
+    };
+
+    static search = async (request: express.Request): Promise<RoleSearchFilters> => {
+        await query('RoleName').optional().trim().escape().run(request);
+
+        await query('Description').optional().trim().escape().run(request);
+
+        const result = validationResult(request);
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
+
+        return RoleValidator.getFilter(request);
     };
 
     private static getFilter(request): RoleSearchFilters {

@@ -49,35 +49,6 @@ export class RoomTypesRepo implements IRoomTypesRepo {
         }
     };
 
-    getAllRoomTypes = async (): Promise<RoomTypesDto[]> => {
-        try {
-            const records = await RoomTypes.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await RoomTypesMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (roomtypes): RoomTypesDto => {
-        if (roomtypes == null) {
-            return null;
-        }
-        const dto: RoomTypesDto = {
-                id: roomtypes.id,
-                TypeName   : roomtypes.TypeName,
-                TypeDescription : roomtypes.TypeDescription,
-                StandardRate        : roomtypes.StandardRate,
-                Options        : roomtypes.Options,
-                OccupancyAdult : roomtypes.OccupancyAdult,
-                OccupancyChildren        : roomtypes.OccupancyChildren,
-        };
-        return dto;
-    };
-
     search = async (filters: RoomTypesSearchFilters): Promise<RoomTypesSearchResults> => {
         try {
 

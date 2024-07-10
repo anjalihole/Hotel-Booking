@@ -1,4 +1,6 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable padded-blocks */
+/* eslint-disable linebreak-style */
 import {
     Table,
     Column,
@@ -10,12 +12,14 @@ import {
     IsUUID,
     PrimaryKey,
     IsEmail,
+    BelongsTo,
+    ForeignKey,
+    HasMany
 } from 'sequelize-typescript';
-
 import { v4 } from 'uuid';
-//import { Helper } from '../../../../../common/helper';
-
-///////////////////////////////////////////////////////////////////////
+import Address from '../address/address.model';
+import HotelAminities from '../hotel.amenities/hotel.amenities.model';
+import HotelReview from '../hotel.review/hotel.review.model';
 
 @Table({
     timestamps      : true,
@@ -43,11 +47,15 @@ export default class Hotel extends Model {
     })
     Name: string;
 
+    @ForeignKey(() => Address)
     @Column({
-        type      : DataType.STRING(256),
+        type      : DataType.UUID,
         allowNull : true,
     })
     AddressId: string;
+
+    @BelongsTo(() => Address)
+    Address: Address;
 
     @Column({
         type      : DataType.STRING(200),
@@ -87,10 +95,17 @@ export default class Hotel extends Model {
     Phone: string;
 
     @Column({
-        type      : DataType.STRING(128),
-        allowNull : true,
+        type         : DataType.BOOLEAN,
+        allowNull    : true,
+        defaultValue : false,
     })
-    Photos: string;
+    Photos: boolean;
+
+    @HasMany(() => HotelAminities)
+    Aminities: HotelAminities[];
+
+    @HasMany(() => HotelReview)
+    Reviews: HotelReview[];
 
     @Column
     @CreatedAt
@@ -101,5 +116,4 @@ export default class Hotel extends Model {
 
     @DeletedAt
     DeletedAt: Date;
-
 }

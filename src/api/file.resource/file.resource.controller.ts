@@ -36,7 +36,7 @@ export class FileResourceController {
             if (fileresource == null) {
                 throw new ApiError(400, 'Unable to create FileResource.');
             }
-            ResponseHandler.success(request, response, 'FileResource Api added successfully!', 201, {
+            ResponseHandler.success(request, response, 'Api FileResource  added successfully!', 201, {
                 FileResource: fileresource,
             });
         } catch (error) {
@@ -55,24 +55,8 @@ export class FileResourceController {
             if (fileresource == null) {
                 throw new ApiError(404, 'FileResource not found.');
             }
-            ResponseHandler.success(request, response, 'FileResource Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api FileResource  retrieved successfully!', 200, {
                 FileResource: fileresource,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllFileResource = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'FileResource.GetAllHotel';
-
-            const fileresource = await this._service.getAllFileResource();
-            if (fileresource == null) {
-                throw new ApiError(404, 'FileResource not found.');
-            }
-            ResponseHandler.success(request, response, '  All FileResource  Api retrieved successfully!', 200, {
-            FileResource: fileresource,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -89,10 +73,10 @@ export class FileResourceController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} FileResource Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api FileResource  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                HotelRecords: searchResults,
+                FileResourceRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -108,9 +92,9 @@ export class FileResourceController {
             const domainModel = await FileResourceValidator.update(request);
             const fileresource = await this._service.update(id, domainModel);
             if (fileresource == null) {
-                throw new ApiError(404, 'FileResource Api not found.');
+                throw new ApiError(404, 'Api FileResource  not found.');
             }
-            ResponseHandler.success(request, response, ' FileResource Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api FileResource  updated successfully!', 200, {
                 FileResource: fileresource,
             });
         } catch (error) {
@@ -124,7 +108,7 @@ export class FileResourceController {
 
             const id: string = await FileResourceValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'FileResource Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, 'Api FileResource  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

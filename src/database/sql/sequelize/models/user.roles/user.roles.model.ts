@@ -13,13 +13,10 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    IsInt,
-    ForeignKey
+    Length,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
-import User from '../user/user.model';
-import Role from '../role/role.model';
 //import { Helper } from '../../../../../common/helper';
 
 ///////////////////////////////////////////////////////////////////////
@@ -27,7 +24,7 @@ import Role from '../role/role.model';
 @Table({
     timestamps: true,
     modelName: 'UserRoles',
-    tableName: 'user-roles',
+    tableName: 'user.roles',
     paranoid: true,
     freezeTableName: true,
 })
@@ -42,23 +39,21 @@ export default class UserRoles extends Model {
         },
         allowNull: false,
     })
-    Id: string;
+    id: string;
 
-    @IsUUID(4)
-    @ForeignKey(() => User)
+    @Length({ min: 1, max: 100 })
     @Column({
-        type      : DataType.UUID,
-        allowNull : false,
+        type: DataType.STRING(100),
+        allowNull: false,
     })
     UserId: string;
 
-    @IsInt
-    @ForeignKey(() => Role)
+    @Length({ min: 1, max: 100 })
     @Column({
-        type      : DataType.INTEGER,
-        allowNull : false,
+        type: DataType.STRING(100),
+        allowNull: false,
     })
-    RoleId: number;
+    RoleId: string;
 
     @Column
     @CreatedAt

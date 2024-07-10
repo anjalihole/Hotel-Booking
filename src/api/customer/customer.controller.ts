@@ -36,7 +36,7 @@ export class CustomerController {
             if (customer == null) {
                 throw new ApiError(400, 'Unable to create Customer.');
             }
-            ResponseHandler.success(request, response, 'Customer Api added successfully!', 201, {
+            ResponseHandler.success(request, response, 'Api Customer  added successfully!', 201, {
                 Customer: customer,
             });
         } catch (error) {
@@ -55,26 +55,8 @@ export class CustomerController {
             if (customer == null) {
                 throw new ApiError(404, 'Customer not found.');
             }
-            ResponseHandler.success(request, response, 'Customer Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api Customer  retrieved successfully!', 200, {
                 Customer: customer,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllCustomer = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Customer.GetAllCustomer';
-
-            // const id: string = await CustomerValidator.getAllCustomer(request);
-
-            const customer = await this._service.getAllCustomer();
-            if (customer == null) {
-                throw new ApiError(404, 'Customer not found.');
-            }
-            ResponseHandler.success(request, response, '  All Customer  Api retrieved successfully!', 200, {
-            Customer: customer,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -91,7 +73,7 @@ export class CustomerController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} Customer Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api Customer  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
                 CustomerRecords: searchResults,
@@ -110,9 +92,9 @@ export class CustomerController {
             const domainModel = await CustomerValidator.update(request);
             const customer = await this._service.update(id, domainModel);
             if (customer == null) {
-                throw new ApiError(404, ' Customer Api not found.');
+                throw new ApiError(404, 'Api Customer  not found.');
             }
-            ResponseHandler.success(request, response, ' Customer Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Customer  updated successfully!', 200, {
                 Customer: customer,
             });
         } catch (error) {
@@ -126,7 +108,7 @@ export class CustomerController {
 
             const id: string = await CustomerValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Customer Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, 'Api Customer  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

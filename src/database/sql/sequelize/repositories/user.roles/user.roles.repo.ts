@@ -22,7 +22,7 @@ export class UserRolesRepo implements IUserRolesRepo {
     create = async (userrolesDomainModel: UserRolesDomainModel): Promise<UserRolesDto> => {
         try {
             const entity = {
-                Id   : userrolesDomainModel.Id,
+                Id   : userrolesDomainModel.id,
                 UserId   : userrolesDomainModel.UserId,
                 RoleId   : userrolesDomainModel.RoleId,
             };
@@ -46,37 +46,15 @@ export class UserRolesRepo implements IUserRolesRepo {
         }
     };
 
-    getAllUserRoles = async (): Promise<UserRolesDto[]> => {
-        try {
-            const records = await UserRoles.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (userroles): UserRolesDto => {
-        if (userroles == null) {
-            return null;
-        }
-        const dto: UserRolesDto = {
-            Id: userroles.Id,
-            UserId: userroles.UserId,
-            RoleId: userroles.RoleId,
-        };
-        return dto;
-    };
-
     search = async (filters: UserRolesSearchFilters): Promise<UserRolesSearchResults> => {
         try {
 
             const search = { where: {} };
 
-            if (filters.Id != null) {
-                search.where['Id'] = filters.Id;
+            if (filters.id != null) {
+                search.where['Id'] = filters.id;
             }
+
             if (filters.UserId != null) {
                 search.where['UserId'] = filters.UserId;
             }
@@ -106,8 +84,8 @@ export class UserRolesRepo implements IUserRolesRepo {
             search['offset'] = offset;
 
             const dtos: UserRolesDto[] = [];
-            for (const user of foundResults.rows) {
-                const dto = await UserRolesMapper.toDto(user);
+            for (const userroles of foundResults.rows) {
+                const dto = await UserRolesMapper.toDto(userroles);
                 dtos.push(dto);
             }
 
@@ -137,10 +115,10 @@ update = async (id: string, userrolesDomainModel: UserRolesDomainModel): Promise
                 const userroles = await UserRoles.findByPk(id);
     
                 //Client code is not modifiable
-                //Use renew key to update ApiKey, ValidFrom and ValidTill UserId: string;
-
-                if (userrolesDomainModel.Id != null) {
-                    userroles.Id = userrolesDomainModel.Id;
+                //Use renew key to update ApiKey, ValidFrom and ValidTill
+                
+                if (userrolesDomainModel.id != null) {
+                    userroles.id = userrolesDomainModel.id;
                 }
                 if (userrolesDomainModel.UserId != null) {
                     userroles.UserId = userrolesDomainModel.UserId;

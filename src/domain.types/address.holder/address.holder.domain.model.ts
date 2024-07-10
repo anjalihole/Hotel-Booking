@@ -2,7 +2,6 @@
 export interface AddressHolderDomainModel {
     id?: string;
     AddressId : string;
-    HolderId: string;
     HolderType: string;
     AddressType: string;
     
@@ -10,7 +9,6 @@ export interface AddressHolderDomainModel {
 export interface AddressHolderVerificationDomainModel {
     id?: string;
     AddressId : string;
-    HolderId: string;
     HolderType: string;
     AddressType: string;
 }

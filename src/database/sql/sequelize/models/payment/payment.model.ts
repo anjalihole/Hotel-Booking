@@ -52,13 +52,7 @@ export default class Payment extends Model {
         type      : DataType.STRING(500),
         allowNull : false,
     })
-    PaymentId: string;
-
-    @Column({
-        type      : DataType.STRING(500),
-        allowNull : false,
-    })
-    ReservationId: string;
+    ReservationOrderId: string;
 
     @Column({
         type      : DataType.STRING(32),

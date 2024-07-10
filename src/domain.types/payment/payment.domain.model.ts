@@ -6,8 +6,7 @@ export interface PaymentDomainModel {
     Amount: string;
     PaymentMethod: string;
     TransactionStatus: string;
-    PaymentId: string;
-    ReservationId: string;
+    ReservationOrderId: string;
     PaymentConfirm: string;
 }
 export interface ApiPaymentVerificationDomainModel {
@@ -16,7 +15,6 @@ export interface ApiPaymentVerificationDomainModel {
     Amount: string;
     PaymentMethod: string;
     TransactionStatus: string;
-    PaymentId: string;
-    ReservationId: string;
+    ReservationOrderId: string;
     PaymentConfirm: string;
 }

@@ -44,31 +44,6 @@ export class RoleRepo implements IRoleRepo {
         }
     };
 
-    getAllRole = async (): Promise<RoleDto[]> => {
-        try {
-            const records = await Role.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await RoleMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (role): RoleDto => {
-        if (role == null) {
-            return null;
-        }
-        const dto: RoleDto = {
-                id: role.id,
-                RoleName   : role.RoleName,
-                Description : role.Description,
-        };
-        return dto;
-    };
-
     search = async (filters: RoleSearchFilters): Promise<RoleSearchResults> => {
         try {
 

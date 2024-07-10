@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable padded-blocks */
-/* eslint-disable linebreak-style */
 /* eslint-disable key-spacing */
+/* eslint-disable padded-blocks */
 /* eslint-disable linebreak-style */
 import {
     Table,
@@ -13,21 +12,18 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
+    ForeignKey,
+    BelongsTo,
 } from 'sequelize-typescript';
-
 import { v4 } from 'uuid';
-//import { Helper } from '../../../../../common/helper';
-
-///////////////////////////////////////////////////////////////////////
-
+import Hotel from '../hotel/hotel.model';
 @Table({
     timestamps: true,
     modelName: 'HotelAminities',
-    tableName: 'hotel.aminities',
+    tableName: 'hotel.aminities',  // Corrected table name
     paranoid: true,
     freezeTableName: true,
 })
-// eslint-disable-next-line padded-blocks
 export default class HotelAminities extends Model {
     @IsUUID(4)
     @PrimaryKey
@@ -46,11 +42,15 @@ export default class HotelAminities extends Model {
     })
     AminityName: string;
 
+    @ForeignKey(() => Hotel)
     @Column({
-        type: DataType.STRING(64),
+        type: DataType.UUID,
         allowNull: false,
     })
-   HotelId: string;
+    HotelId: string;
+
+    @BelongsTo(() => Hotel)
+    Hotel: Hotel;
 
     @Column
     @CreatedAt

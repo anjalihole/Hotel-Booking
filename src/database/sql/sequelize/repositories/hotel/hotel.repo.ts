@@ -5,6 +5,9 @@
 /* eslint-disable linebreak-style */
 import { IHotelRepo } from '../../../../repository.interfaces/hotel/hotel.repo.interface';
 import Hotel from '../../models/hotel/hotel.model';
+import Address from '../../models/address/address.model';
+import HotelAminities from '../../models/hotel.amenities/hotel.amenities.model';
+import HotelReview from '../../models/hotel.review/hotel.review.model';
 import { Op } from 'sequelize';
 import { HotelDomainModel } from '../../../../../domain.types/hotel/hotel.domain.model';
 import { HotelMapper } from '../../mappers/hotel/hotel.mapper';
@@ -42,45 +45,23 @@ export class HotelRepo implements IHotelRepo {
 
     getById = async (id: string): Promise<HotelDto> => {
         try {
-            const hotel = await Hotel.findByPk(id);
-            const dto = await HotelMapper.toDto(hotel);
-            return dto;
+            const hotel = await Hotel.findByPk(id, {
+                include: [
+                    { model: Address, as: 'Address' },
+                    { model: HotelAminities, as: 'Aminities' },
+                    { model: HotelReview, as: 'Reviews' }
+                ]
+            });
+
+            if (!hotel) {
+                throw new ApiError(404, 'Hotel not found');
+            }
+            // const dto = await HotelMapper.toDto(hotel);
+            return hotel;
         } catch (error) {
             Logger.instance().log(error.message);
             throw new ApiError(500, error.message);
         }
-    };
-
-    getAllHotel = async (): Promise<HotelDto[]> => {
-        try {
-            const records = await Hotel.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await HotelMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (hotel): HotelDto => {
-        if (hotel == null) {
-            return null;
-        }
-        const dto: HotelDto = {
-                id: hotel.id,
-                Name   : hotel.Name,
-                AddressId : hotel.AddressId,
-                Phone        : hotel.Phone,
-                Email        : hotel.Email,
-                Description : hotel.Description,
-                CheckInTime        : hotel.CheckInTime,
-                CheckOutTime        : hotel. CheckOutTime,
-                OwnerUserId : hotel.OwnerUserId,
-                Photos : hotel.Photos,
-        };
-        return dto;
     };
 
     search = async (filters: HotelSearchFilters): Promise<HotelSearchResults> => {
@@ -93,7 +74,7 @@ export class HotelRepo implements IHotelRepo {
             }
 
             if (filters.Name != null) {
-                search.where['Name'] = filters.Name;
+                search.where['Name'] = { [Op.like]: '%' + filters.Name + '%' };
             }
             if (filters.Phone != null) {
                 search.where['Phone'] = { [Op.like]: '%' + filters.Phone + '%' };
@@ -174,7 +155,7 @@ export class HotelRepo implements IHotelRepo {
 update = async (id: string, hotelDomainModel: HotelDomainModel): Promise<HotelDto> => {
             try {
                 const hotel = await Hotel.findByPk(id);
-                if (hotelDomainModel.Name ) {
+                if (hotelDomainModel.Name != null ) {
                     hotel.Name = hotelDomainModel.Name;
                 }
                 if (hotelDomainModel.Phone != null) {
@@ -198,6 +179,9 @@ update = async (id: string, hotelDomainModel: HotelDomainModel): Promise<HotelDt
                 }
                 if (hotelDomainModel.OwnerUserId != null) {
                     hotel.OwnerUserId = hotelDomainModel.OwnerUserId;
+                }
+                if (hotelDomainModel.Description != null) {
+                    hotel.Description = hotelDomainModel.Description;
                 }
 
                 if (hotelDomainModel.Photos != null) {

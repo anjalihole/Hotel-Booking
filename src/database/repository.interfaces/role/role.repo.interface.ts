@@ -12,8 +12,6 @@ export interface IRoleRepo {
 
         getById(id: string): Promise<RoleDto>;
 
-        getAllRole(): Promise<RoleDto[]>;
-
         update(id: string, RoleDomainModel: RoleDomainModel): Promise<RoleDto>;
 
         search(filters: RoleSearchFilters): Promise<RoleSearchResults>;

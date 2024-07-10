@@ -31,10 +31,6 @@ export class PropertyRulesService {
         return await this._propertyrulesRepo.getById(id);
     };
 
-    getAllPropertyRules = async (): Promise<PropertyRulesDto[]> => {
-        return await this._propertyrulesRepo.getAllPropertyRules();
-    };
-
     update = async (id: string, propertyrulesDomainModel: PropertyRulesDomainModel): Promise<PropertyRulesDto> => {
         return await this._propertyrulesRepo.update(id, propertyrulesDomainModel);
     };

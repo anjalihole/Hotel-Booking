@@ -1,11 +1,11 @@
 /* eslint-disable linebreak-style */
 export interface UserRolesDomainModel {
-    Id?: string;
+    id?: string;
     UserId: string;
-    RoleId: number;
+    RoleId: string;
 }
 export interface ApiUserRolesVerificationDomainModel {
-    Id?: string;
+    id?: string;
     UserId: string;
-    RoleId: number;
+    RoleId: string;
 }

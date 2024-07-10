@@ -31,11 +31,7 @@ export class HotelPhotosService {
     getById = async (id: string): Promise<HotelPhotosDto> => {
         return await this._hotelphotosRepo.getById(id);
     };
-
-    getAllHotelPhotos = async (): Promise<HotelPhotosDto[]> => {
-        return await this._hotelphotosRepo.getAllHotelPhotos();
-    };
-
+    
     update = async (id: string, hotelphotosDomainModel: HotelPhotosDomainModel): Promise<HotelPhotosDto> => {
         return await this._hotelphotosRepo.update(id, hotelphotosDomainModel);
     };

@@ -25,7 +25,7 @@ export class RoomRepo implements IRoomRepo {
                 id  : roomDomainModel.id,
                 Name     : roomDomainModel.Name ?? null,
                 RoomNumber   : roomDomainModel.RoomNumber,
-                RoomTypeId : roomDomainModel.RoomTypeId,
+                RoomTypesId : roomDomainModel.RoomTypesId,
                 Phone        : roomDomainModel.Phone,
                 Description     : roomDomainModel.Description ?? null,
                 Blocked     : roomDomainModel.Blocked ?? null,
@@ -53,38 +53,6 @@ export class RoomRepo implements IRoomRepo {
         }
     };
 
-    getAllRoom = async (): Promise<RoomDto[]> => {
-        try {
-            const records = await Room.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await CustomerMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (room): RoomDto => {
-        if (room == null) {
-            return null;
-        }
-        const dto: RoomDto = {
-            id: room.RoomId,
-            Name: room.Name,
-            RoomNumber: room.RoomNumber,
-            Phone: room.Phone,
-            RoomTypeId: room.RoomTypeId,
-            Description: room.Description,
-            Blocked: room.Blocked,
-            Inventory: room.Inventory,
-            Status: room.Status,
-
-        };
-        return dto;
-    };
-
     search = async (filters: RoomSearchFilters): Promise<RoomSearchResults> => {
         try {
 
@@ -106,8 +74,8 @@ export class RoomRepo implements IRoomRepo {
             if (filters.RoomNumber != null) {
                 search.where['RoomNumber'] = filters.RoomNumber;
             }
-            if (filters.RoomTypeId != null) {
-                search.where['RoomTypeId'] = filters.RoomTypeId;
+            if (filters.RoomTypesId != null) {
+                search.where['RoomTypesId'] = filters.RoomTypesId;
             }
 
             if (filters.Description != null) {
@@ -187,8 +155,8 @@ update = async (id: string, roomDomainModel: RoomDomainModel): Promise<RoomDto> 
                 if (roomDomainModel.RoomNumber != null) {
                     room.RoomNumber = roomDomainModel.RoomNumber;
                 }
-                if (roomDomainModel.RoomTypeId != null) {
-                    room.RoomTypeId = roomDomainModel.RoomTypeId;
+                if (roomDomainModel.RoomTypesId != null) {
+                    room.RoomTypesId = roomDomainModel.RoomTypesId;
                 }
                 if (roomDomainModel.Phone != null) {
                     room.Phone = roomDomainModel.Phone;

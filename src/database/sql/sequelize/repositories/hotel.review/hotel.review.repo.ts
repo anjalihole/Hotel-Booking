@@ -49,36 +49,6 @@ export class HotelReviewRepo implements IHotelReviewRepo {
         }
     };
 
-    getAllHotelReview = async (): Promise<HotelReviewDto[]> => {
-        try {
-            const records = await HotelReview.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await HotelReviewMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (hotelreview): HotelReviewDto => {
-        if (hotelreview == null) {
-            return null;
-        }
-        const dto: HotelReviewDto = {
-
-                id: hotelreview.id,
-                HotelId : hotelreview.HotelId,
-                ReviewUserId : hotelreview.ReviewUserId,
-                Rating : hotelreview.Rating,
-                ReviewTitle : hotelreview.ReviewTitle,
-                ReviewTimeStamp : hotelreview. ReviewTimeStamp,
-                ReviewDescription : hotelreview.ReviewDescription,
-        };
-        return dto;
-    };
-
     search = async (filters: HotelReviewSearchFilters): Promise<HotelReviewSearchResults> => {
         try {
 

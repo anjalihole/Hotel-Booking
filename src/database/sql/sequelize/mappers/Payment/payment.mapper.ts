@@ -23,9 +23,8 @@ export class paymentMapper {
             Amount: payment.Amount,
             PaymentMethod: payment.PaymentMethod,
             TransactionStatus:payment.TransactionStatus,
-            ReservationId: payment.ReservationId,
+            ReservationOrderId: payment.ReservationOrderId,
             PaymentConfirm: payment.PaymentConfirm,
-            PaymentId: payment.PaymentId,
         };
         return dto;
     };
@@ -41,9 +40,8 @@ export class paymentMapper {
             Amount: payment.Amount,
             PaymentMethod: payment.PaymentMethod,
             TransactionStatus:payment.TransactionStatus,
-            ReservationId: payment.ReservationId,
+            ReservationOrderId: payment.ReservationOrderId,
             PaymentConfirm: payment.PaymentConfirm,
-            PaymentId: payment.PaymentId,
         };
         return dto;
     };

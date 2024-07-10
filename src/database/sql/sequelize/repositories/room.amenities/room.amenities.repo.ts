@@ -1,12 +1,12 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable max-len */
+/* eslint-disable space-infix-ops */
 /* eslint-disable linebreak-style */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable key-spacing */
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
 import { IRoomAmenitiesRepo } from '../../../../repository.interfaces/room.amenities/room.amenities.repo.interface';
-import RoomAmenities from '../../models/room.aminities/room.aminities.model';
+import RoomAmenities from '../../models/room.amenities/room.amenities.model';
 import { Op } from 'sequelize';
 import { RoomAmenitiesDomainModel } from '../../../../../domain.types/room.amenities/room.amenities.domain.model';
 import { RoomAmenitiesMapper } from '../../mappers/room.amenities/room.amenities.mapper';
@@ -22,9 +22,10 @@ export class RoomAmenitiesRepo implements IRoomAmenitiesRepo {
     create = async (roomamenitiesDomainModel: RoomAmenitiesDomainModel): Promise<RoomAmenitiesDto> => {
         try {
             const entity = {
-                AminityName   : roomamenitiesDomainModel.AminityName,
+                id  : roomamenitiesDomainModel.id,
+                AmenityName : roomamenitiesDomainModel.AmenityName ?? null,
+                HotelId  : roomamenitiesDomainModel.HotelId,
                 RoomId : roomamenitiesDomainModel.RoomId,
-                HotelId : roomamenitiesDomainModel.HotelId,
 
             };
             const roomamenities = await RoomAmenities.create(entity);
@@ -47,51 +48,25 @@ export class RoomAmenitiesRepo implements IRoomAmenitiesRepo {
         }
     };
 
-    getAllRoomAmenities = async (): Promise<RoomAmenitiesDto[]> => {
-        try {
-            const records = await RoomAmenities.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await RoomMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (roomamenities): RoomAmenitiesDto => {
-        if (roomamenities == null) {
-            return null;
-        }
-        const dto: RoomAmenitiesDto = {
-                id: roomamenities.id,
-                AminityName : roomamenities.AminityName,
-                RoomId : roomamenities.RoomId,
-                HotelId : roomamenities.HotelId,
-        };
-        return dto;
-    };
-
     search = async (filters: RoomAmenitiesSearchFilters): Promise<RoomAmenitiesSearchResults> => {
         try {
 
             const search = { where: {} };
 
-            if (filters.id != null) {
+            if (filters.id!= null) {
                 search.where['id'] = filters.id;
             }
 
-            if (filters.AminityName != null) {
-                search.where['AminityName'] = filters.AminityName;
+            if (filters.AmenityName!= null) {
+                search.where['AmenityName'] = filters.AmenityName;
             }
-            if (filters.RoomId != null) {
-                search.where['RoomId'] = { [Op.like]: '%' + filters.RoomId + '%' };
-            }
-
             if (filters.HotelId != null) {
                 search.where['HotelId'] = { [Op.like]: '%' + filters.HotelId + '%' };
             }
+            if (filters.RoomId!= null) {
+                search.where['RoomId'] = filters.RoomId;
+            }
+    
             const orderByColum = 'CreatedAt';
             let order = 'ASC';
             if (filters.Order === 'descending') {
@@ -113,8 +88,8 @@ export class RoomAmenitiesRepo implements IRoomAmenitiesRepo {
             search['offset'] = offset;
 
             const dtos: RoomAmenitiesDto[] = [];
-            for (const room of foundResults.rows) {
-                const dto = await RoomAmenitiesMapper.toDto(room);
+            for (const roomamenities of foundResults.rows) {
+                const dto = await RoomAmenitiesMapper.toDto(roomamenities);
                 dtos.push(dto);
             }
 
@@ -142,14 +117,23 @@ export class RoomAmenitiesRepo implements IRoomAmenitiesRepo {
 update = async (id: string, roomamenitiesDomainModel: RoomAmenitiesDomainModel): Promise<RoomAmenitiesDto> => {
             try {
                 const roomamenities = await RoomAmenities.findByPk(id);
-                if (roomamenitiesDomainModel.AminityName ) {
-                    roomamenities.AminityName = roomamenitiesDomainModel.AminityName;
+    
+                //Client code is not modifiable
+                //Use renew key to update ApiKey, ValidFrom and ValidTill
+    
+                if (roomamenitiesDomainModel.id != null) {
+                    roomamenities.id = roomamenitiesDomainModel.id;
+                }
+
+                if (roomamenitiesDomainModel.AmenityName != null) {
+                    roomamenities.AmenityName = roomamenitiesDomainModel.AmenityName;
+                }
+
+                if (roomamenitiesDomainModel.HotelId != null) {
+                    roomamenities.HotelId = roomamenitiesDomainModel.HotelId;
                 }
                 if (roomamenitiesDomainModel.RoomId != null) {
                     roomamenities.RoomId = roomamenitiesDomainModel.RoomId;
-                }
-                if (roomamenitiesDomainModel.HotelId != null) {
-                    roomamenities.HotelId = roomamenitiesDomainModel.HotelId;
                 }
                 
                 await roomamenities.save();

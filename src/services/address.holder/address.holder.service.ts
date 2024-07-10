@@ -35,10 +35,6 @@ export class AddressHolderService {
         return await this._addressholderRepo.getById(id);
     };
 
-    getAllAddressHolder = async (): Promise<AddressHolderDto[]> => {
-        return await this._addressholderRepo.getAllAddressHolder();
-    };
-
     update = async (id: string, AddressHolderDomainModel: AddressHolderDomainModel): Promise<AddressHolderDto> => {
         return await this._addressholderRepo.update(id, AddressHolderDomainModel);
     };

@@ -22,11 +22,10 @@ export class PaymentValidator {
         paymentModel = {
             id:body.id ?? null,
             HotelId: body.HotelId ?? null,
-            PaymentId: body. PaymentId ?? null,
-            ReservationId: body.ReservationId ?? null,
+            ReservationOrderId: body.ReservationOrderId ?? null,
             PaymentDate:body.PaymentDate ?? null,
             Amount: body.Amount ?? null,
-             PaymentMethod: body. PaymentMethod ?? null,
+            PaymentMethod: body. PaymentMethod ?? null,
             PaymentConfirm: body.PaymentConfirm ?? null,
             TransactionStatus:body.TransactionStatus ?? null,
         };
@@ -38,9 +37,8 @@ export class PaymentValidator {
         await body('PaymentDate').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Amount').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentMethod').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('ReservationId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('ReservationOrderId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentConfirm').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('PaymentId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('TransactionStatus').exists().trim().escape().isLength({ min: 1 }).run(request);
 
         const result = validationResult(request);
@@ -62,26 +60,13 @@ export class PaymentValidator {
         return request.params.id;
     };
 
-    static getAllPayment = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
     static update = async (request: express.Request): Promise<PaymentDomainModel> => {
         await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentDate').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Amount').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentMethod').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('ReservationId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('ReservationOrderId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('PaymentConfirm').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('PaymentId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('TransactionStatus').exists().trim().escape().isLength({ min: 1 }).run(request);
 
         const result = validationResult(request);
@@ -100,9 +85,7 @@ static search = async (request: express.Request): Promise<PaymentSearchFilters> 
 
     await query('PaymentMethod').optional().trim().escape().run(request);
 
-    await query('ReservationId').optional().trim().escape().run(request);
-
-    await query('PaymentId').optional().trim().escape().run(request);
+    await query('ReservationOrderId').optional().trim().escape().run(request);
 
     await query('PaymentConfirm').optional().trim().escape().run(request);
 
@@ -128,9 +111,8 @@ static search = async (request: express.Request): Promise<PaymentSearchFilters> 
             PaymentDate: request.query.PaymentDate ?? null,
             Amount: request.query.Amount ?? null,
             PaymentMethod: request.query.PaymentMethod ?? null,
-            ReservationId: request.query.ReservationId ?? null,
+            ReservationOrderId: request.query.ReservationId ?? null,
             PaymentConfirm: request.query.PaymentConfirm ?? null,
-            PaymentId: request.query.PaymentId ?? null,
             TransactionStatus: request.query.TransactionStatus ?? null,
             OrderBy      : request.query.orderBy ?? 'CreatedAt',
             Order        : request.query.order ?? 'descending',

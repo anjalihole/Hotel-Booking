@@ -2,9 +2,8 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
-import { RoomAmenitiesDto } from '../../../../../domain.types/room.amenities/room.amenities.dto';
-// import RoomAmenities from '../../models/room.amenities/room.amenities.model';
-import RoomAmenities from '../../models/room.aminities/room.aminities.model';
+import { RoomAmenitiesDto } from '/../src/domain.types/room.amenities/room.amenities.dto';
+import RoomAmenities from '../../models/room.amenities/room.amenities.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -15,9 +14,10 @@ export class RoomAmenitiesMapper {
         }
         const dto: RoomAmenitiesDto = {
             id: roomamenities.id,
-            AminityName: roomamenities.AminityName,
-            RoomId: roomamenities.RoomId,
+            AmenityName: roomamenities.AmenityName,
             HotelId: roomamenities.HotelId,
+            RoomId: roomamenities.RoomId,
+           
         };
         return dto;
     };
@@ -28,10 +28,9 @@ export class RoomAmenitiesMapper {
         }
         const dto: RoomAmenitiesDto = {
             id: roomamenities.id,
-            AminityName: roomamenities.AminityName,
-            RoomId: roomamenities.RoomId,
+            AmenityName: roomamenities.AmenityName,
             HotelId: roomamenities.HotelId,
-
+            RoomId: roomamenities.RoomId,
         };
         return dto;
     };

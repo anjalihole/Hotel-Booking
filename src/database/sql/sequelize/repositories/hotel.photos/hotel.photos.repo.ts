@@ -46,33 +46,6 @@ export class HotelPhotosRepo implements IHotelPhotosRepo {
         }
     };
 
-    getAllHotelPhotos = async (): Promise<HotelPhotosDto[]> => {
-        try {
-            const records = await HotelPhotos.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await HotelMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (hotelphotos): HotelPhotosDto => {
-        if (hotelphotos == null) {
-            return null;
-        }
-        const dto: HotelPhotosDto = {
-
-                id: hotelphotos.id,
-                FileResourceId   : hotelphotos.FileResourceId,
-                HotelId : hotelphotos.HotelId,
-                RoomTypeId        : hotelphotos.RoomTypeId,
-        };
-        return dto;
-    };
-
     search = async (filters: HotelPhotosSearchFilters): Promise<HotelPhotosSearchResults> => {
         try {
 

@@ -1,6 +1,4 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable max-len */
-/* eslint-disable linebreak-style */
 /* eslint-disable object-curly-spacing */
 /* eslint-disable linebreak-style */
 /* eslint-disable indent */
@@ -17,7 +15,7 @@ import { IRoomAmenitiesRepo } from '../../database/repository.interfaces/room.am
 // import { Helper } from '../../common/helper';
 // import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
 //import * as apikeyGenerator from 'uuid-apikey';
-import { RoomAmenitiesSearchFilters, RoomAmenitiesSearchResults } from '../../domain.types/room.amenities/room.amenities.search.types';
+import { RoomAmenitiesSearchFilters,RoomAmenitiesSearchResults} from '../../domain.types/room.amenities/room.amenities.search.types';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,11 +32,7 @@ export class RoomAmenitiesService {
         return await this._roomamenitiesRepo.getById(id);
     };
 
-    getAllRoomAmenities = async (): Promise<RoomAmenitiesDto[]> => {
-        return await this._roomamenitiesRepo.getAllRoomAmenities();
-    };
-
-    update = async (id: string,roomamenitiesDomainModel: RoomAmenitiesDomainModel): Promise<RoomAmenitiesDto> => {
+    update = async (id: string, roomamenitiesDomainModel: RoomAmenitiesDomainModel): Promise<RoomAmenitiesDto> => {
         return await this._roomamenitiesRepo.update(id, roomamenitiesDomainModel);
     };
 

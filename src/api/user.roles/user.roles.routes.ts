@@ -10,9 +10,8 @@ export const register = (app: express.Application): void => {
     router.post('/', controller.create);
     router.get('/search',controller.search);
     router.get('/:id', controller.getById);
-    router.get('/', controller.getAllUserRoles);
     router.put('/:id', controller.update);
     router.delete('/:id',controller.delete);
 
-    app.use('/api/v1/api-userroles', router);
+    app.use('/api/v1/userroles', router);
 };

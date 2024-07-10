@@ -22,7 +22,7 @@ export class UserRepo implements IUserRepo {
     create = async (userDomainModel: UserDomainModel): Promise<UserDto> => {
         try {
             const entity = {
-                Id   : userDomainModel.Id,
+                id   : userDomainModel.id,
                 FirstName   : userDomainModel.FirstName,
                 LastName   : userDomainModel.LastName,
                 Phone        : userDomainModel.Phone,
@@ -47,42 +47,14 @@ export class UserRepo implements IUserRepo {
             throw new ApiError(500, error.message);
         }
     };
-
-    getAllUser = async (): Promise<UserDto[]> => {
-        try {
-            const records = await User.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await CustomerMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (user): UserDto => {
-        if (user == null) {
-            return null;
-        }
-        const dto: UserDto = {
-            Id: user.Id,
-            FirstName: user.FirstName,
-            LastName: user.LastName,
-            Phone: user.Phone,
-            Email: user.Email,
-
-        };
-        return dto;
-    };
-
+    
     search = async (filters: UserSearchFilters): Promise<UserSearchResults> => {
         try {
 
             const search = { where: {} };
 
-            if (filters.Id != null) {
-                search.where['Id'] = filters.Id;
+            if (filters.id != null) {
+                search.where['id'] = filters.id;
             }
 
             if (filters.FirstName != null) {
@@ -153,8 +125,8 @@ update = async (id: string, userDomainModel: UserDomainModel): Promise<UserDto> 
                 //Client code is not modifiable
                 //Use renew key to update ApiKey, ValidFrom and ValidTill
                 
-                if (userDomainModel.Id != null) {
-                    user.Id = userDomainModel.Id;
+                if (userDomainModel.id != null) {
+                    user.id = userDomainModel.id;
                 }
                 if (userDomainModel.FirstName != null) {
                     user.FirstName = userDomainModel.FirstName;

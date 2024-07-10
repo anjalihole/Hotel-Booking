@@ -9,7 +9,7 @@ export interface HotelDomainModel {
     CheckInTime: string;
     CheckOutTime: string;
     OwnerUserId: string;
-    Photos: string;
+    Photos: boolean;
 
 }
 export interface ApiHotelVerificationDomainModel {
@@ -21,6 +21,6 @@ export interface ApiHotelVerificationDomainModel {
     CheckInTime: string;
     CheckOutTime: string;
     OwnerUserId: string;
-    Photos: string;
+    Photos: boolean;
 
 }

@@ -11,8 +11,6 @@ export interface IRoomRepo {
 
           getById(id: string): Promise<RoomDto>;
 
-          getAllRoom(): Promise<RoomDto[]>;
-
           update(id: string, RoomDomainModel: RoomDomainModel): Promise<RoomDto>;
 
           search(filters: RoomSearchFilters): Promise<RoomSearchResults>;

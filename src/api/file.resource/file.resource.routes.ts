@@ -12,9 +12,8 @@ export const register = (app: express.Application): void => {
     router.post('/', controller.create);
     router.get('/search',controller.search);
     router.get('/:id', controller.getById);
-    router.get('/', controller.getAllFileResource);
-    router.put('/:id', controller.update);
+    router.put('/:id', controller.update);//rename
     router.delete('/:id',controller.delete);
 
-    app.use('/api/v1/api-fileresource', router);
+    app.use('/api/v1/fileresource', router);
 };

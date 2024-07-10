@@ -14,8 +14,6 @@ export interface IHotelAmenitiesRepo {
 
         getById(id: string): Promise<HotelAmenitiesDto>;
 
-        getAllHotelAmenities(): Promise<HotelAmenitiesDto[]>;
-
         update(id: string, HotelAmenitiesDomainModel: HotelAmenitiesDomainModel): Promise<HotelAmenitiesDto>;
 
         search(filters: HotelAmenitiesSearchFilters): Promise<HotelAmenitiesSearchResults>;

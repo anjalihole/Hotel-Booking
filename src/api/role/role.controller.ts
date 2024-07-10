@@ -36,7 +36,7 @@ export class RoleController {
             if (role == null) {
                 throw new ApiError(400, 'Unable to create Role.');
             }
-            ResponseHandler.success(request, response, 'Role Api added successfully!', 201, {
+            ResponseHandler.success(request, response, ' Api Role  added successfully!', 201, {
                 Role: role,
             });
         } catch (error) {
@@ -55,26 +55,8 @@ export class RoleController {
             if (role == null) {
                 throw new ApiError(404, 'Role not found.');
             }
-            ResponseHandler.success(request, response, 'Role Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Role  retrieved successfully!', 200, {
                 Role: role,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllRole = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Role.GetAllRole';
-
-            // const id: string = await CustomerValidator.getAllCustomer(request);
-
-            const role = await this._service.getAllRole();
-            if (role == null) {
-                throw new ApiError(404, 'Role not found.');
-            }
-            ResponseHandler.success(request, response, '  All Role  Api retrieved successfully!', 200, {
-            Role: role,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -91,7 +73,7 @@ export class RoleController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} Role Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api Role  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
                 RoleRecords: searchResults,
@@ -112,7 +94,7 @@ export class RoleController {
             if (role == null) {
                 throw new ApiError(404, ' Role Api not found.');
             }
-            ResponseHandler.success(request, response, ' Role Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api Role  updated successfully!', 200, {
                 Role: role,
             });
         } catch (error) {
@@ -126,7 +108,7 @@ export class RoleController {
 
             const id: string = await RoleValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Role Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, ' Api Role  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable padded-blocks */
-/* eslint-disable linebreak-style */
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 import {
@@ -13,12 +12,10 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
+    HasOne,
 } from 'sequelize-typescript';
-
 import { v4 } from 'uuid';
-//import { Helper } from '../../../../../common/helper';
-
-///////////////////////////////////////////////////////////////////////
+import Hotel from '../hotel/hotel.model';
 
 @Table({
     timestamps: true,
@@ -27,7 +24,6 @@ import { v4 } from 'uuid';
     paranoid: true,
     freezeTableName: true,
 })
-// eslint-disable-next-line padded-blocks
 export default class Address extends Model {
     @IsUUID(4)
     @PrimaryKey
@@ -82,6 +78,9 @@ export default class Address extends Model {
     })
     ZipCode: number;
 
+    @HasOne(() => Hotel)
+    Hotel: Hotel;
+
     @Column
     @CreatedAt
     CreatedAt: Date;
@@ -92,4 +91,3 @@ export default class Address extends Model {
     @DeletedAt
     DeletedAt: Date;
 }
-

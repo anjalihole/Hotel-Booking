@@ -31,11 +31,7 @@ export class FileResourceService {
     getById = async (id: string): Promise<FileResourceDto> => {
         return await this._fileresourceRepo.getById(id);
     };
-
-    getAllFileResource = async (): Promise<FileResourceDto[]> => {
-        return await this._fileresourceRepo.getAllFileResource();
-    };
-
+    
     update = async (id: string, fileresourceDomainModel: FileResourceDomainModel): Promise<FileResourceDto> => {
         return await this._fileresourceRepo.update(id, fileresourceDomainModel);
     };

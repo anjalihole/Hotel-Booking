@@ -32,10 +32,6 @@ export class HotelReviewService {
         return await this._hotelreviewRepo.getById(id);
     };
 
-    getAllHotelReview = async (): Promise<HotelReviewDto[]> => {
-        return await this._hotelreviewRepo.getAllHotelReview();
-    };
-
     update = async (id: string, hotelreviewDomainModel: HotelReviewDomainModel): Promise<HotelReviewDto> => {
         return await this._hotelreviewRepo.update(id, hotelreviewDomainModel);
     };

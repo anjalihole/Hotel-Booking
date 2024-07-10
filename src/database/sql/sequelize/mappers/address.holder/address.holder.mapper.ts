@@ -19,7 +19,6 @@ export class addressholderMapper {
         const dto: AddressHolderDto = {
             id: addressholder.id,
             AddressId: addressholder.AddressId,
-            HolderId: addressholder.HolderId,
             HolderType: addressholder.HolderType,
             AddressType: addressholder.AddressType,
         };
@@ -33,7 +32,6 @@ export class addressholderMapper {
         const dto: AddressHolderDto = {
             id: addressholder.id,
             AddressId: addressholder.AddressId,
-            HolderId: addressholder.HolderId,
             HolderType: addressholder.HolderType,
             AddressType: addressholder.AddressType,
         };

@@ -32,10 +32,6 @@ export class RoomService {
         return await this._roomRepo.getById(id);
     };
 
-    getAllRoom = async (): Promise<RoomDto[]> => {
-        return await this._roomRepo.getAllRoom();
-    };
-
     update = async (id: string, roomDomainModel: RoomDomainModel): Promise<RoomDto> => {
         return await this._roomRepo.update(id, roomDomainModel);
     };

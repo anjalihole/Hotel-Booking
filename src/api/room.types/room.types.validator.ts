@@ -53,18 +53,6 @@ export class RoomTypesValidator {
 
             return request.params.id;
         };
-        
-    static getAllRoomTypes = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
 
     static update = async (request: express.Request): Promise<RoomTypesDomainModel> => {
 

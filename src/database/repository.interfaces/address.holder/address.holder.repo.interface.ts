@@ -12,8 +12,6 @@ export interface IAddressHolderRepo {
 
          getById(id: string): Promise<AddressHolderDto>;
 
-         getAllAddressHolder(): Promise<AddressHolderDto[]>;
-
          update(id: string, AddressHolderDomainModel: AddressHolderDomainModel): Promise<AddressHolderDto>;
 
          search(filters: AddressHolderSearchFilters): Promise<AddressHolderSearchResults>;

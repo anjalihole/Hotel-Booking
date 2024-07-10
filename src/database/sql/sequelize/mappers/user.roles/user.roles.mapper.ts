@@ -12,6 +12,7 @@ export class UserRolesMapper {
             return null;
         }
         const dto: UserRolesDto = {
+            id : userroles.id,
             UserId: userroles.UserId,
             RoleId: userroles.RoleId,
             
@@ -24,6 +25,7 @@ export class UserRolesMapper {
             return null;
         }
         const dto: UserRolesDto = {
+            id : userroles.id,
             UserId: userroles.UserId,
             RoleId: userroles.RoleId,
         };

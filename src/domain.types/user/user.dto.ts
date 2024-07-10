@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 
 export interface UserDto {
-    Id?: string;
+    id?: string;
     FirstName: string;
     LastName: string;
     Phone?: string;

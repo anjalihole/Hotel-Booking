@@ -13,6 +13,7 @@ export class UserMapper {
             return null;
         }
         const dto: UserDto = {
+            id : user.id,
             FirstName: user.FirstName,
             LastName: user.LastName,
             Phone: user.Phone,
@@ -26,6 +27,7 @@ export class UserMapper {
             return null;
         }
         const dto: UserDto = {
+            id : user.id,
             FirstName: user.FirstName,
             LastName: user.LastName,
             Phone: user.Phone,

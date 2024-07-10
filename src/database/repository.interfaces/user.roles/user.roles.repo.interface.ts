@@ -11,8 +11,6 @@ export interface IUserRolesRepo {
 
          getById(id: string): Promise<UserRolesDto>;
 
-         getAllUserRoles(): Promise<UserRolesDto[]>;
-
          update(id: string, UserRolesDomainModel: UserRolesDomainModel): Promise<UserRolesDto>;
 
          search(filters: UserRolesSearchFilters): Promise<UserRolesSearchResults>;

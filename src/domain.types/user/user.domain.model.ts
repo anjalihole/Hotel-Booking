@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable linebreak-style */
 export interface UserDomainModel {
-    Id?: string;
+    id?: string;
     FirstName: string;
     LastName: string;
     Phone?: string;

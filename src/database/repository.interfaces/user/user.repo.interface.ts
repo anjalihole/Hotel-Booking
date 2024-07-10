@@ -11,8 +11,6 @@ export interface IUserRepo {
 
          getById(id: string): Promise<UserDto>;
 
-         getAllUser(): Promise<UserDto[]>;
-
          update(id: string, UserDomainModel: UserDomainModel): Promise<UserDto>;
 
          search(filters: UserSearchFilters): Promise<UserSearchResults>;

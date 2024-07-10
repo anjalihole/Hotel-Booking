@@ -56,12 +56,6 @@ export default class AddressHolder extends Model {
     Address: Address;
 
     @Column({
-        type: DataType.STRING(500),
-        allowNull: false,
-    })
-    HolderId: string;
-
-    @Column({
         type: DataType.STRING(30),
         allowNull: true,
     })

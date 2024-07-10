@@ -4,11 +4,11 @@ export interface RoomDto {
     id?: string;
     Name: string;
     RoomNumber: string;
-    RoomTypeId: string;
+    RoomTypesId: string;
     Description: string;
-    Blocked: string;
+    Blocked: boolean;
     Status: string;
-    Phone?:string;
+    Phone:string;
     Inventory: string;
 
 }

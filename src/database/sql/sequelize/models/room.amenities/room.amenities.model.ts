@@ -23,13 +23,13 @@ import { v4 } from 'uuid';
 
 @Table({
     timestamps: true,
-    modelName: 'RoomAminities',
-    tableName: 'room.aminities',
+    modelName: 'RoomAmenities',
+    tableName: 'room.amenities',
     paranoid: true,
     freezeTableName: true,
 })
 // eslint-disable-next-line padded-blocks
-export default class RoomAminities extends Model {
+export default class RoomAmenities extends Model {
     @IsUUID(4)
     @PrimaryKey
     @Column({
@@ -41,21 +41,23 @@ export default class RoomAminities extends Model {
     })
     id: string;
 
-    @Length({ min: 1, max: 64 })
+    @Length({ min: 1, max: 200 })
     @Column({
-        type: DataType.STRING(64),
+        type: DataType.STRING(200),
         allowNull: false,
     })
-    AminityName: string;
+    AmenityName: string;
 
+    @Length({ min: 1, max: 200 })
     @Column({
-        type: DataType.STRING(64),
+        type: DataType.STRING(200),
         allowNull: false,
     })
    HotelId: string;
 
+   @Length({ min: 1, max: 200 })
     @Column({
-        type: DataType.STRING(64),
+        type: DataType.STRING(200),
         allowNull: false,
     })
     RoomId: string;

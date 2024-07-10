@@ -12,13 +12,13 @@ import { HotelAmenitiesRepo } from './repositories/hotel.amenities/hotel.ameniti
 import { ReservationOrderRepo } from './repositories/reservation.order/reservation.order.repo';
 import { ReservationOrderItemRepo } from './repositories/reservation.order.item/reservation.order.item.repo';
 import { RoleRepo } from './repositories/role/role.repo';
-import { RoomAmenitiesRepo } from './repositories/room.amenities/room.amenities.repo';
 import { RoomTypesRepo } from './repositories/room.types/room.types.repo';
 import { FileResourceRepo } from './repositories/file.resource/file.resource.repo';
 import { HotelPhotosRepo } from './repositories/hotel.photos/hotel.photos.repo';
 import { HotelReviewRepo } from './repositories/hotel.review/hotel.review.repo';
 import { UserRolesRepo } from './repositories/user.roles/user.roles.repo';
 import { PropertyRulesRepo } from './repositories/property.rules/property.rules.repo';
+import { RoomAmenitiesRepo } from './repositories/room.amenities/room.amenities.repo';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -50,8 +50,6 @@ export class SequelizeInjector {
 
         container.register('IRoleRepo', RoleRepo);
 
-        container.register('IRoomAmenitiesRepo', RoomAmenitiesRepo);
-
         container.register('IRoomTypesRepo', RoomTypesRepo);
 
         container.register('IFileResourceRepo', FileResourceRepo);
@@ -63,6 +61,8 @@ export class SequelizeInjector {
         container.register('IUserRolesRepo', UserRolesRepo);
 
         container.register('IPropertyRulesRepo', PropertyRulesRepo);
+
+        container.register('IRoomAmenitiesRepo', RoomAmenitiesRepo);
 
     }
 

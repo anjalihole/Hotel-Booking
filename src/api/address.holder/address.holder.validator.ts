@@ -21,7 +21,6 @@ export class AddressHolderValidator {
 
        addressholderModel = {
             AddressId: body.AddressId ?? null,
-            HolderId: body. HolderId ?? null,
             HolderType: body.HolderType ?? null,
             AddressType:body.AddressType ?? null,
         };
@@ -30,7 +29,6 @@ export class AddressHolderValidator {
 
     static create = async (request: express.Request): Promise<AddressHolderDomainModel> => {
         await body('AddressId').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('HolderId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('HolderType').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('AddressType').exists().trim().escape().isLength({ min: 1 }).run(request);
         
@@ -53,21 +51,8 @@ export class AddressHolderValidator {
         return request.params.id;
     };
 
-    static getAllAddressHolder = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
     static update = async (request: express.Request): Promise<AddressHolderDomainModel> => {
         await body('AddressId').exists().trim().escape().isLength({ min: 1 }).run(request);
-        await body('HolderId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('HolderType').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('AddressType').exists().trim().escape().isLength({ min: 1 }).run(request);
 
@@ -80,8 +65,6 @@ export class AddressHolderValidator {
 
 static search = async (request: express.Request): Promise<AddressHolderSearchFilters> => {
     await query('AddressId').optional().trim().escape().run(request);
-
-    await query('HolderId').optional().trim().escape().run(request);
 
     await query('HolderType').optional().trim().escape().run(request);
 
@@ -104,7 +87,6 @@ static search = async (request: express.Request): Promise<AddressHolderSearchFil
 
         const filters: AddressHolderSearchFilters = {
             AddressId: request.query.AddressId ?? null,
-            HolderId: request.query.HolderId ?? null,
             HolderType: request.query.HolderType ?? null,
             AddressType: request.query.AddressType ?? null,
             OrderBy      : request.query.orderBy ?? 'CreatedAt',

@@ -48,35 +48,6 @@ export class FileResourceRepo implements IFileResourceRepo {
         }
     };
 
-    getAllFileResource = async (): Promise<FileResourceDto[]> => {
-        try {
-            const records = await FileResource.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await FileResourceMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (fileresource): FileResourceDto => {
-        if (fileresource == null) {
-            return null;
-        }
-        const dto: FileResourceDto = {
-
-                id: fileresource.id,
-                Name   : fileresource.Name,
-                MineType : fileresource.MineType,
-                StorageKey        : fileresource.StorageKey,
-                IsPublic        : fileresource.IsPublic,
-                Url : fileresource.Url,
-        };
-        return dto;
-    };
-
     search = async (filters: FileResourceSearchFilters): Promise<FileResourceSearchResults> => {
         try {
 
@@ -153,6 +124,7 @@ export class FileResourceRepo implements IFileResourceRepo {
 update = async (id: string,fileresourceDomainModel: FileResourceDomainModel): Promise<FileResourceDto> => {
             try {
                 const fileresource = await FileResource.findByPk(id);
+                
                 if (fileresourceDomainModel.Name ) {
                     fileresource.Name = fileresourceDomainModel.Name;
                 }

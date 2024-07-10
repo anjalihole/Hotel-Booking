@@ -34,10 +34,6 @@ export class ReservationOrderItemService {
         return await this._reservationorderitemRepo.getById(id);
     };
 
-    getAllReservationOrderItem = async (): Promise<ReservationOrderItemDto[]> => {
-        return await this._reservationorderitemRepo.getAllReservationOrderItem();
-    };
-
     update = async (id: string, reservationorderitemDomainModel: ReservationOrderItemDomainModel): Promise<ReservationOrderItemDto> => {
         return await this._reservationorderitemRepo.update(id, reservationorderitemDomainModel);
     };

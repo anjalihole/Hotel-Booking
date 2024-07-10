@@ -1,52 +1,154 @@
 {
 	"info": {
 		"_postman_id": "c5eb8031-c8df-4d19-bcf2-a9036692844a",
-		"name": "Hotel -Booking",
+		"name": "Hotel -Bookings",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "30252426"
 	},
 	"item": [
 		{
-			"name": "Customer",
+			"name": "User",
 			"item": [
 				{
 					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// var phonenumber = (Math.floor(Math.random() * 9000000000) + 1000000000).toString();\r",
+									"// var rand = (Math.floor(Math.random() * 900000) + 100000).toString();\r",
+									"// pm.environment.set(\"PHONE_NUMBER\", phonenumber);\r",
+									"// // pm.environment.set(\"Email\", `client.${rand}@nodomain.com`);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('FirstName');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('LastName');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('Email');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('Phone');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.User.FirstName).equals(\"Bhaskar\");\r",
+									"    pm.expect(jsonRes.Data.User.LastName).equals(\"Newase\");\r",
+									"    pm.expect(jsonRes.Data.User.Phone).equals('8888062253');\r",
+									"    pm.expect(jsonRes.Data.User.Email).equals('bhaskar@gmail.com');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"FirstName\": \"anjali b\",\r\n    \"LastName\": \"newase\",\r\n    \"Email\": \"anjali@gmail.com\",\r\n    \"Password\": \"123\",\r\n    \"Phone\": \"9975349144\",\r\n    \"Address\": \"pune\"\r\n}",
+							"raw": "{\r\n    \"FirstName\": \"Bhaskar\",\r\n    \"LastName\": \" Newase\",\r\n    \"Email\": \"bhaskar@gmail.com\",\r\n    \"Phone\": \"8888062253\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:7272/api/v1/api-customers"
+						"url": "http://localhost:7272/api/v1/user"
 					},
 					"response": []
 				},
 				{
 					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('FirstName');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('LastName');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('Email');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('Phone');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"FirstName\": \"anjali bhas\",\r\n    \"LastName\": \"newase\",\r\n    \"Email\": \"anjali@gmail.com\",\r\n    \"Password\": \"123\",\r\n    \"Phone\": \"9975349144\",\r\n    \"Address\": \"pune\"\r\n}",
+							"raw": "{\r\n    \"FirstName\": \"Siya\",\r\n    \"LastName\": \"Bhong\",\r\n    \"Email\": \"siya@gmail.com\",\r\n    \"Password\": \"2425252\",\r\n    \"Phone\": \"9975349144\",\r\n    \"Address\": \"Indapur\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:7272/api/v1/api-customers/e800cfcf-7126-46dd-803a-53706ef4179a"
+						"url": "http://localhost:7272/api/v1/user/549dec44-656e-42c4-aa84-bd7947b8c3a0"
 					},
 					"response": []
 				},
 				{
 					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -59,12 +161,48 @@
 								}
 							}
 						},
-						"url": "http://localhost:7272/api/v1/api-customers/18335ffb-3bf4-499c-8e82-553e19ed2d50"
+						"url": "http://localhost:7272/api/v1/user/eb7b8f5e-ace2-4841-b554-be83f3440ea8"
 					},
 					"response": []
 				},
 				{
 					"name": "Get by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('FirstName');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('LastName');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('Email');\r",
+									"    pm.expect(jsonRes.Data.User).to.have.property('Phone');\r",
+									"\r",
+									"    pm.expect(jsonRes.Data.User.FirstName).equals(\"Siya\");\r",
+									"    pm.expect(jsonRes.Data.User.LastName).equals(\"Bhong\");\r",
+									"    pm.expect(jsonRes.Data.User.Phone).equals('9975349144');\r",
+									"    pm.expect(jsonRes.Data.User.Email).equals('siya@gmail.com');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -73,57 +211,45 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"FirstName\": \"anjali\",\r\n    \"LastName\": \"newase\",\r\n    \"Email\": \"anjali@gmail.com\",\r\n    \"Password\": \"123\",\r\n    \"Phone\": \"9975349144\",\r\n    \"Address\": \"pune\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:7272/api/v1/api-customers/18335ffb-3bf4-499c-8e82-553e19ed2d50"
+						"url": "http://localhost:7272/api/v1/user/549dec44-656e-42c4-aa84-bd7947b8c3a0"
 					},
 					"response": []
 				},
 				{
-					"name": "Get All",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.UserRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"FirstName\": \"anjali\",\r\n    \"LastName\": \"newase\",\r\n    \"Email\": \"anjali@gmail.com\",\r\n    \"Password\": \"123\",\r\n    \"Phone\": \"9975349144\",\r\n    \"Address\": \"pune\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:7272/api/v1/api-customers/18335ffb-3bf4-499c-8e82-553e19ed2d50"
-					},
-					"response": []
-				},
-				{
-					"name": "Search with filters",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"FirstName\": \"anjali\",\r\n    \"LastName\": \"newase\",\r\n    \"Email\": \"anjali@gmail.com\",\r\n    \"Password\": \"123\",\r\n    \"Phone\": \"9975349144\",\r\n    \"Address\": \"pune\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:7272/api/v1/api-customers/search?FirstName=anjali&Phone=9975349144&Email=anjali@gmail.com",
+							"raw": "http://localhost:7272/api/v1/user/search?FirstName=Anjali&Email=anjali@gmail.com&LastName=Hole",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,24 +258,4257 @@
 							"path": [
 								"api",
 								"v1",
-								"api-customers",
+								"user",
 								"search"
 							],
 							"query": [
 								{
 									"key": "FirstName",
-									"value": "anjali"
-								},
-								{
-									"key": "Phone",
-									"value": "9975349144"
+									"value": "Anjali"
 								},
 								{
 									"key": "Email",
 									"value": "anjali@gmail.com"
+								},
+								{
+									"key": "LastName",
+									"value": "Hole"
 								}
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "Get by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Hotel retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Phone');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Email');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Description');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('OwnerUserId');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Photos');    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotel/19126e84-dab8-4ac1-b5a6-6849dd89d790"
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Hotel added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Email');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Phone');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Description');\r",
+									"    // pm.expect(jsonRes.Data.Hotel).to.have.property('CheckInTime');\r",
+									"    // pm.expect(jsonRes.Data.Hotel).to.have.property('CheckOutTime');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('OwnerUserId');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Photos')\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.Hotel.Name).equals(\"Hotel Dreamland\");\r",
+									"    pm.expect(jsonRes.Data.Hotel.Phone).equals('9999888803');\r",
+									"    pm.expect(jsonRes.Data.Hotel.Email).equals('dreamland@gmail.com');\r",
+									"    pm.expect(jsonRes.Data.Hotel.Description).equals(\"Explore the city of Pune even on a budget while enjoying the close proximity to Pune Railway Station for a well-connected stay in the heart of the city at Hotel Dreamland.\");\r",
+									"    pm.expect(jsonRes.Data.Hotel.CheckInTime).equals('2 PM');\r",
+									"    pm.expect(jsonRes.Data.Hotel.CheckOutTime).equals('12 PM');\r",
+									"    pm.expect(jsonRes.Data.Hotel.OwnerUserId).equals('8314cb9b-2c27-4f19-a040-69e620a90c17');\r",
+									"    // pm.expect(jsonRes.Data.Hotel.Photos).equals('true');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Hotel Dreamland\",\r\n    \"AddressId\":\"14b05bbc-0c4d-4eb9-aff8-ede9e157a5c3\",\r\n    \"Phone\":\"9999888803\",\r\n    \"Email\": \"dreamland@gmail.com\",\r\n    \"Description\":\"Explore the city of Pune even on a budget while enjoying the close proximity to Pune Railway Station for a well-connected stay in the heart of the city at Hotel Dreamland. \",\r\n    \"CheckInTime\":\"2 PM\",\r\n    \"CheckOutTime\":\"12 PM\",\r\n    \"OwnerUserId\":\"8314cb9b-2c27-4f19-a040-69e620a90c17\",\r\n    \"Photos\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotel/"
+					},
+					"response": []
+				},
+				{
+					"name": "Search with filters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Hotel By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/hotel/search?HotelName=Lemon Tree&Email=lemontree@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"hotel",
+								"search"
+							],
+							"query": [
+								{
+									"key": "HotelName",
+									"value": "Lemon Tree"
+								},
+								{
+									"key": "Email",
+									"value": "lemontree@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Description');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Email');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('Phone');\r",
+									"     pm.expect(jsonRes.Data.Hotel).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('CheckInTime');\r",
+									"    pm.expect(jsonRes.Data.Hotel).to.have.property('CheckOutTime');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Novotel  \",\r\n    \"AddressId\":\"593496af-35c8-4879-804e-970201fdcce5\",\r\n    \"Email\": \"novotel@gmail.com\",\r\n    \"Phone\":\"9999888804\",\r\n    \"Description\":\"This lavish property makes for a comfortable stay option with its stylish rooms, multiple dining venues, and easy connectivity to popular areas of the city.\",\r\n    \"CheckInTime\":\" 2 PM\",\r\n    \"CheckOutTime\":\"12 PM\",\r\n    \"OwnerUserId\":\"a16a9812-d9b8-4b8e-b363-92a7c1c4e334\",\r\n    \"Photos\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotel/2f94c252-a4bd-4e1c-9435-ee413a48f2b5"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Hotel deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelName\": \"Hyatt Hotel\",\r\n    \"Address\":\"Pune City\",\r\n    \"Phone\":\"9823266780\",\r\n    \"Email\": \"hyatt@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotel/b758d4d4-261a-4168-ab79-32795abb06d7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Payment added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('ReservationOrderId');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('TransactionStatus');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('Amount');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentMethod');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentConfirm');\r",
+									"    \r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.Payment.HotelId).equals(\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\");\r",
+									"    pm.expect(jsonRes.Data.Payment.ReservationOrderId).equals(\"5\");\r",
+									"    pm.expect(jsonRes.Data.Payment.Amount).equals(\"7000\");\r",
+									"    pm.expect(jsonRes.Data.Payment.PaymentMethod).equals(\"G-pay\");\r",
+									"    pm.expect(jsonRes.Data.Payment.PaymentConfirm).equals('No');\r",
+									"    pm.expect(jsonRes.Data.Payment.TransactionStatus).equals(\"Yes\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\",\r\n    \"ReservationOrderId\":\"5\",\r\n    \"PaymentDate\":\"28/4/2024\",\r\n    \"TransactionStatus\":\"Yes\",\r\n    \"Amount\":\"7000\",\r\n    \"PaymentMethod\":\"G-pay\",\r\n    \"PaymentConfirm\":\"No\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/payment/"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Payment updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('ReservationOrderId');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentDate');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('TransactionStatus');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('Amount');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentMethod');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentConfirm');\r",
+									"   \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"3409bf4e-0bf1-4acf-99d9-b1b59c144b08\",\r\n    \"PaymentDate\":\"1/5/2024\",\r\n    \"PaymentMethod\":\"G_pay\",\r\n    \"TransactionStatus\":\"Yes\",\r\n    \"ReservationOrderId\":\"4\",\r\n    \"Amount\":\"7000\",\r\n    \"PaymentConfirm\":\"Yes\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/payment/7450542e-318b-4280-9c79-9600560ab2e2"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('ReservationOrderId');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('TransactionStatus');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('Amount');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentMethod');\r",
+									"    pm.expect(jsonRes.Data.Payment).to.have.property('PaymentConfirm');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/payment/5eda4712-8c97-4c5b-a432-92d2963c5da5"
+					},
+					"response": []
+				},
+				{
+					"name": "search with filters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Payment By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.PaymentRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/payment/search?HotelId=19126e84-dab8-4ac1-b5a6-6849dd89d790",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"search"
+							],
+							"query": [
+								{
+									"key": "HotelId",
+									"value": "19126e84-dab8-4ac1-b5a6-6849dd89d790"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Payment deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/payment/8c69774e-b3ef-4df6-ad3d-e8eb7a41bf57",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"8c69774e-b3ef-4df6-ad3d-e8eb7a41bf57"
+							],
+							"query": [
+								{
+									"key": "PaymentDate",
+									"value": "8/3/2023",
+									"disabled": true
+								},
+								{
+									"key": "PaymentAmount",
+									"value": "4000",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Room added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('RoomNumber');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Phone');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Description');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Blocked');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Inventory');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('RoomTypesId');\r",
+									"\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.Room.Name).equals(\"Business Twin Room\");\r",
+									"    pm.expect(jsonRes.Data.Room.RoomNumber).equals(\"3\");\r",
+									"    pm.expect(jsonRes.Data.Room.Phone).equals('9999888803');\r",
+									"    pm.expect(jsonRes.Data.Room.Status).equals(\"Yes\");\r",
+									"    pm.expect(jsonRes.Data.Room.Description).equals(\"This double room features a electric kettle, flat-screen TV and air conditioning.\");\r",
+									"    pm.expect(jsonRes.Data.Room.Blocked).equals('False');\r",
+									"    pm.expect(jsonRes.Data.Room.RoomTypesId).equals('a76f4859-a12a-4946-baf7-b8a308467c60');\r",
+									"    pm.expect(jsonRes.Data.Room.Inventory).equals('Laptop safe,Desk,TV,Hypoallergenic,Minibar,Telephone');\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"Business Twin Room\",\r\n    \"Description\":\"This double room features a electric kettle, flat-screen TV and air conditioning.\",\r\n    \"RoomTypesId\":\"a76f4859-a12a-4946-baf7-b8a308467c60\",\r\n    \"RoomNumber\":\"3\",\r\n    \"Blocked\":\"False\",\r\n    \"Status\" :\"Yes\",\r\n    \"Inventory\":\"Laptop safe,Desk,TV,Hypoallergenic,Minibar,Telephone\",\r\n    \"Phone\":\" 9999888803\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/room/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\" Room Get retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('RoomNumber');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Phone');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('RoomTypesId');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Description');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Blocked');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Inventory');\r",
+									"\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/room/c7718f9e-a766-4d74-a327-810c3cb5eb64"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Room updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('RoomNumber');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Phone');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('RoomTypesId');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Description');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Blocked');\r",
+									"    pm.expect(jsonRes.Data.Room).to.have.property('Inventory');\r",
+									"   \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"Suite\",\r\n    \"RoomTypesId\":\"3b4fb7e7-f6d4-4efa-ab97-131713045d37\",\r\n    \"RoomNumber\":\"2\",\r\n    \"Blocked\":\"False\",\r\n    \"Status\" :\"Yes\",\r\n    \"Description\":\"This suite is air-conditioned and has a flat-screen TV with cable channels, a minibar, a tea and coffee maker and a wardrobe. The unit has 1 bed.\",\r\n    \"Inventory\":\"Tea/coffee maker .\",\r\n    \"Phone\":\"020-345683\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/room/61c405e8-cd90-48fb-8086-eda359619b2b"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Room deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/room/5317eab8-189f-48fd-9022-17a18db63570"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Room By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7272/api/v1/room/Search?Name=Twin Room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"room",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "Name",
+									"value": "Twin Room"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ReservationOrder",
+			"item": [
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrder retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CustomerUserId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('TotalCost');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CheckInDate');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CheckOutDate');\r",
+									"      pm.expect(jsonRes.Data.ReservationOrder).to.have.property('ReservationDateTime');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Discount');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Taxes');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('TotalPayable');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('AdvancePaid');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('AdvancePaymentDateTime');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('BookingStaffUserId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Penalties');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:7272/api/v1/reservationorder/dabb5ea1-6e50-45fa-9e8f-c13917fb9bf9"
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrder added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CustomerUserId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('TotalCost');\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CheckInDate');\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CheckOutDate');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('ReservationDateTime');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Discount');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Taxes');\r",
+									"     pm.expect(jsonRes.Data.ReservationOrder).to.have.property('TotalPayable');\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder).to.have.property('AdvancePaid');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('AdvancePaymentDateTime');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('BookingStaffUserId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Penalties');\r",
+									"\r",
+									"\r",
+									"\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.CustomerUserId).equals(\"e2cca585-07e5-4ba8-a709-efb15df85db8\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.TotalCost).equals(\"9000\");\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder.CheckInDate).equals('28April/2024');\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder.CheckOutDate).equals('30April/2024');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.ReservationDateTime).equals(\"2024-26-04 13:00:19\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.Status).equals(\"Yes\");\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder.Discount).equals('₹ 1,055');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.Taxes).equals('₹ 991');\r",
+									"     pm.expect(jsonRes.Data.ReservationOrder.TotalPayable).equals('₹ 4,000');\r",
+									"    // pm.expect(jsonRes.Data.ReservationOrder.AdvancePaid).equals\r",
+									"    // (\"1,055\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.AdvancePaymentDateTime).equals(\"2024-27-04 14:00:19\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.BookingStaffUserId).equals('eb7b8f5e-ace2-4841-b554-be83f3440ea8');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder.Penalties).equals('₹ 100');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CustomerUserId\":\"e2cca585-07e5-4ba8-a709-efb15df85db8\",\r\n    \"TotalCost\":\"9000\",\r\n    \"CheckInDate\":\"28/April/2024\",\r\n    \"CheckOutDate\":\"30/April/2024\",\r\n    \"ReservationDateTime\":\"2024-26-04 13:00:19\",\r\n    \"Status\":\"Yes\",\r\n    \"Discount\":\"₹ 1,055\",\r\n    \"Taxes\":\"₹ 991\",\r\n    \"TotalPayable\":\"₹ 4,000\",\r\n    \"AdvancePaid\":\"₹ 1,055\",\r\n    \"AdvancePaymentDateTime\":\"2024-27-04 14:00:19\",\r\n    \"BookingStaffUserId\":\"eb7b8f5e-ace2-4841-b554-be83f3440ea8\",\r\n    \"Penalties\":\"₹ 100\"\r\n\r\n\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorder/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrder updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CustomerUserId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('TotalCost');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CheckInDate');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('CheckOutDate');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('ReservationDateTime');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Discount');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Taxes');\r",
+									"   pm.expect(jsonRes.Data.ReservationOrder).to.have.property('TotalPayable');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('AdvancePaid');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('AdvancePaymentDateTime');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('BookingStaffUserId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrder).to.have.property('Penalties');\r",
+									"   \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CustomerUserId\":\"1816878d-e23e-4ca9-96a7-d6ac054b0293\",\r\n    \"TotalCost\":\"bdecb45d-b2d4-47eb-84df-d2015cee6fdb\",\r\n    \"CheckInDate\":\"22/4/2024\",\r\n    \"CheckOutDate\":\"24/4/2024\",\r\n    \"ReservationDateTime\":\"2024-21-04 13:00:19\",\r\n    \"Status\":\"Yes\",\r\n    \"Discount\":\"₹ 1,000\",\r\n    \"Taxes\":\"₹ 991\",\r\n    \"TotalPayable\":\"₹ 7000\",\r\n    \"AdvancePaid\":\"₹ 4091\",\r\n    \"AdvancePaymentDateTime\":\"2024-21-04 16:00:19\",\r\n    \"BookingStaffUserId\":\"45112ac8-c95c-49c2-a41a-8b04d7e08b24\",\r\n    \"Penalties\":\"₹ 200\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorder/dabb5ea1-6e50-45fa-9e8f-c13917fb9bf9"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrder By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/reservationorder/Search?CustomerUserId=e2cca585-07e5-4ba8-a709-efb15df85db8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"reservationorder",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "CustomerUserId",
+									"value": "e2cca585-07e5-4ba8-a709-efb15df85db8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrder deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorder/ac2a0999-f875-474c-8646-78733d449468"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('AddressLine1');\r",
+									"    // pm.expect(jsonRes.Data.Address).to.have.property('AddressLine2');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('Street');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('City');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('State');\r",
+									"\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.Address.AddressLine1).equals(\"Novotel Pune\");\r",
+									"    // pm.expect(jsonRes.Data.Address.AddressLine2).equals(\"Novotel Pune\");\r",
+									"    pm.expect(jsonRes.Data.Address.Street).equals('Nagar Road');\r",
+									"    pm.expect(jsonRes.Data.Address.City).equals('Pune');\r",
+									"    pm.expect(jsonRes.Data.Address.State).equals('Maharastra');\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AddressLine1\":\" Novotel Pune\",\r\n    \"AddressLine2\":\" Novotel Pune,\",\r\n    \"Street\":\"Nagar Road\",\r\n    \"City\":\"Pune\",\r\n    \"State\":\"Maharastra\",\r\n    \"Country\":\"India\",\r\n    \"ZipCode\":\"411001\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/address"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('AddressLine1');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('AddressLine2');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('Street');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('City');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('State');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('Country');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('ZipCode');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/address/14b05bbc-0c4d-4eb9-aff8-ede9e157a5c3"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.AddressRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7272/api/v1/address/Search?AddressLine1=Novotel Pune",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"address",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "AddressLine1",
+									"value": "Novotel Pune"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('AddressLine1');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('AddressLine2');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('Street');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('City');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('State');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('Country');\r",
+									"    pm.expect(jsonRes.Data.Address).to.have.property('ZipCode');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AddressLine1\":\"Baramati Bypass Road, Baramati, Baramati, 411014 Pune\",\r\n    \"AddressLine2\":\"Baramati\",\r\n    \"Street\":\"Nagar Bypass Road\",\r\n    \"City\":\"Pune\",\r\n    \"State\":\"Maharastra\",\r\n    \"Country\":\"India\",\r\n    \"ZipCode\":\"411014\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/address/d074047a-6e4a-4d96-84e6-aeb40c8146e1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AddressLine1\":\"Nagar Bypass Road, Kharadi, Kharadi, 411014 Pune\",\r\n    \"AddressLine2\":\"Kharadi\",\r\n    \"Street\":\"Nagar Bypass Road\",\r\n    \"City\":\"Pune\",\r\n    \"State\":\"Maharastra\",\r\n    \"Country\":\"India\",\r\n    \"ZipCode\":\"411014\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/address/bb8ffe73-48e7-443c-bb9b-2a54ded65b6a"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AddressHolder",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"AddressHolder added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('HolderType');\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('AddressType');\r",
+									"\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.AddressHolder.AddressId).equals(\"bb8ffe73-48e7-443c-bb9b-2a54ded65b6a\");\r",
+									"    pm.expect(jsonRes.Data.AddressHolder.HolderType).equals(\"String\");\r",
+									"    pm.expect(jsonRes.Data.AddressHolder.AddressType).equals(\"String\");\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AddressId\":\"bb8ffe73-48e7-443c-bb9b-2a54ded65b6a\",\r\n    \"HolderType\":\"String\",\r\n    \"AddressType\":\"String\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/addressholder"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"AddressHolder By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.AddressHolderRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7272/api/v1/addressholder/Search?AddressId=006a2d96-9e87-4fa2-bed4-8caa212d0d88",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"addressholder",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "AddressId",
+									"value": "006a2d96-9e87-4fa2-bed4-8caa212d0d88"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"AddressHolder retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('HolderType');\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('AddressType');\r",
+									"      \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/addressholder/6d702305-795c-4d7c-9344-cc5eea67deec"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"AddressHolder updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('HolderType');\r",
+									"    pm.expect(jsonRes.Data.AddressHolder).to.have.property('AddressType');\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AddressId\":\"c502ee42-db50-455c-a2ef-95c434acf34e\",\r\n    \"HolderId\":5,\r\n    \"HolderType\":\"String\",\r\n    \"AddressType\":\"String\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/addressholder/fc4c2eae-f6ef-4a41-9687-1e5baaca093f"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"AddressHolder deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:7272/api/v1/addressholder/00ff2ad1-bcb1-4b14-9736-bb1037370da7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('UserId');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('PAN');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('Aadhar');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.Customer.UserId).equals(\"549dec44-656e-42c4-aa84-bd7947b8c3a0\");\r",
+									"    pm.expect(jsonRes.Data.Customer.AddressId).equals(\"70ad4536-0091-4b73-9aca-6e6acda92c41\");\r",
+									"    pm.expect(jsonRes.Data.Customer.PAN).equals('ACBBHHJJ14');\r",
+									"    pm.expect(jsonRes.Data.Customer.Aadhar).equals('1234ABCDf');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"549dec44-656e-42c4-aa84-bd7947b8c3a0\",\r\n    \"AddressId\":\"70ad4536-0091-4b73-9aca-6e6acda92c41\",\r\n    \"PAN\":\"ACBBHHJJ14\",\r\n    \"Aadhar\":\"1234ABCDf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/customer"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.CustomerRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/customer/Search?UserId=549dec44-656e-42c4-aa84-bd7947b8c3a0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "UserId",
+									"value": "549dec44-656e-42c4-aa84-bd7947b8c3a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.environment.get(\"variable_key\");\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('UserId');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('PAN');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('Aadhar');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/customer/1816878d-e23e-4ca9-96a7-d6ac054b0293"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('UserId');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('AddressId');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('PAN');\r",
+									"    pm.expect(jsonRes.Data.Customer).to.have.property('Aadhar');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"3cb571b6-a283-4be3-b706-38f9e2be903d\",\r\n    \"AddressId\":\"86623913-a482-4951-b051-c8fd56fd57a3\",\r\n    \"PAN\":\"ACBBHHJJ11\",\r\n    \"Aadhar\":\"1234ABCDD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/customer/05b50f2a-7dee-466c-b2b6-f955d24333b1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/customer/7890c6bb-f099-42aa-9105-d2bc9f5a1333"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HotelAmenities",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelAmenities added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities).to.have.property('AminityName');\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities).to.have.property('HotelId');\r",
+									"   \r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.HotelAmenities.AminityName).equals(\"Kids Play Area\");\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities.HotelId).equals(\"b758d4d4-261a-4168-ab79-32795abb06d7\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AminityName\":\"Kids Play Area\",\r\n    \"HotelId\":\"b758d4d4-261a-4168-ab79-32795abb06d7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelamenities/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelAmenities retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities).to.have.property('AminityName');\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities).to.have.property('HotelId');\r",
+									"  \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelamenities/74ce71c3-a636-442d-9efc-28159275a893"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelAmenities updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities).to.have.property('AminityName');\r",
+									"    pm.expect(jsonRes.Data.HotelAmenities).to.have.property('HotelId');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AminityName\":\"Flat-screen TV\",\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelamenities/312b28d2-b432-4af5-8c1b-1aacdcfb730e"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelAmenities deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AminityName\":\"Flat-screen TV\",\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelamenities/d7dd9c21-2953-4ba8-80e7-b28523ec5238"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelAmenities By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelAmenitiesRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7272/api/v1/hotelamenities/Search?AminityName=Smoking Rooms&HotelId=3409bf4e-0bf1-4acf-99d9-b1b59c144b08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"hotelamenities",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "AminityName",
+									"value": "Smoking Rooms"
+								},
+								{
+									"key": "HotelId",
+									"value": "3409bf4e-0bf1-4acf-99d9-b1b59c144b08"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ReservationOrderItem",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('ReservationOrderId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('RoomId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('TotalDays');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Tax');\r",
+									"     pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Discount');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Cost');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem.ReservationOrderId).equals(\"f2174628-5eed-4164-b060-7d3bf9d55cfc\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem.RoomId).equals(\"70c638bf-e6d9-44f3-8be4-20c282dc1ec8\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem.TotalDays).equals(\"1\");\r",
+									"     pm.expect(jsonRes.Data.ReservationOrderItem.Tax).equals(\"₹ 750\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem.Discount).equals\r",
+									"    (\"₹ 400\");\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem.Cost).equals(\"₹ 8000\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ReservationOrderId\":\"f2174628-5eed-4164-b060-7d3bf9d55cfc\",\r\n    \"RoomId\":\"70c638bf-e6d9-44f3-8be4-20c282dc1ec8\",\r\n    \"TotalDays\":\"1\",\r\n    \"Tax\":\"₹ 750\",\r\n    \"Discount\":\"₹ 400\",\r\n    \"Cost\":\"₹ 8000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorderitem/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrderItem retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('ReservationOrderId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('RoomId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('TotalDays');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Tax');\r",
+									"     pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Discount');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Cost');\r",
+									"  \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ReservationOrderId\":\"db3a344e-5574-41a6-b66e-a26e99b20755\",\r\n    \"RoomId\":\"f7e7ebba-44bc-4df5-b85b-edff0e1792a1\",\r\n    \"TotalDays\":\"3\",\r\n    \"Tax\":\"6%\",\r\n    \"Discount\":\"20%\",\r\n    \"Cost\":\"15000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorderitem/ecf41a43-bed2-4ff9-9f07-5f1aafb85f67"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrderItem updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('ReservationOrderId');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('RoomId');\r",
+									"     pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('TotalDays');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Tax');\r",
+									"     pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Discount');\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItem).to.have.property('Cost');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ReservationOrderId\":\"dabb5ea1-6e50-45fa-9e8f-c13917fb9bf9\",\r\n    \"RoomId\":\"77083f96-d1b3-4952-9ace-c10c368421c4\",\r\n    \"TotalDays\":\"1\",\r\n    \"Tax\":\"₹ 750\",\r\n    \"Discount\":\"₹ 999\",\r\n    \"Cost\":\"5500\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorderitem/38e4201b-7a57-42c0-b6c8-fe9e62be12df"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrderItem By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.ReservationOrderItemRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/reservationorderitem/Search?ReservationOrderId=18d3132c-9b35-4c98-a6a3-4770005f8034&RoomId=50cf8ec8-08c4-4024-8338-38b11e30a186",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"reservationorderitem",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "ReservationOrderId",
+									"value": "18d3132c-9b35-4c98-a6a3-4770005f8034"
+								},
+								{
+									"key": "RoomId",
+									"value": "50cf8ec8-08c4-4024-8338-38b11e30a186"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ReservationOrderItem deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ReservationOrderId\":\"db3a344e-5574-41a6-b66e-a26e99b20755\",\r\n    \"RoomId\":\"f7e7ebba-44bc-4df5-b85b-edff0e1792a1\",\r\n    \"TotalDays\":\"3\",\r\n    \"Tax\":\"6%\",\r\n    \"Discount\":\"20%\",\r\n    \"Cost\":\"15000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/reservationorderitem/02ceea73-9fb2-47f4-b509-dee3dec66618"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Role added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Role).to.have.property('RoleName');\r",
+									"    pm.expect(jsonRes.Data.Role).to.have.property('Description');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.Role.RoleName).equals(\"Senior Manager\");\r",
+									"    pm.expect(jsonRes.Data.Role.Description).equals(\"ABCDE6\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"RoleName\":\"Senior Manager\",\r\n    \"Description\":\"ABCDE6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/role/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Role retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Role).to.have.property('RoleName');\r",
+									"    pm.expect(jsonRes.Data.Role).to.have.property('Description');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"RoleName\":\"Reception\",\r\n    \"Description\":\"hjmnhnmkaj\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/role/fec0d37a-05ff-4a98-92ff-92f03adefe8c"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Role updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.Role).to.have.property('RoleName');\r",
+									"    pm.expect(jsonRes.Data.Role).to.have.property('Description');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"RoleName\":\"Chef\",\r\n    \"Description\":\"ABCD5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/role/cdaf7a89-bda8-46fb-bf37-d3de116a25ff"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Role deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/role/b130e87d-3718-448c-b229-5de2b248889a"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Role By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoleRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/role/Search?RoleName=CookingStaff&Description=ABCDE2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "RoleName",
+									"value": "CookingStaff"
+								},
+								{
+									"key": "Description",
+									"value": "ABCDE2"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoomAmenities",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomAmenities added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('AmenityName');\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('HotelId');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.RoomAmenities.AmenityName).equals(\"Reading Lamp\");\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities.HotelId).equals(\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AmenityName\":\"Reading Lamp\",\r\n    \"RoomId\":\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\",\r\n    \"HotelId\":\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/roomamenities/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomAmenities retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('AmenityName');\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('RoomId');\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('HotelId');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:7272/api/v1/roomamenities/48524b54-46d6-42e4-8f5d-b65c08b77e8a"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomAmenities updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('AmenityName');\r",
+									"    pm.expect(jsonRes.Data.RoomAmenities).to.have.property('RoomId');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AmenityName\":\"Coffee maker\",\r\n    \"HotelId\":\"b758d4d4-261a-4168-ab79-32795abb06d7\",\r\n    \"RoomId\":\"77083f96-d1b3-4952-9ace-c10c368421c4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/roomamenities/48524b54-46d6-42e4-8f5d-b65c08b77e8a"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomAmenities By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomAmenitiesRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7272/api/v1/roomamenities/Search?AmenityName=Coffee maker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"roomamenities",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "AmenityName",
+									"value": "Coffee maker"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomAmenities deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:7272/api/v1/hotelamenities/49ec9a7d-1fb2-4cd9-8caf-e5fd4ddd1cd9"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FileResource",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FileResource added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('MineType');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('StorageKey');\r",
+									"    // pm.expect(jsonRes.Data.FileResource).to.have.property('IsPublic');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('Url');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.FileResource.Name).equals(\"string\");\r",
+									"    pm.expect(jsonRes.Data.FileResource.MineType).equals(\"string\");\r",
+									"    pm.expect(jsonRes.Data.FileResource.StorageKey).equals(\"string\");\r",
+									"    // pm.expect(jsonRes.Data.FileResource.IsPublic).equals(\"false\");\r",
+									"    pm.expect(jsonRes.Data.FileResource.Url).equals(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"string\",\r\n    \"MineType\":\"string\",\r\n    \"StorageKey\":\"string\",\r\n    \"IsPublic\":\"true\",\r\n    \"Url\":\"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/fileresource/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FileResource retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('MineType');\r",
+									"     pm.expect(jsonRes.Data.FileResource).to.have.property('StorageKey');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('IsPublic');\r",
+									"     pm.expect(jsonRes.Data.FileResource).to.have.property('Url');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"string\",\r\n    \"MineType\":\"string\",\r\n    \"StorageKey\":\"string\",\r\n    \"IsPublic\":\"false\",\r\n    \"Url\":\"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/fileresource/0a830748-c755-4b14-bd8c-df90297f386f"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FileResource updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('Name');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('MineType');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('StorageKey');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('IsPublic');\r",
+									"    pm.expect(jsonRes.Data.FileResource).to.have.property('Url');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"string\",\r\n    \"MineType\":\"string\",\r\n    \"StorageKey\":\"string\",\r\n    \"IsPublic\":\"false\",\r\n    \"Url\":\"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/fileresource/367c7e0a-e02c-4910-bc9c-9b1bee53de9c"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FileResource deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:7272/api/v1/fileresource/5d8646c3-1963-48e4-b0c8-4df617ba5de1"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"FileResource By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.FileResourceRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"string\",\r\n    \"MineType\":\"string\",\r\n    \"StorageKey\":\"string\",\r\n    \"IsPublic\":\"false\",\r\n    \"Url\":\"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/fileresource/Search?Name=string&MineType=string&StorageKey=string&IsPublic=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"fileresource",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "Name",
+									"value": "string"
+								},
+								{
+									"key": "MineType",
+									"value": "string"
+								},
+								{
+									"key": "StorageKey",
+									"value": "string"
+								},
+								{
+									"key": "IsPublic",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HotelPhotos",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FileResourceId\":\"dd72cb46-143e-4eaa-808b-9f26a53f2ef8\",\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"RoomTypeId\":\"f29debc2-3165-4ac5-b402-02c4c5a31491\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/api-hotelphotos/"
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FileResourceId\":\"dd72cb46-143e-4eaa-808b-9f26a53f2ef8\",\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"RoomTypeId\":\"f29debc2-3165-4ac5-b402-02c4c5a31491\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/api-hotelphotos/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HotelReview",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelReview added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewUserId');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('Rating');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewTitle');\r",
+									"    // pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewDescription');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewTimeStamp')\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.HotelReview.HotelId).equals(\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\");\r",
+									"    pm.expect(jsonRes.Data.HotelReview.Rating).equals(\"5.0\");\r",
+									"    pm.expect(jsonRes.Data.HotelReview.ReviewTitle).equals(\"Overall good experience.\");\r",
+									"    // pm.expect(jsonRes.Data.HotelReview.ReviewDescription).equals(\"Staff were too good.. \");\r",
+									"    pm.expect(jsonRes.Data.HotelReview.ReviewTimeStamp).equals(\"2024-04-24T18:30:00.000Z\");\r",
+									"    pm.expect(jsonRes.Data.HotelReview.ReviewUserId).equals(\"4\");\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e\",\r\n    \"ReviewUserId\":\"4\",\r\n    \"Rating\":\"5.0\",\r\n    \"ReviewTitle\":\"Overall good experience.\",\r\n    \"ReviewDescription\":\"Staff were too good..\",\r\n    \"ReviewTimeStamp\":\"2024-April-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelreview/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelReview retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewUserId');\r",
+									"     pm.expect(jsonRes.Data.HotelReview).to.have.property('Rating');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewTitle');\r",
+									"     pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewDescription');\r",
+									"      pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewTimeStamp');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"ReviewUserId\":\"bf16d2c0-5a99-46ef-b9c9-fce9c1ce99e6\",\r\n    \"Rating\":\"3\",\r\n    \"ReviewTitle\":\"Place\",\r\n    \"ReviewDescription\":\"rooms are okay. service is good. i am here in pune for a visit to a company \",\r\n    \"ReviewTimeStamp\":\"(Stayed 4 Dec, 2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelreview/6a1317cf-9000-4d59-a8fd-7d919ff53cae"
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelReview By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelReviewRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"ReviewUserId\":\"bf16d2c0-5a99-46ef-b9c9-fce9c1ce99e6\",\r\n    \"Rating\":\"3\",\r\n    \"ReviewTitle\":\"Place\",\r\n    \"ReviewDescription\":\"rooms are okay. service is good. i am here in pune for a visit to a company \",\r\n    \"ReviewTimeStamp\":\"(Stayed 4 Dec, 2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/hotelreview/Search?HotelId=d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e&ReviewUserId=4&Rating=5.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"hotelreview",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "HotelId",
+									"value": "d1ef7472-e31c-441a-bf0e-7dcd77b3ee7e"
+								},
+								{
+									"key": "ReviewUserId",
+									"value": "4"
+								},
+								{
+									"key": "Rating",
+									"value": "5.0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelReview updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewUserId');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('Rating');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewTitle');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewDescription');\r",
+									"    pm.expect(jsonRes.Data.HotelReview).to.have.property('ReviewTimeStamp');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"6ed38c4b-19f6-4430-9ff9-3c2a2473e8b6\",\r\n    \"ReviewUserId\":\"039ad847-5756-4f29-b59b-e5fafe3b7b7a\",\r\n    \"Rating\":\"2\",\r\n    \"ReviewTitle\":\"Food quality\",\r\n    \"ReviewDescription\":\"Had quite a pleasant stay \",\r\n    \"ReviewTimeStamp\":\"2024-April-28\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelreview/f1a7d62d-0638-48b3-a788-55219abcbb69"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HotelReview deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"ReviewUserId\":\"bf16d2c0-5a99-46ef-b9c9-fce9c1ce99e6\",\r\n    \"Rating\":\"3\",\r\n    \"ReviewTitle\":\"Place\",\r\n    \"ReviewDescription\":\"rooms are okay. service is good. i am here in pune for a visit to a company \",\r\n    \"ReviewTimeStamp\":\"(Stayed 4 Dec, 2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/hotelreview/e077380a-5d9e-4a49-8cf2-54abca7e541e"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PropertyRules",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"PropertyRules added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('RulesName');\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('Description');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.PropertyRules.RulesName).equals(\"Outside food is not allowed\");\r",
+									"    pm.expect(jsonRes.Data.PropertyRules.HotelId).equals(\"b758d4d4-261a-4168-ab79-32795abb06d7\");\r",
+									"    pm.expect(jsonRes.Data.PropertyRules.Description).equals('Extra-person charges may apply and vary depending on property policy|Government-issued photo identification');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"b758d4d4-261a-4168-ab79-32795abb06d7\",\r\n    \"RulesName\":\"Outside food is not allowed\",\r\n    \"Description\":\"Extra-person charges may apply and vary depending on property policy|Government-issued photo identification \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/propertyrules/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"PropertyRules retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('RulesName');\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('Description');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"RulesName\":\"Pet(s) Related\",\r\n    \"Description\":\"Pets are allowed.There are pets living on the property .\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/propertyrules/e915477c-bd9e-47e1-88ea-a4cdeeb47b0c"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"PropertyRules updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('HotelId');\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('RulesName');\r",
+									"    pm.expect(jsonRes.Data.PropertyRules).to.have.property('Description'); \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"2f94c252-a4bd-4e1c-9435-ee413a48f2b5\",\r\n    \"RulesName\":\"Unmarried couples allowed\",\r\n    \"Description\":\"Unmarried couples allowed.Guests below 18 years of age are not allowed at the property\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/propertyrules/a461324d-2cfa-415a-aeb0-225f62bea00a"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"PropertyRules By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.PropertyRulesRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/propertyrules/Search?HotelId=19126e84-dab8-4ac1-b5a6-6849dd89d790",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"propertyrules",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "HotelId",
+									"value": "19126e84-dab8-4ac1-b5a6-6849dd89d790"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"PropertyRules deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"HotelId\":\"87bf1fa2-6d75-45d8-bfb6-8d2053d32f41\",\r\n    \"RulesName\":\"Pet(s) Related\",\r\n    \"Description\":\"Pets are allowed.There are pets living on the property .\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/propertyrules/4097e6ae-39dd-4ca3-8694-c126dee7ba19"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserRoles",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UserRoles added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.UserRoles).to.have.property('UserId');\r",
+									"    pm.expect(jsonRes.Data.UserRoles).to.have.property('RoleId');\r",
+									"  \r",
+									"    pm.expect(jsonRes.Data.UserRoles.UserId).equals(\"8314cb9b-2c27-4f19-a040-69e620a90c17\");\r",
+									"    pm.expect(jsonRes.Data.UserRoles.RoleId).equals(\"fec0d37a-05ff-4a98-92ff-92f03adefe8c\");\r",
+									"   \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"8314cb9b-2c27-4f19-a040-69e620a90c17\",\r\n    \"RoleId\":\"fec0d37a-05ff-4a98-92ff-92f03adefe8c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/userroles/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UserRoles retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.UserRoles).to.have.property('UserId');\r",
+									"    pm.expect(jsonRes.Data.UserRoles).to.have.property('RoleId');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:7272/api/v1/userroles/195ccd04-bf20-43a8-90b0-c268cafd1589"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UserRoles updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.UserRoles).to.have.property('UserId');\r",
+									"    pm.expect(jsonRes.Data.UserRoles).to.have.property('RoleId');\r",
+									"\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"9c4da9dc-0ffe-4348-a3fc-e43963cc76b7\",\r\n    \"RoleId\":\"694332ff-4c6d-4861-8ddd-bb527db13610\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/userroles/a6d08387-7f18-4d35-9188-b728c6a7aca2"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UserRoles By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.UserRolesRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/userroles/Search?UserId=8314cb9b-2c27-4f19-a040-69e620a90c17&RoleId=fec0d37a-05ff-4a98-92ff-92f03adefe8c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"userroles",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "UserId",
+									"value": "8314cb9b-2c27-4f19-a040-69e620a90c17"
+								},
+								{
+									"key": "RoleId",
+									"value": "fec0d37a-05ff-4a98-92ff-92f03adefe8c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UserRules deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7272/api/v1/userroles/bd3ac4d8-9749-4793-82b2-915be8d9a43a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"userroles",
+								"bd3ac4d8-9749-4793-82b2-915be8d9a43a"
+							],
+							"query": [
+								{
+									"key": "UserId",
+									"value": "06fa338f-fe20-46e1-a3ff-71e46ca82e08",
+									"disabled": true
+								},
+								{
+									"key": "RoleId",
+									"value": "5220729e-cc94-4a85-be68-a5d98ff571dc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoomTypes",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomTypes added successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('TypeName');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('TypeDescription');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('StandardRate');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('Options');\r",
+									"    \r",
+									"    pm.expect(jsonRes.Data.RoomTypes.TypeName).equals(\"Deluxe Twin Room Non Smoking\");\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.TypeDescription).equals(\"TAY IN 336 FT 2 SPACIOUS AND ELEGANTLY DESIGNED ROOM. THIS ROOM OFFERS FREE WI FI LCD MINI BAR TWIN BED CITY VIEW IRON AND IRONING BOARD. SHOWER CUBICLE. SMOKING ROOMS AVAILABLE ON REQUEST.\");\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.StandardRate).equals('5000');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.Options).equals('Room With Free Cancellation');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TypeName\":\"Deluxe Twin Room Non Smoking\",\r\n    \"TypeDescription\":\"TAY IN 336 FT 2 SPACIOUS AND ELEGANTLY DESIGNED ROOM. THIS ROOM OFFERS FREE WI FI LCD MINI BAR TWIN BED CITY VIEW IRON AND IRONING BOARD. SHOWER CUBICLE. SMOKING ROOMS AVAILABLE ON REQUEST.\",\r\n    \"StandardRate\":\"5000\",\r\n    \"Options\":\"Room With Free Cancellation\",\r\n    \"OccupancyAdult\":\"2\",\r\n    \"OccupancyChildren\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/roomtypes/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomTypes retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('TypeName');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('TypeDescription');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('StandardRate');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('Options');\r",
+									"\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.TypeName).equals(\"Executive Studio with Kitchenette\");\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.TypeDescription).equals(\"The room boasts pool or city views, floor-to-ceiling window. Watch the latest shows or listen to music with in-room media such as 32-inch LCD TV. Step straight into your rooms swanky bathroom fitted with luxury bath products, marble flooring.\");\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.StandardRate).equals('5000');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes.Options).equals('Room With Free Cancellation | Breakfast only');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/roomtypes/639e9cf7-54b1-4d31-85f1-7bc211117956"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"}\r",
+									"catch (error) {\r",
+									"    console.log(error.message);\r",
+									"}\r",
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomTypes updated successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('TypeName');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('TypeDescription');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('StandardRate');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('Options');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('OccupancyAdult');\r",
+									"    pm.expect(jsonRes.Data.RoomTypes).to.have.property('OccupancyChildren');\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TypeName\":\"Executive Suite\",\r\n    \"TypeDescription\":\"A contemporary ambience and a separate living room as well as a bedroom, these suites are tailor made for greater comfort\",\r\n    \"StandardRate\":\"7000\",\r\n    \"Options\":\"  Free Breakfast, Lunch and Dinner | Free Cancellation\",\r\n    \"OccupancyAdult\":\"2\",\r\n    \"OccupancyChildren\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/roomtypes/518c86b9-9359-4084-a86d-79bafd9fdfd8"
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomTypes By Name retrieved successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Data.RoomTypesRecords.Items.length).to.be.greaterThan(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7272/api/v1/roomtypes/Search?TypeName=Studio King Room&StandardRate=4892",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7272",
+							"path": [
+								"api",
+								"v1",
+								"roomtypes",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "TypeName",
+									"value": "Studio King Room"
+								},
+								{
+									"key": "StandardRate",
+									"value": "4892"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request is successfull\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes.Status).to.eql('success');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"RoomTypes deleted successfully\", function () {\r",
+									"    var jsonRes = pm.response.json();\r",
+									"    pm.expect(jsonRes).to.have.property('Status');\r",
+									"    pm.expect(jsonRes.Status).to.equal('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TypeName\":\"Studio King Room\",\r\n    \"TypeDescription\":\"Studio King Rooms come with King beds, modern amenities and free WiFi* to make your stay comfortable and relaxing\",\r\n    \"StandardRate\":\"4892\",\r\n    \"Options\":\" Free Breakfast and Lunch/Dinner | Free Cancellation\",\r\n    \"OccupancyAdult\":\"2\",\r\n    \"OccupancyChildren\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7272/api/v1/roomtypes/8c10f3c3-3449-48a1-b1c8-f76ccf639eea"
 					},
 					"response": []
 				}

@@ -14,13 +14,13 @@ import { register as registerHotelAmenitiesRoutes } from './hotel.amenities/hote
 import { register as registerReservationOrderRoutes } from './reservation.order/reservation.order.routes';
 import { register as registerReservationOrderItemRoutes } from './reservation.order.item/reservation.order.item.routes';
 import { register as registerRoleRoutes } from './role/role.routes';
-import { register as registerRoomAmenitiesRoutes } from './room.amenities/room.amenities.routes';
 import { register as registerRoomTypesRoutes } from './room.types/room.types.routes';
 import { register as registerFileResourceRoutes } from './file.resource/file.resource.routes';
 import { register as registerHotelPhotosRoutes } from './hotel.photos/hotel.photos.routes';
 import { register as registerHotelReviewRoutes } from './hotel.review/hotel.review.routes';
 import { register as registerUserRolesRoutes } from './user.roles/user.roles.routes';
 import { register as registerPropertyRulesRoutes } from './property.rules/property.rules.routes';
+import { register as registerRoomAmenitiesRoutes } from './room.amenities/room.amenities.routes';
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,13 +53,13 @@ export class Router {
                 registerReservationOrderRoutes(this._app);
                 registerReservationOrderItemRoutes(this._app);
                 registerRoleRoutes(this._app);
-                registerRoomAmenitiesRoutes(this._app);
                 registerRoomTypesRoutes(this._app);
                 registerFileResourceRoutes(this._app);
                 registerHotelPhotosRoutes(this._app);
                 registerHotelReviewRoutes(this._app);
                 registerUserRolesRoutes(this._app);
                 registerPropertyRulesRoutes(this._app);
+                registerRoomAmenitiesRoutes(this._app);
                 
                 resolve(true);
             } catch (error) {

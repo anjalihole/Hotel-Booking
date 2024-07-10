@@ -12,8 +12,6 @@ export interface IPropertyRulesRepo {
 
         getById(id: string): Promise<PropertyRulesDto>;
 
-        getAllPropertyRules(): Promise<PropertyRulesDto[]>;
-
         update(id: string, PropertyRulesDomainModel: PropertyRulesDomainModel): Promise<PropertyRulesDto>;
 
         search(filters: PropertyRulesSearchFilters): Promise<PropertyRulesSearchResults>;

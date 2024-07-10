@@ -12,8 +12,6 @@ export interface IFileResourceRepo {
 
          getById(id: string): Promise<FileResourceDto>;
 
-         getAllFileResource(): Promise<FileResourceDto[]>;
-
          update(id: string, FileResourceDomainModel: FileResourceDomainModel): Promise<FileResourceDto>;
 
          search(filters: FileResourceSearchFilters): Promise<FileResourceSearchResults>;

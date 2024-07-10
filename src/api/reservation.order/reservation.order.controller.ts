@@ -36,7 +36,7 @@ export class ReservationOrderController {
             if (reservationorder == null) {
                 throw new ApiError(400, 'Unable to create ReservationOrder.');
             }
-            ResponseHandler.success(request, response, 'ReservationOrder Api added successfully!', 201, {
+            ResponseHandler.success(request, response, ' Api ReservationOrder  added successfully!', 201, {
                 ReservationOrder: reservationorder,
             });
         } catch (error) {
@@ -55,24 +55,8 @@ export class ReservationOrderController {
             if (reservationorder == null) {
                 throw new ApiError(404, 'ReservationOrder not found.');
             }
-            ResponseHandler.success(request, response, 'ReservationOrder Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api ReservationOrder  retrieved successfully!', 200, {
                 ReservationOrder: reservationorder,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllReservationOrder = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'ReservationOrder.GetAllReservationOrder';
-
-            const reservationorder = await this._service.getAllReservationOrder();
-            if (reservationorder == null) {
-                throw new ApiError(404, 'ReservationOrder not found.');
-            }
-            ResponseHandler.success(request, response, '  All ReservationOrder  Api retrieved successfully!', 200, {
-            ReservationOrder: reservationorder,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -89,7 +73,7 @@ export class ReservationOrderController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} ReservationOrder Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count}  Api ReservationOrder  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
                 ReservationOrderRecords: searchResults,
@@ -108,9 +92,9 @@ export class ReservationOrderController {
             const domainModel = await ReservationOrderValidator.update(request);
             const reservationorder = await this._service.update(id, domainModel);
             if (reservationorder == null) {
-                throw new ApiError(404, ' ReservationOrder Api not found.');
+                throw new ApiError(404, 'Api ReservationOrder  not found.');
             }
-            ResponseHandler.success(request, response, ' ReservationOrder Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api ReservationOrder  updated successfully!', 200, {
                 ReservationOrder: reservationorder,
             });
         } catch (error) {
@@ -124,7 +108,7 @@ export class ReservationOrderController {
 
             const id: string = await ReservationOrderValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'ReservationOrder Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, ' Api ReservationOrder  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

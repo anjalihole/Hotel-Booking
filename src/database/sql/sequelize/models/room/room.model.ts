@@ -62,7 +62,7 @@ export default class Room extends Model {
         type: DataType.STRING(500),
         allowNull: false,
     })
-    RoomTypeId: string;
+    RoomTypesId: string;
 
     @Column({
         type: DataType.STRING(256),
@@ -71,11 +71,12 @@ export default class Room extends Model {
     RoomNumber: string;
 
     @Column({
-        type: DataType.STRING(16),
-        allowNull: true,
+        type         : DataType.BOOLEAN,
+        allowNull    : true,
+        defaultValue : false,
     })
-    Blocked: string;
-
+    Blocked: boolean;
+    
     @Length({ max: 32 })
     @Column({
         type         : DataType.STRING(32),

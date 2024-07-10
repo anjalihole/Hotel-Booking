@@ -52,36 +52,6 @@ export class AddressRepo implements IAddressRepo {
         }
     };
 
-    getAllAddress = async (): Promise<AddressDto[]> => {
-        try {
-            const records = await Address.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await PaymentMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (address): AddressDto => {
-        if (address == null) {
-            return null;
-        }
-        const dto: AddressDto = {
-            id: address.addressId,
-            AddressLine1: address.AddressLine1,
-            AddressLine2: address.AddressLine2,
-            Street: address.Street,
-            City: address.City,
-            State: address.State,
-            Country: address.Country,
-            ZipCode: address.ZipCode,
-        };
-        return dto;
-    };
-
     search = async (filters: AddressSearchFilters): Promise<AddressSearchResults> => {
         try {
 

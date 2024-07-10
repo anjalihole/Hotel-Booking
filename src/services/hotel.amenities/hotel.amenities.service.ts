@@ -34,10 +34,6 @@ export class HotelAmenitiesService {
         return await this._hotelamenitiesRepo.getById(id);
     };
 
-    getAllHotelAmenities = async (): Promise<HotelAmenitiesDto[]> => {
-        return await this._hotelamenitiesRepo.getAllHotelAmenities();
-    };
-
     update = async (id: string, hotelamenitiesDomainModel: HotelAmenitiesDomainModel): Promise<HotelAmenitiesDto> => {
         return await this._hotelamenitiesRepo.update(id, hotelamenitiesDomainModel);
     };

@@ -36,7 +36,7 @@ export class AddressHolderController {
             if (addressholder == null) {
                 throw new ApiError(400, 'Unable to create Address.');
             }
-            ResponseHandler.success(request, response, 'AddressHolder Api added successfully!', 201, {
+            ResponseHandler.success(request, response, ' Api AddressHolder added successfully!', 201, {
                 AddressHolder: addressholder,
             });
         } catch (error) {
@@ -55,26 +55,8 @@ export class AddressHolderController {
             if (addressholder == null) {
                 throw new ApiError(404, 'AddressHolder not found.');
             }
-            ResponseHandler.success(request, response, 'AddressHolder Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api AddressHolder  retrieved successfully!', 200, {
                 AddressHolder: addressholder,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllAddressHolder = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'AddressHolder.GetAllHotel';
-
-             //const id:string = await AddressHolderValidator.getAllAddressHolder(request);
-
-            const address = await this._service.getAllAddressHolder();
-            if (address == null) {
-                throw new ApiError(404, 'AddressHolder not found.');
-            }
-            ResponseHandler.success(request, response, '  All AddressHolder  Api retrieved successfully!', 200, {
-            Address: address,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -91,10 +73,10 @@ export class AddressHolderController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} AddressHolder Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api AddressHolder  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                HotelRecords: searchResults,
+                AddressHolderRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -110,9 +92,9 @@ export class AddressHolderController {
             const domainModel = await AddressHolderValidator.update(request);
             const addressholder = await this._service.update(id, domainModel);
             if (addressholder == null) {
-                throw new ApiError(404, 'Address Api not found.');
+                throw new ApiError(404, ' Api Address  not found.');
             }
-            ResponseHandler.success(request, response, ' AddressHolder Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, '  Api AddressHolder  updated successfully!', 200, {
                 AddressHolder: addressholder,
             });
         } catch (error) {
@@ -126,7 +108,7 @@ export class AddressHolderController {
 
             const id: string = await AddressHolderValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'AddressHolder Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, ' Api AddressHolder  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

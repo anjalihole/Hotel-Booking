@@ -48,9 +48,9 @@ export default class RoomTypes extends Model {
     })
     TypeName: string;
 
-    @Length({ min: 1, max: 200 })
+    @Length({ min: 1, max: 600 })
     @Column({
-        type: DataType.STRING(200),
+        type: DataType.STRING(600),
         allowNull: false,
     })
    TypeDescription: string;
@@ -69,16 +69,16 @@ export default class RoomTypes extends Model {
     })
     Options: string;
 
-    @Length({ min: 1, max: 10 })
+    @Length({ min: 1, max: 64 })
     @Column({
-        type: DataType.STRING(10),
+        type: DataType.STRING(64),
         allowNull: true,
     })
     OccupancyAdult: string;
 
-    @Length({ min: 1, max: 10 })
+    @Length({ min: 1, max: 64 })
     @Column({
-        type: DataType.STRING(10),
+        type: DataType.STRING(64),
         allowNull: true,
     })
     OccupancyChildren: string;

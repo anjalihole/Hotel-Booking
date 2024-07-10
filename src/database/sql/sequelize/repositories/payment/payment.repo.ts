@@ -29,9 +29,8 @@ export class PaymentRepo implements IPaymentRepo {
                 Amount: paymentDomainModel.Amount,
                 PaymentMethod: paymentDomainModel.PaymentMethod,
                 TransactionStatus: paymentDomainModel.TransactionStatus,
-                ReservationId: paymentDomainModel.ReservationId,
+                ReservationOrderId: paymentDomainModel.ReservationOrderId,
                 PaymentConfirm: paymentDomainModel.PaymentConfirm,
-                PaymentId: paymentDomainModel.PaymentId,
             };
             const payment = await Payment.create(entity);
             const dto = await paymentMapper.toDto(payment);
@@ -51,37 +50,6 @@ export class PaymentRepo implements IPaymentRepo {
             Logger.instance().log(error.message);
             throw new ApiError(500, error.message);
         }
-    };
-
-    getAllPayment = async (): Promise<PaymentDto[]> => {
-        try {
-            const records = await Payment.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await PaymentMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (payment): PaymentDto => {
-        if (payment == null) {
-            return null;
-        }
-        const dto: PaymentDto = {
-            id: payment.paymentId,
-            PaymentDate: payment.PaymentDate,
-            HotelId: payment.HotelId,
-            Amount: payment.Amount,
-            PaymentMethod: payment.PaymentMethod,
-            TransactionStatus: payment.TransactionStatus,
-            ReservationId: payment.ReservationId,
-            PaymentConfirm: payment.PaymentConfirm,
-            PaymentId: payment.PaymentId,
-        };
-        return dto;
     };
 
     search = async (filters: PaymentSearchFilters): Promise<PaymentSearchResults> => {
@@ -105,14 +73,11 @@ export class PaymentRepo implements IPaymentRepo {
                 search.where['TransactionStatus'] = filters.TransactionStatus;
             }
 
-            if (filters.ReservationId != null) {
-                search.where['ReservationId'] = filters.ReservationId;
+            if (filters.ReservationOrderId != null) {
+                search.where['ReservationOrderId'] = filters.ReservationOrderId;
             }
             if (filters.PaymentConfirm != null) {
                 search.where['PaymentConfirm'] = filters.PaymentConfirm;
-            }
-            if (filters.PaymentId != null) {
-                search.where['PaymentId'] = filters.PaymentId;
             }
 
             const orderByColum = 'CreatedAt';
@@ -186,14 +151,11 @@ update = async (id: string, paymentDomainModel: PaymentDomainModel): Promise<Pay
                     payment.TransactionStatus = paymentDomainModel.TransactionStatus;
                 }
 
-                if (paymentDomainModel.ReservationId != null) {
-                    payment.ReservationId = paymentDomainModel.ReservationId;
+                if (paymentDomainModel.ReservationOrderId != null) {
+                    payment.ReservationOrderId = paymentDomainModel.ReservationOrderId;
                 }
                 if (paymentDomainModel.PaymentConfirm != null) {
                     payment.PaymentConfirm = paymentDomainModel.PaymentConfirm;
-                }
-                if (paymentDomainModel.PaymentId != null) {
-                    payment.PaymentId = paymentDomainModel.PaymentId;
                 }
                
                 await payment.save();

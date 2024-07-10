@@ -8,7 +8,6 @@ import { AddressHolderDto } from './address.holder.dto';
 export interface AddressHolderSearchFilters {
     id?: string;
     AddressId : string;
-    HolderId: string;
     HolderType: string;
     AddressType: string;
     OrderBy      : string;

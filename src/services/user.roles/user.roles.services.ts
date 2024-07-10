@@ -32,10 +32,6 @@ export class UserRolesService {
         return await this._userrolesRepo.getById(id);
     };
 
-    getAllUserRoles = async (): Promise<UserRolesDto[]> => {
-        return await this._userrolesRepo.getAllUserRoles();
-    };
-
     update = async (id: string, userrolesDomainModel: UserRolesDomainModel): Promise<UserRolesDto> => {
         return await this._userrolesRepo.update(id, userrolesDomainModel);
     };

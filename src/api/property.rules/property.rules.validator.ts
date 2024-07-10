@@ -16,6 +16,7 @@ export class PropertyRulesValidator {
         let propertyrulesModel: PropertyRulesDomainModel = null;
 
         propertyrulesModel = {
+            id:body.id ?? null,
             RulesName: body.RulesName || null,
             HotelId: body.HotelId ?? null,
             Description: body.Description ?? null,
@@ -36,35 +37,7 @@ export class PropertyRulesValidator {
         return PropertyRulesValidator.getDomainModel(request.body);
     };
 
-    static search = async (request: express.Request): Promise<PropertyRulesSearchFilters> => {
-
-        await query('RulesName').optional().trim().escape().run(request);
-
-        await query('HotelId').optional().trim().escape().run(request);
-
-        await query('Description').optional().trim().escape().run(request);
-
-        const result = validationResult(request);
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return PropertyRulesValidator.getFilter(request);
-    };
-
     static getById = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
-    static getAllPropertyRules = async (request: express.Request): Promise<string> => {
         await param('id').trim().escape().isUUID().run(request);
 
         const result = validationResult(request);
@@ -100,6 +73,22 @@ export class PropertyRulesValidator {
 
         return request.params.id;
     };
+    
+    static search = async (request: express.Request): Promise<PropertyRulesSearchFilters> => {
+
+        await query('RulesName').optional().trim().escape().run(request);
+
+        await query('HotelId').optional().trim().escape().run(request);
+
+        await query('Description').optional().trim().escape().run(request);
+
+        const result = validationResult(request);
+        if (!result.isEmpty()) {
+            Helper.handleValidationError(result);
+        }
+
+        return PropertyRulesValidator.getFilter(request);
+    };
 
     private static getFilter(request): PropertyRulesSearchFilters {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -110,7 +99,7 @@ export class PropertyRulesValidator {
 
         const filters: PropertyRulesSearchFilters = {
 
-            RulesName: request.query.RulesName || null,
+            RulesName: request.query.RulesName ?? null,
             HotelId: request.query.HotelId ?? null,
             Description: request.query.Description ?? null,
             OrderBy      : request.query.orderBy ?? 'CreatedAt',

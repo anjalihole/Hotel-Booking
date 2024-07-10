@@ -13,13 +13,10 @@ import {
     DeletedAt,
     IsUUID,
     PrimaryKey,
-    ForeignKey,
-    BelongsTo,
 
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
-import User from '../user/user.model';
 
 //import { Helper } from '../../../../../common/helper';
 
@@ -44,17 +41,12 @@ export default class Customer extends Model {
         allowNull: false,
     })
     id: string;
-   
-    @IsUUID(4)
-    @ForeignKey(() => User)
+
     @Column({
         type      : DataType.UUID,
         allowNull : false,
     })
     UserId: string;
-
-    @BelongsTo(() => User)
-    User: User;
 
     @Column({
         type: DataType.STRING(64),

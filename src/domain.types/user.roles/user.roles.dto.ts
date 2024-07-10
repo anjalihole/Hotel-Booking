@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 
 export interface UserRolesDto {
-    Id?: string;
+    id?: string;
     UserId: string;
-    RoleId: number;
+    RoleId: string;
 }

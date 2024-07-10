@@ -40,7 +40,7 @@ export default class User extends Model {
         },
         allowNull: false,
     })
-    Id: string;
+    id: string;
 
     @Length({ min: 1, max: 64 })
     @Column({

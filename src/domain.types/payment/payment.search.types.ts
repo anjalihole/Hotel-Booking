@@ -12,8 +12,7 @@ export interface PaymentSearchFilters {
     Amount: string;
     PaymentMethod: string;
     TransactionStatus: string;
-    PaymentId: string;
-    ReservationId: string;
+    ReservationOrderId: string;
     PaymentConfirm: string;
     OrderBy      : string;
     Order        : string;

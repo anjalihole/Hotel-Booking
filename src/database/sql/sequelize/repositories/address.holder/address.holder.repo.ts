@@ -1,4 +1,6 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable linebreak-style */
 /* eslint-disable key-spacing */
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
@@ -25,7 +27,6 @@ export class AddressHolderRepo implements IAddressHolderRepo {
         try {
             const entity = {
                 AddressId : addressholderDomainModel.AddressId,
-                HolderId: addressholderDomainModel.HolderId,
                 HolderType: addressholderDomainModel.HolderType,
                 AddressType: addressholderDomainModel.AddressType,
                 
@@ -50,34 +51,6 @@ export class AddressHolderRepo implements IAddressHolderRepo {
         }
     };
 
-    getAllAddressHolder = async (): Promise<AddressHolderDto[]> => {
-        try {
-            const records = await AddressHolder.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await AddressHolderMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (addressholder): AddressHolderDto => {
-        if (addressholder == null) {
-            return null;
-        }
-        const dto: AddressHolderDto = {
-            id: addressholder.addressholderId,
-            AddressId: addressholder.AddressId,
-            HolderId: addressholder.HolderId,
-            HolderType: addressholder.HolderType,
-            AddressType: addressholder.AddressType,
-            
-        };
-        return dto;
-    };
-
     search = async (filters: AddressHolderSearchFilters): Promise<AddressHolderSearchResults> => {
         try {
 
@@ -86,9 +59,7 @@ export class AddressHolderRepo implements IAddressHolderRepo {
             if (filters.AddressId != null) {
                 search.where['AddressId'] = filters.AddressId;
             }
-            if (filters.HolderId != null) {
-                search.where['HolderId'] = { [Op.like]: '%' + filters.HolderId + '%' };
-            }
+    
             if (filters.HolderType != null) {
                 search.where['HolderType'] = filters.HolderType;
             }
@@ -154,9 +125,6 @@ export class AddressHolderRepo implements IAddressHolderRepo {
                 addressholder.AddressId = addressholderDomainModel.AddressId;
             }
 
-            if (addressholderDomainModel.HolderId != null) {
-                addressholder.HolderId = addressholderDomainModel.HolderId;
-            }
             if (addressholderDomainModel.HolderType != null) {
                 addressholder.HolderType = addressholderDomainModel.HolderType;
             }

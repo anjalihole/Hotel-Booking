@@ -13,10 +13,11 @@ export class RoomMapper {
             return null;
         }
         const dto: RoomDto = {
+            id: room.id,
             Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
-            RoomTypeId: room.RoomTypeId,
+            RoomTypesId: room.RoomTypesId,
             Status: room.Status,
             Description: room.Description,
             Blocked: room.Blocked,
@@ -30,10 +31,11 @@ export class RoomMapper {
             return null;
         }
         const dto: RoomDto = {
+            id: room.id,
             Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
-            RoomTypeId: room.RoomTypeId,
+            RoomTypesId: room.RoomTypesId,
             Status: room.Status,
             Description: room.Description,
             Blocked: room.Blocked,

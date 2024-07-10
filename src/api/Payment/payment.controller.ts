@@ -36,7 +36,7 @@ export class PaymentController {
             if (payment == null) {
                 throw new ApiError(400, 'Unable to create payment.');
             }
-            ResponseHandler.success(request, response, 'Payment Api added successfully!', 201, {
+            ResponseHandler.success(request, response, ' Api Payment  added successfully!', 201, {
                 Payment: payment,
             });
         } catch (error) {
@@ -55,26 +55,8 @@ export class PaymentController {
             if (payment == null) {
                 throw new ApiError(404, 'Payment not found.');
             }
-            ResponseHandler.success(request, response, 'Payment Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Payment  retrieved successfully!', 200, {
                 Payment: payment,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllPayment = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Payment.GetAllHotel';
-
-             //const id:string = await PaymentValidator.getAllPayment(request);
-
-            const payment = await this._service.getAllPayment();
-            if (payment == null) {
-                throw new ApiError(404, 'Payment not found.');
-            }
-            ResponseHandler.success(request, response, '  All Payment  Api retrieved successfully!', 200, {
-            Payment: payment,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -91,10 +73,10 @@ export class PaymentController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} Payment Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api Payment  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                HotelRecords: searchResults,
+                PaymentRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -112,7 +94,7 @@ export class PaymentController {
             if (payment == null) {
                 throw new ApiError(404, 'Payment Api not found.');
             }
-            ResponseHandler.success(request, response, ' Payment Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Payment  updated successfully!', 200, {
                 Payment: payment,
             });
         } catch (error) {
@@ -126,7 +108,7 @@ export class PaymentController {
 
             const id: string = await PaymentValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Payment Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, 'Api Payment  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

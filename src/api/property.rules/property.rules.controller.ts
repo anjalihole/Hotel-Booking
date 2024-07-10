@@ -36,8 +36,8 @@ export class PropertyRulesController {
             if (propertyrules == null) {
                 throw new ApiError(400, 'Unable to create Property Rules.');
             }
-            ResponseHandler.success(request, response, 'Property Rules Api added successfully!', 201, {
-                PeopertyRules: propertyrules,
+            ResponseHandler.success(request, response, ' Api Property Rules  added successfully!', 201, {
+                PropertyRules: propertyrules,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -55,24 +55,8 @@ export class PropertyRulesController {
             if (propertyrules == null) {
                 throw new ApiError(404, 'Property Rules not found.');
             }
-            ResponseHandler.success(request, response, 'Property Rules Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Property Rules  retrieved successfully!', 200, {
                 PropertyRules: propertyrules,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllPropertyRules = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Property Rules.GetAllPropertRules';
-
-            const propertyrules = await this._service.getAllPropertyRules();
-            if (propertyrules == null) {
-                throw new ApiError(404, 'Property Rulesnot found.');
-            }
-            ResponseHandler.success(request, response, '  All Property RulesApi retrieved successfully!', 200, {
-            PropertyRules: propertyrules,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -89,10 +73,10 @@ export class PropertyRulesController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} Hotel Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count}  Api Hotel  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                HotelRecords: searchResults,
+                PropertyRulesRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -110,7 +94,7 @@ export class PropertyRulesController {
             if (propertyrules == null) {
                 throw new ApiError(404, ' Property RulesApi not found.');
             }
-            ResponseHandler.success(request, response, ' Property Rules Review Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, '  Api Property Rules Review  updated successfully!', 200, {
                 PropertyRules: propertyrules,
             });
         } catch (error) {
@@ -124,7 +108,7 @@ export class PropertyRulesController {
 
             const id: string = await PropertyRulesValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Property Rules Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, ' Api Property Rules  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

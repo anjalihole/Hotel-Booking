@@ -23,7 +23,7 @@ export class ReservationOrderValidator {
             CheckOutDate: body.CheckOutDate ?? null,
             ReservationDateTime: body.ReservationDateTime || null,
             Status: body.Status ?? null,
-            Discount: body.CheckInDate ?? null,
+            Discount: body.Discount ?? null,
             Taxes: body.Taxes ?? null,
             TotalPayable: body.TotalPayable || null,
             AdvancePaid: body.AdvancePaid ?? null,
@@ -59,18 +59,6 @@ export class ReservationOrderValidator {
     };
 
     static getById = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
-
-    static getAllReservationOrder = async (request: express.Request): Promise<string> => {
         await param('id').trim().escape().isUUID().run(request);
 
         const result = validationResult(request);

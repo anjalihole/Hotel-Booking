@@ -12,8 +12,6 @@ export interface IHotelPhotosRepo {
 
         getById(id: string): Promise<HotelPhotosDto>;
 
-        getAllHotelPhotos(): Promise<HotelPhotosDto[]>;
-
         update(id: string, HotelPhotosDomainModel: HotelPhotosDomainModel): Promise<HotelPhotosDto>;
 
         search(filters: HotelPhotosSearchFilters): Promise<HotelPhotosSearchResults>;

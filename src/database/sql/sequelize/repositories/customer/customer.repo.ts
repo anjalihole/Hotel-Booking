@@ -46,33 +46,6 @@ export class CustomerRepo implements ICustomerRepo {
         }
     };
 
-    getAllCustomer = async (): Promise<CustomerDto[]> => {
-        try {
-            const records = await Customer.findAll();
-            const dtos = records.map((record) => this.toDto(record));
-            return dtos;
-            // const dto = await CustomerMapper.toDto(records);
-            // return dto;
-        } catch (error) {
-            Logger.instance().log(error.message);
-            throw new ApiError(500, error.message);
-        }
-    };
-
-    toDto = (customer): CustomerDto => {
-        if (customer == null) {
-            return null;
-        }
-        const dto: CustomerDto = {
-                id: customer.id,
-                UserId   : customer.UserId,
-                AddressId : customer.AddressId,
-                PAN       : customer.PAN,
-                Aadhar    : customer.Aadhar,
-        };
-        return dto;
-    };
-
     search = async (filters: CustomerSearchFilters): Promise<CustomerSearchResults> => {
         try {
 

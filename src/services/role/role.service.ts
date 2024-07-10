@@ -32,10 +32,6 @@ export class RoleService {
         return await this._roleRepo.getById(id);
     };
 
-    getAllRole = async (): Promise<RoleDto[]> => {
-        return await this._roleRepo.getAllRole();
-    };
-
     update = async (id: string, roleDomainModel: RoleDomainModel): Promise<RoleDto> => {
         return await this._roleRepo.update(id, roleDomainModel);
     };

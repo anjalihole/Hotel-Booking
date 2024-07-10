@@ -36,7 +36,7 @@ export class HotelReviewController {
             if (hotelreview == null) {
                 throw new ApiError(400, 'Unable to create hotel review.');
             }
-            ResponseHandler.success(request, response, 'Hotel Review Api added successfully!', 201, {
+            ResponseHandler.success(request, response, ' Api Hotel Review  added successfully!', 201, {
                 HotelReview: hotelreview,
             });
         } catch (error) {
@@ -55,24 +55,8 @@ export class HotelReviewController {
             if (hotelreview == null) {
                 throw new ApiError(404, 'Hotel Review not found.');
             }
-            ResponseHandler.success(request, response, 'Hotel Review Api retrieved successfully!', 200, {
+            ResponseHandler.success(request, response, ' Api Hotel Review  retrieved successfully!', 200, {
                 HotelReview: hotelreview,
-            });
-        } catch (error) {
-            ResponseHandler.handleError(request, response, error);
-        }
-    };
-
-    getAllHotelReview = async (request: express.Request, response: express.Response): Promise<void> => {
-        try {
-            request.context = 'Hotel Review.GetAllHotelReview';
-
-            const hotelreview = await this._service.getAllHotelReview();
-            if (hotelreview == null) {
-                throw new ApiError(404, 'Hotel Review not found.');
-            }
-            ResponseHandler.success(request, response, '  All hotel review Api retrieved successfully!', 200, {
-            HotelReview: hotelreview,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -89,10 +73,10 @@ export class HotelReviewController {
             const searchResults = await this._service.search(filters);
             const count = searchResults.Items.length;
             const message =
-                count === 0 ? 'No records found!' : `Total ${count} Hotel Api records retrieved successfully!`;
+                count === 0 ? 'No records found!' : `Total ${count} Api Hotel Review  records retrieved successfully!`;
 
             ResponseHandler.success(request, response, message, 200, {
-                HotelRecords: searchResults,
+                HotelReviewRecords: searchResults,
             });
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
@@ -108,9 +92,9 @@ export class HotelReviewController {
             const domainModel = await HotelReviewValidator.update(request);
             const hotelreview = await this._service.update(id, domainModel);
             if (hotelreview == null) {
-                throw new ApiError(404, ' Hotel Api not found.');
+                throw new ApiError(404, 'Api Hotel Review  not found.');
             }
-            ResponseHandler.success(request, response, ' Hotel Review Api updated successfully!', 200, {
+            ResponseHandler.success(request, response, 'Api Hotel Review  updated successfully!', 200, {
                 HotelReview: hotelreview,
             });
         } catch (error) {
@@ -124,7 +108,7 @@ export class HotelReviewController {
 
             const id: string = await HotelReviewValidator.getById(request);
             await this._service.delete(id);
-            ResponseHandler.success(request, response, 'Hotel Review Api deleted successfully!', 200, null);
+            ResponseHandler.success(request, response, ' Api Hotel Review  deleted successfully!', 200, null);
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }

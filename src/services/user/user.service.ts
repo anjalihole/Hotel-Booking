@@ -31,10 +31,6 @@ export class UserService {
         return await this._userRepo.getById(id);
     };
 
-    getAllUser = async (): Promise<UserDto[]> => {
-        return await this._userRepo.getAllUser();
-    };
-
     update = async (id: string, userDomainModel: UserDomainModel): Promise<UserDto> => {
         return await this._userRepo.update(id, userDomainModel);
     };

@@ -12,8 +12,6 @@ export interface ICustomerRepo {
 
         getById(id: string): Promise<CustomerDto>;
 
-        getAllCustomer(): Promise<CustomerDto[]>;
-
         update(id: string, CustomerDomainModel: CustomerDomainModel): Promise<CustomerDto>;
 
         search(filters: CustomerSearchFilters): Promise<CustomerSearchResults>;

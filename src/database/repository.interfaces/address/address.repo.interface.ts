@@ -12,8 +12,6 @@ export interface IAddressRepo {
 
          getById(id: string): Promise<AddressDto>;
 
-         getAllAddress(): Promise<AddressDto[]>;
-
          update(id: string, AddressDomainModel: AddressDomainModel): Promise<AddressDto>;
 
          search(filters: AddressSearchFilters): Promise<AddressSearchResults>;

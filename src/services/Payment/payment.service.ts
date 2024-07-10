@@ -35,10 +35,6 @@ export class PaymentService {
         return await this._paymentRepo.getById(id);
     };
 
-    getAllPayment = async (): Promise<PaymentDto[]> => {
-        return await this._paymentRepo.getAllPayment();
-    };
-
     update = async (id: string, PaymentDomainModel: PaymentDomainModel): Promise<PaymentDto> => {
         return await this._paymentRepo.update(id, PaymentDomainModel);
     };

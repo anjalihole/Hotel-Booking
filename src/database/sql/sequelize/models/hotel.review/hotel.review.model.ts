@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable padded-blocks */
-/* eslint-disable linebreak-style */
 /* eslint-disable key-spacing */
+/* eslint-disable padded-blocks */
 /* eslint-disable linebreak-style */
 import {
     Table,
@@ -14,21 +13,19 @@ import {
     IsUUID,
     PrimaryKey,
     Length,
+    ForeignKey,
+    BelongsTo,
 } from 'sequelize-typescript';
-
 import { v4 } from 'uuid';
-//import { Helper } from '../../../../../common/helper';
-
-///////////////////////////////////////////////////////////////////////
+import Hotel from '../hotel/hotel.model';
 
 @Table({
     timestamps: true,
     modelName: 'HotelReview',
-    tableName: 'hotel.review',
+    tableName: 'hotel.review',  // Corrected table name
     paranoid: true,
     freezeTableName: true,
 })
-// eslint-disable-next-line padded-blocks
 export default class HotelReview extends Model {
     @IsUUID(4)
     @PrimaryKey
@@ -41,11 +38,15 @@ export default class HotelReview extends Model {
     })
     id: string;
 
+    @ForeignKey(() => Hotel)
     @Column({
-        type: DataType.STRING(500),
+        type: DataType.UUID,
         allowNull: false,
     })
     HotelId: string;
+
+    @BelongsTo(() => Hotel)
+    Hotel: Hotel;
 
     @Column({
         type: DataType.STRING(500),
@@ -61,20 +62,20 @@ export default class HotelReview extends Model {
 
     @Length({ max: 128 })
     @Column({
-        type      : DataType.STRING(128),
-        allowNull : false,
+        type: DataType.STRING(128),
+        allowNull: false,
     })
     ReviewTitle: string;
 
     @Column({
-        type: DataType.STRING(100),
+        type: DataType.STRING(1000),
         allowNull: false,
     })
     ReviewDescription: string;
 
     @Column({
-        type      : DataType.DATE,
-        allowNull : false,
+        type: DataType.DATE,
+        allowNull: false,
     })
     ReviewTimeStamp: Date;
 
@@ -88,4 +89,3 @@ export default class HotelReview extends Model {
     @DeletedAt
     DeletedAt: Date;
 }
-

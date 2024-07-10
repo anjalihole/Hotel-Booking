@@ -18,7 +18,6 @@ export class UserRolesValidator {
         userrolesModel = {
             UserId: body.UserId ?? null,
             RoleId: body.RoleId ?? null,
-         
         };
         return userrolesModel;
     };
@@ -26,7 +25,7 @@ export class UserRolesValidator {
     static create = async (request: express.Request): Promise<UserRolesDomainModel> => {
         await body('UserId').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
         await body('RoleId').exists().trim().escape().isLength({ min: 1 }).isLength({ max: 64 }).run(request);
-
+        
         const result = validationResult(request);
         if (!result.isEmpty()) {
             Helper.handleValidationError(result);
@@ -45,18 +44,6 @@ export class UserRolesValidator {
 
             return request.params.id;
         };
-        
-    static getAllUserRoles = async (request: express.Request): Promise<string> => {
-        await param('id').trim().escape().isUUID().run(request);
-
-        const result = validationResult(request);
-
-        if (!result.isEmpty()) {
-            Helper.handleValidationError(result);
-        }
-
-        return request.params.id;
-    };
 
     static update = async (request: express.Request): Promise<UserRolesDomainModel> => {
         await body('UserId').exists().trim().escape().isLength({ min: 1 }).run(request);
@@ -103,7 +90,6 @@ export class UserRolesValidator {
             request.query.itemsPerPage !== 'undefined' ? parseInt(request.query.itemsPerPage as string, 10) : 25;
 
         const filters: UserRolesSearchFilters = {
-    
             UserId: request.query.UserId || null,
             RoleId: request.query.RoleId || null,
             OrderBy      : request.query.orderBy || 'CreatedAt',

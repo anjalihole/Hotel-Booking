@@ -12,8 +12,6 @@ export interface IPaymentRepo {
 
          getById(id: string): Promise<PaymentDto>;
 
-         getAllPayment(): Promise<PaymentDto[]>;
-
          update(id: string, PaymentDomainModel: PaymentDomainModel): Promise<PaymentDto>;
 
          search(filters: PaymentSearchFilters): Promise<PaymentSearchResults>;
