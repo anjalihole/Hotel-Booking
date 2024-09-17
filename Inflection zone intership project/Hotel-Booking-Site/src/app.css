@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* app.css */
+.container {
+    max-width: 1200px;
+  }
+  
+  .list-disc {
+    list-style-type: disc;
+    margin-left: 1.5em;
+  }
+  
+  .text-gray-700 {
+    color: #4a5568;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .grid {
+    display: grid;
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  
+  .gap-4 {
+    gap: 1rem;
+  }
+  
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  
+  .row-span-2 {
+    grid-row: span 2 / span 2;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .bg-black {
+    background-color: black;
+  }
+  
+  .bg-opacity-50 {
+    opacity: 0.5;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .font-bold {
+    font-weight: bold;
+  }
+  
