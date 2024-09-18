@@ -4,6 +4,7 @@ export interface RoomDomainModel {
     Name: string;
     RoomNumber: string;
     RoomTypesId: string;
+    HotelId: string;
     Description: string;
     Blocked: boolean;
     Status: string;
@@ -14,6 +15,7 @@ export interface ApiRoomVerificationDomainModel {
     Name: string;
     RoomNumber: string;
     RoomTypesId: string;
+    HotelId: string;
     Description: string;
     Blocked: boolean;
     Status: string;

@@ -15,10 +15,12 @@ import {
     PrimaryKey,
     Length,
     IsEmail,
+    BeforeCreate,
+    BeforeUpdate,
 } from 'sequelize-typescript';
 
 import { v4 } from 'uuid';
-//import { Helper } from '../../../../../common/helper';
+import * as bcrypt from 'bcrypt';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -71,6 +73,13 @@ export default class User extends Model {
     })
     Email: string;
 
+    @Length({ min: 8 }) // Ensures password has a minimum length
+    @Column({
+        type: DataType.STRING(256), // Increased length for hashed password
+        allowNull: false,
+    })
+    Password: string;
+
     @Column
     @CreatedAt
     CreatedAt: Date;
@@ -80,5 +89,13 @@ export default class User extends Model {
 
     @DeletedAt
     DeletedAt: Date;
-}
 
+    // @BeforeCreate
+    // @BeforeUpdate
+    // static async hashPassword(user: User) {
+    //     if (user.changed('Password')) {
+    //         const salt = await bcrypt.genSalt(10);
+    //         user.Password = await bcrypt.hash(user.Password, salt);
+    //     }
+    // }
+}

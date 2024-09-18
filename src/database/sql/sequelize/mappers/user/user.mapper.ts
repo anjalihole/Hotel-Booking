@@ -2,7 +2,7 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
-import { UserDto } from '/../src/domain.types/user/user.dto';
+import { UserDto, UserDtoToken } from '/../src/domain.types/user/user.dto';
 import User from '../../models/user/user.model';
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +18,7 @@ export class UserMapper {
             LastName: user.LastName,
             Phone: user.Phone,
             Email: user.Email,
+            Password: user.Password,
         };
         return dto;
     };
@@ -33,6 +34,21 @@ export class UserMapper {
             Phone: user.Phone,
             Email: user.Email,
     
+        };
+        return dto;
+    };
+
+    static toUserDtoToken = (user: User): UserDtoToken => {
+        if (user == null) {
+            return null;
+        }
+        const dto: UserDtoToken = {
+            id : user.id,
+            FirstName: user.FirstName,
+            LastName: user.LastName,
+            Phone: user.Phone,
+            Email: user.Email,
+            Password: user.Password,
         };
         return dto;
     };

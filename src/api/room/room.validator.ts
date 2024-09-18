@@ -19,6 +19,7 @@ export class RoomValidator {
             Name: body.Name ?? null,
             Phone: body.Phone ?? null,
             RoomTypesId: body. RoomTypesId ?? null,
+            HotelId:body.HotelId ?? null,
             RoomNumber: body.RoomNumber ?? null,
             Description: body.Description ?? null,
             Blocked: body.Blocked ?? null,
@@ -32,6 +33,7 @@ export class RoomValidator {
     static create = async (request: express.Request): Promise<RoomDomainModel> => {
         await body('Name').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('RoomTypesId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
         await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Blocked').exists().trim().escape().isLength({ min: 1 }).run(request);
@@ -61,6 +63,7 @@ export class RoomValidator {
     static update = async (request: express.Request): Promise<RoomDomainModel> => {
         await body('Name').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('RoomTypesId').exists().trim().escape().isLength({ min: 1 }).run(request);
+        await body('HotelId').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Phone').exists().trim().escape().isLength({ min: 10 }).run(request);
         await body('RoomNumber').exists().trim().escape().isLength({ min: 1 }).run(request);
         await body('Blocked').exists().trim().escape().isLength({ min: 1 }).run(request);
@@ -97,6 +100,8 @@ export class RoomValidator {
 
         await query('RoomTypesId').optional().trim().escape().run(request);
 
+        await query('HotelId').optional().trim().escape().run(request);
+
         await query('Status').optional().trim().escape().run(request);
 
         await query('Description').optional().trim().escape().run(request);
@@ -124,6 +129,7 @@ export class RoomValidator {
             RoomNumber: request.query.RoomNumber || null,
             Phone: request.query.Phone || null,
             RoomTypesId: request.query.RoomTypesId || null,
+            HotelId: request.query.HotelId || null,
             Name: request.query.Name || null,
             Status: request.query.Status || null,
             Description: request.query.Description || null,

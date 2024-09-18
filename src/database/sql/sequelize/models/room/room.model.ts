@@ -65,6 +65,12 @@ export default class Room extends Model {
     RoomTypesId: string;
 
     @Column({
+        type: DataType.STRING(500),
+        allowNull: false,
+    })
+    HotelId: string;
+
+    @Column({
         type: DataType.STRING(256),
         allowNull: true,
     })

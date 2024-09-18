@@ -5,6 +5,7 @@ export interface RoomDto {
     Name: string;
     RoomNumber: string;
     RoomTypesId: string;
+    HotelId: string;
     Description: string;
     Blocked: boolean;
     Status: string;

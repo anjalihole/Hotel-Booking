@@ -14,6 +14,7 @@ export class RoomMapper {
         }
         const dto: RoomDto = {
             id: room.id,
+            HotelId: room.HotelId,
             Name: room.Name,
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
@@ -36,6 +37,7 @@ export class RoomMapper {
             RoomNumber: room.RoomNumber,
             Phone: room.Phone,
             RoomTypesId: room.RoomTypesId,
+            HotelId: room.HotelId,
             Status: room.Status,
             Description: room.Description,
             Blocked: room.Blocked,

@@ -26,6 +26,7 @@ export class RoomRepo implements IRoomRepo {
                 Name     : roomDomainModel.Name ?? null,
                 RoomNumber   : roomDomainModel.RoomNumber,
                 RoomTypesId : roomDomainModel.RoomTypesId,
+                HotelId : roomDomainModel.HotelId,
                 Phone        : roomDomainModel.Phone,
                 Description     : roomDomainModel.Description ?? null,
                 Blocked     : roomDomainModel.Blocked ?? null,
@@ -76,6 +77,10 @@ export class RoomRepo implements IRoomRepo {
             }
             if (filters.RoomTypesId != null) {
                 search.where['RoomTypesId'] = filters.RoomTypesId;
+            }
+
+            if (filters.HotelId != null) {
+                search.where['HotelId'] = filters.HotelId;
             }
 
             if (filters.Description != null) {
@@ -157,6 +162,10 @@ update = async (id: string, roomDomainModel: RoomDomainModel): Promise<RoomDto> 
                 }
                 if (roomDomainModel.RoomTypesId != null) {
                     room.RoomTypesId = roomDomainModel.RoomTypesId;
+                }
+
+                if (roomDomainModel.HotelId != null) {
+                    room.HotelId = roomDomainModel.HotelId;
                 }
                 if (roomDomainModel.Phone != null) {
                     room.Phone = roomDomainModel.Phone;

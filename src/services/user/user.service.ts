@@ -6,14 +6,9 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable linebreak-style */
 import { inject, injectable } from 'tsyringe';
-//import { ApiError } from '../../common/api.error';
 import { UserDomainModel } from '../../domain.types/user/user.domain.model';
 import { UserDto } from '../../domain.types/user/user.dto';
 import { IUserRepo } from '../../database/repository.interfaces/user/user.repo.interface';
-// import { generate } from 'generate-password';
-// import { Helper } from '../../common/helper';
-// import { CurrentClient } from '../../domain.types/miscellaneous/current.client';
-//import * as apikeyGenerator from 'uuid-apikey';
 import { UserSearchFilters,UserSearchResults} from '../../domain.types/user/user.search.types';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +20,10 @@ export class UserService {
     create = async (userDomainModel: UserDomainModel): Promise<UserDto> => {
         
         return await this._userRepo.create(userDomainModel);
+    };
+
+    loginWithPassword = async (userDetails: UserDomainModel): Promise<any> => {
+        return await this._userRepo.login(userDetails);
     };
 
     getById = async (id: string): Promise<UserDto> => {

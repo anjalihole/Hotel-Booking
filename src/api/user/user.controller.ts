@@ -5,7 +5,6 @@
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 import express from 'express';
-
 import { UserService } from '../../services/user/user.service';
 import { ResponseHandler } from '../../common/response.handler';
 import { Loader } from '../../startup/loader';
@@ -13,11 +12,7 @@ import { Authorizer } from '../../auth/authorizer';
 import { UserValidator } from './user.validator';
 import { ApiError } from '../../common/api.error';
 
-///////////////////////////////////////////////////////////////////////////////////////
-
 export class UserController {
-    //#region member variables and constructors
-
     _service: UserService = null;
 
     _authorizer: Authorizer = null;
@@ -26,8 +21,6 @@ export class UserController {
         this._service = Loader.container.resolve(UserService);
         this._authorizer = Loader.authorizer;
     }
-
-    //#endregion
 
     create = async (request: express.Request, response: express.Response): Promise<void> => {
         try {
@@ -61,6 +54,44 @@ export class UserController {
             ResponseHandler.success(request, response, 'Api user retrieved successfully!', 200, {
                 User: user,
             });
+        } catch (error) {
+            ResponseHandler.handleError(request, response, error);
+        }
+    };
+
+    loginWithPassword = async (request: express.Request, response: express.Response): Promise<void> => {
+        try {
+            request.context = 'User.LoginWithPassword';
+
+            const loginObject = await UserValidator.loginWithPassword(request);
+            const userDetails = await this._service.loginWithPassword(loginObject);
+            if (userDetails == null) {
+                ResponseHandler.failure(request, response, 'User not found!', 404);
+                return;
+            }
+
+            // const user: UserDetailsDto = userDetails.user;
+            // const accessToken = userDetails.accessToken;
+            // const refreshToken = userDetails.refreshToken;
+
+            // const isProfileComplete = user.Person.FirstName &&
+            // user.Person.LastName &&
+            // user.Person.Gender &&
+            // user.Person.BirthDate ? true : false;
+
+            const message = `User '${userDetails.FirstName}' logged in successfully!`;
+            // const data = {
+            //     AccessToken       : accessToken,
+            //     RefreshToken      : refreshToken,
+            //     User              : user,
+            //     RoleId            : user.RoleId,
+            //     IsProfileComplete : isProfileComplete,
+            //     SessionId         : userDetails.sessionId,
+            //     SessionValidTill  : userDetails.sessionValidTill
+            // };
+
+            ResponseHandler.success(request, response, message, 200, userDetails, true);
+
         } catch (error) {
             ResponseHandler.handleError(request, response, error);
         }
