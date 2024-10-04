@@ -6,7 +6,7 @@
     import 'flatpickr/dist/flatpickr.css';
     import { onMount } from 'svelte';
     import Multiselect from 'svelte-multiselect';
-
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     let step = 1;
     let name = '';
     let phone = '';
@@ -214,7 +214,7 @@
 
         try {
             // Step 1: Save the address
-            const addressResponse = await fetch('http://localhost:7272/api/v1/address', {
+            const addressResponse = await fetch(`${apiUrl}/address`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -240,7 +240,7 @@
             const addressId = addressData.Data.Address.id; // Extract the Address ID correctly
 
             // Step 2: Save the hotel details
-            const hotelResponse = await fetch('http://localhost:7272/api/v1/hotel/', {
+            const hotelResponse = await fetch(`${apiUrl}/hotel/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -268,7 +268,7 @@
             const registeredHotelId = hotelData.Data.Hotel.id; // Ensure this is the correct path to the Hotel ID
 
             // Step 3: Save the hotel amenities
-            const amenitiesResponse = await fetch('http://localhost:7272/api/v1/hotelamenities/', {
+            const amenitiesResponse = await fetch(`${apiUrl}/hotelamenities/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -286,7 +286,7 @@
             }
 
             // Step 4: Save the property rules
-            const rulesResponse = await fetch('http://localhost:7272/api/v1/propertyrules/', {
+            const rulesResponse = await fetch(`${apiUrl}/propertyrules/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

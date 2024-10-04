@@ -1,42 +1,23 @@
-import { onMount } from 'svelte';
+export let roomName = '';
+export let roomDescription = '';
+export let roomNumber = '';
+export let roomTypesId = '';
+export let blocked = 'False';
+export let status = 'Yes';
+export let inventory = '';
+export let phone = '';
+export let roomTypeName = '';
+export let roomTypeDescription = '';
+export let standardRate = '';
+export let options = '';
+export let occupancyAdult = '';
+export let occupancyChildren = '';
+export let amenityName = '';
+export let roomId = '';
+export let hotelId = 'd1ef7472-e31c-441a-bf0e-7dcd77b3ee7e'; 
+export let errorMessage = '';
+export let successMessage = '';
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
-let step = 1; // Manage the steps in the form
-let roomName = '';
-let roomDescription = '';
-let roomNumber = '';
-let roomTypesId = '';
-let blocked = 'False';
-let status = 'Yes';
-let inventory = '';
-let phone = '';
-let roomTypeName = '';
-let roomTypeDescription = '';
-let standardRate = '';
-let options = '';
-let occupancyAdult = '';
-let occupancyChildren = '';
-let amenityName = '';
-let roomId = '';
-let hotelId = 'd1ef7472-e31c-441a-bf0e-7dcd77b3ee7e'; // Replace with the actual hotel ID
-let errorMessage = '';
-let successMessage = '';
-
-export const validateStep1 = () => {
-  if (!roomTypeName || !roomTypeDescription || !standardRate || !occupancyAdult || !occupancyChildren) {
-    errorMessage = 'Please fill out all required fields.';
-    return false;
-  }
-  return true;
-};
-
-export const validateStep2 = () => {
-  if (!roomName || !roomDescription || !roomNumber || !phone) {
-    errorMessage = 'Please fill out all required fields.';
-    return false;
-  }
-  return true;
-};
-
 export const submitRoomType = async () => {
   errorMessage = '';
   successMessage = '';
@@ -59,15 +40,11 @@ export const submitRoomType = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      roomTypesId = data.Data?.RoomTypes?.id || ''; // Ensure that RoomTypesId is set
-      if (!roomTypesId) {
-        throw new Error('Failed to retrieve RoomTypesId from the response.');
-      }
+      roomTypesId = data.id; // Assuming the ID of the created room type is returned in the response
       successMessage = 'Room type registered successfully!';
-      step += 1; // Proceed to the next step
     } else {
       const errorData = await response.json();
-      throw new Error(errorData.Message || 'Failed to save room type.');
+      throw new Error(errorData.message || 'Failed to save room type.');
     }
   } catch (error) {
     errorMessage = error.message;
@@ -76,11 +53,6 @@ export const submitRoomType = async () => {
 };
 
 export const submitRoom = async () => {
-  if (!roomTypesId) {
-    errorMessage = 'RoomTypesId is required. Please complete the Room Type step first.';
-    return;
-  }
-
   errorMessage = '';
   successMessage = '';
 
@@ -93,7 +65,7 @@ export const submitRoom = async () => {
       body: JSON.stringify({
         Name: roomName,
         Description: roomDescription,
-        RoomTypesId: roomTypesId, // Ensure this is correctly set
+        RoomTypesId: roomTypesId, // Use the created room type ID
         RoomNumber: roomNumber,
         Blocked: blocked,
         Status: status,
@@ -104,12 +76,11 @@ export const submitRoom = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      roomId = data.Data?.id || ''; // Ensure that roomId is set
+      roomId = data.id; // Assuming the ID of the created room is returned in the response
       successMessage = 'Room registered successfully!';
-      step += 1; // Proceed to the next step
     } else {
       const errorData = await response.json();
-      throw new Error(errorData.Message || 'Failed to save room.');
+      throw new Error(errorData.message || 'Failed to save room.');
     }
   } catch (error) {
     errorMessage = error.message;
@@ -129,7 +100,7 @@ export const submitRoomAmenity = async () => {
       },
       body: JSON.stringify({
         AmenityName: amenityName,
-        RoomId: roomId,
+        RoomId: roomId, // Use the created room ID
         HotelId: hotelId,
       }),
     });
@@ -144,13 +115,4 @@ export const submitRoomAmenity = async () => {
     errorMessage = error.message;
     console.error('Error submitting room amenity:', error);
   }
-};
-
-export const handleNext = () => {
-  if (step === 1 && validateStep1()) submitRoomType();
-  if (step === 2 && validateStep2()) submitRoom();
-};
-
-export const handlePrevious = () => {
-  if (step > 1) step -= 1;
 };

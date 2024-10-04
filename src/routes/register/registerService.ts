@@ -1,6 +1,6 @@
 import { goto } from '$app/navigation';
 import type { RegistrationForm } from '../types';
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 export const handleRegister = async (formData: RegistrationForm) => {
     const { firstName, lastName, email, phone, password } = formData;
     let errorMessage = '';
@@ -22,7 +22,7 @@ export const handleRegister = async (formData: RegistrationForm) => {
     }
 
     try {
-        const response = await fetch('http://localhost:7272/api/v1/user', {
+        const response = await fetch(`${apiUrl}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

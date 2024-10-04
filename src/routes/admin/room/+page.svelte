@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import Header from '../../../lib/components/Header.svelte';
   import Sidebar from '../Sidebar.svelte';
-  
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
     let step = 1; // Manage the steps in the form
     let roomName = '';
     let roomDescription = '';
@@ -45,7 +45,7 @@
     successMessage = '';
 
     try {
-      const response = await fetch('http://localhost:7272/api/v1/roomtypes/', {
+      const response = await fetch(`${apiUrl}/roomtypes/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@
     successMessage = '';
 
     try {
-      const response = await fetch('http://localhost:7272/api/v1/room/', {
+      const response = await fetch(`${apiUrl}/room/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@
       successMessage = '';
   
       try {
-        const response = await fetch('http://localhost:7272/api/v1/roomamenities/', {
+        const response = await fetch(`${apiUrl}/roomamenities/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

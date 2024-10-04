@@ -3,7 +3,8 @@
     import flatpickr from 'flatpickr';
     import 'flatpickr/dist/flatpickr.css';
     import { hotels } from '../../stores/hotels';
-  
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
+
     let location = '';
     let checkInDate = '';
     let checkOutDate = '';
@@ -17,7 +18,7 @@
   
     const searchHotels = async () => {
       try {
-        const response = await fetch(`http://localhost:7272/api/v1/hotel/search?Name=${location}`);
+        const response = await fetch(`${apiUrl}/hotel/search?Name=${location}`);
         const data = await response.json();
         if (data.Status === "success" && Array.isArray(data.Data?.HotelRecords?.Items)) {
           hotels.set(data.Data.HotelRecords.Items);

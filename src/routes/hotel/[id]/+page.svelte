@@ -1,7 +1,7 @@
 <script lang="ts">
   import Header from "../../../lib/components/Header.svelte";
   import { onMount } from 'svelte';
-
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
   export let data: {
     hotel: {
       id: string;
@@ -48,7 +48,7 @@
     }
 
     try {
-      const response = await fetch('http://localhost:7272/api/v1/hotelreview/', {
+      const response = await fetch(`${apiUrl}/hotelreview/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

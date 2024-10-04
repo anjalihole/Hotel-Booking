@@ -1,5 +1,5 @@
 import { goto } from '$app/navigation';
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 export const handleLogin = async (email: string, password: string) => {
     let errorMessage = '';
 
@@ -14,7 +14,7 @@ export const handleLogin = async (email: string, password: string) => {
     }
 
     try {
-        const response = await fetch('http://localhost:7272/api/v1/user/login', {
+        const response = await fetch(`${apiUrl}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

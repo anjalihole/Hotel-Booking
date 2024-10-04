@@ -1,8 +1,8 @@
 import type { PageLoad } from './$types';
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 export const load: PageLoad = async ({ params }) => {
   try {
-    const response = await fetch(`http://localhost:7272/api/v1/hotel/${params.id}`);
+    const response = await fetch(`${apiUrl}/hotel/${params.id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch hotel details');
     }
