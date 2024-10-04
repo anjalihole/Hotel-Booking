@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-  import Header from '../../components/Header.svelte';
+  import { onMount } from 'svelte';
+  import Header from '../../../lib/components/Header.svelte';
   import Sidebar from '../Sidebar.svelte';
   
     let step = 1; // Manage the steps in the form

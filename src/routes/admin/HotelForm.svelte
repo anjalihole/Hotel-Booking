@@ -1,6 +1,6 @@
 <script lang="ts">
     import { navigate } from 'svelte-navigator';
-    import Header from '../components/Header.svelte';
+    import Header from '../../lib/components/Header.svelte';
     import flatpickr from 'flatpickr';
     import 'flatpickr/dist/flatpickr.css';
     import { onMount } from 'svelte';

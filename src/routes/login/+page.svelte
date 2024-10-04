@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Header from '../components/Header.svelte';
+  import Header from '../../lib/components/Header.svelte';
   import { handleLogin } from './loginService'; 
 
   let email = '';

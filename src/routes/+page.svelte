@@ -1,8 +1,8 @@
 <script lang="ts">
   import { hotels } from '../stores/hotels';
-  import Header from './components/Header.svelte';
-  import Search from './components/Search.svelte';
-  import HotelCard from './components/HotelCard.svelte';
+  import Header from '../lib/components/Header.svelte';
+  import Search from '../lib/components/Search.svelte';
+  import HotelCard from '../lib/components/HotelCard.svelte';
   import { onMount } from 'svelte';
   import { loadHotels } from './hotelService'; 
   import type { Hotel } from './types'; 
